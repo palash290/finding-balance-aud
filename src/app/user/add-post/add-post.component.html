@@ -1,0 +1,193 @@
+<div class="ct_uploaded_box">
+    <div class="ct_upload_text">
+        <img [src]="avatar_url_fb ? avatar_url_fb : '/assets/img/np_pro.png'" alt="" class="ct_img_44">
+        <div class="form-group w-100">
+            <input type="text" [(ngModel)]="postText" class="form-control ct_custom_input w-100"
+                placeholder="Type here...">
+        </div>
+    </div>
+
+    <!-- <div class=" mb-4 d-flex align-items-center gap-4">
+        <select class="ct_login_input form-control w-auto ms-auto" [(ngModel)]="categoryId"
+            (change)="onCategoryChange($event)">
+            <option disabled>Post Catagory</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.name
+                }}</option>
+        </select>
+    </div> -->
+
+    <div class="ct_upload_items justify-content-between mt-4 flex-wrap">
+        <ul>
+            <li>
+                <div class="ct_audio_upload_btn" id="ct_audio_btn" (click)="toggle('Podcast')" style="cursor: pointer;">
+                    <img src="../assets/img/podcast_icon.svg" alt="">
+                    <p class="mb-0 text-white ct_fs_13 ct_fw_500 ct_ff_roboto ct_text_op_5">Audio</p>
+                </div>
+            </li>
+            <li>
+                <div class="ct_audio_upload_btn" id="ct_video_btn" (click)="toggle('Video')" style="cursor: pointer;">
+                    <img src="../assets/img/video_icon.svg" alt="">
+                    <p class="mb-0 text-white ct_fs_13 ct_fw_500 ct_ff_roboto ct_text_op_5">Video</p>
+                </div>
+            </li>
+        </ul>
+       <div class="d-flex align-items-center gap-2 flex-wrap ct_flex_wrap_575123">
+        <div class="ct_category_filter123 ct_575_100">
+            <span class="ct_text_op_5 text-white ct_fs_13">Post Category :</span>
+            <select [(ngModel)]="categoryId" (change)="onCategoryChange($event)" style="cursor: pointer;">
+                <option disabled>Post Catagory</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name
+                    }}</option>
+            </select>
+        </div>
+
+        @if(userPlan == 'Premium' && !hideField){
+        <div class="ct_category_filter123 ct_575_100">
+            <select [(ngModel)]="postType" style="cursor: pointer;">
+                <option value="0">Free</option>
+                <option value="2">Paid</option>
+                <option value="1">Ad Hoc</option>
+            </select>
+        </div>
+
+      <div class="ct_575_100">
+        <div *ngIf="postType == 1" class="ct_category_filter123  ">
+            <input type="number" [(ngModel)]="adHocPrice" class="ct_transparent_input text-white"  (ngModelChange)="validateAdHocPrice()"
+                placeholder="Enter Price">
+
+            <!-- Error message for required, negative, or max value -->
+        </div>
+        <div *ngIf="priceError" class="error-message ct_error_position">
+            {{ priceError }}
+        </div>
+      </div>
+
+        }
+       </div>
+
+
+        <div>
+            <!-- @if(!btnLoader){
+            <button type="button" (click)="uploadFiles()"
+                class="ct_orange_btn ct_white_border_1 ct_grey_btn ct_border_radius_10 px-4 py-2 h-auto">Post</button>
+            }@else {
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <button type="button" class="btn btn-primary" [disabled]="btnLoader">
+                <div class="d-flex align-items-center">
+                    <div class="spinner-border me-2" role="status" *ngIf="btnLoader">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span *ngIf="!btnLoader">Submit</span>
+                </div>
+            </button>
+            
+            } -->
+            <button type="button" (click)="uploadFiles()"
+                class="ct_orange_btn ct_white_border_1 ct_grey_btn ct_border_radius_10 h-auto d-flex align-items-center"
+                [disabled]="btnLoader">
+                <div class="d-flex align-items-center">
+                    <div class="spinner-border me-2" role="status" *ngIf="btnLoader">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span *ngIf="!btnLoader">Post</span>
+                </div>
+            </button>
+
+
+
+        </div>
+
+
+    </div>
+
+    <!-- before upload Content S -->
+
+    <!-- <div class="ct_uploaded_cnt">
+            <div class="ct_audio_upload_first" id="ct_audio">
+                <label for="ct_upload_audio">
+                    <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*">
+                    <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 10 MB</p>
+                </label>
+
+            </div>
+            <div class="ct_audio_upload_first" id="ct_video">
+                <label for="ct_upload_audio">
+                    <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*">
+                    <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
+                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 10 MB</p>
+                </label>
+            </div>
+        </div> -->
+    <div class="ct_uploaded_cnt">
+        <!-- Audio Upload -->
+        <div class="ct_grid_2_1_audio">
+            <div class="ct_audio_upload_first w-100" style="max-width: 100%;" id="ct_audio">
+                <label for="ct_upload_audio">
+                    <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*"
+                        (change)="onAudioFileChange($event)">
+                    <div *ngIf="audioFile">
+                        <p class="mb-2 text-white ct_fs_13">Selected audio file: {{ audioFile.name }}</p>
+                    </div>
+                    <div *ngIf="!audioFile" style="cursor: pointer;">
+                        <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                        <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
+                    </div>
+                    <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
+                </label>
+            </div>
+            <div class="ct_audio_upload_first w-100" style="max-width: 100%;" id="ct_image">
+                <label for="ct_upload_img">
+                    <input type="file" class="d-none" id="ct_upload_img" accept="image/*"
+                        (change)="handleCommittedFileInput($event)">
+                    <div *ngIf="!croppedImage" style="cursor: pointer;">
+                        <p class="mb-2 text-white ct_fs_13">Click to upload thumbnail</p>
+                        <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 5 MB</p>
+                    </div>
+                    <img *ngIf="croppedImage" class="ct_img_h_130"
+                        [src]="croppedImage ? croppedImage : '/assets/img/np_pro.png'" alt="Uploaded Image" />
+                    <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
+                </label>
+            </div>
+        </div>
+        <div class="ct_audio_upload_first w-100" style="max-width: 100%;" id="ct_image">
+            <label for="ct_upload_img">
+                <input type="file" class="d-none" id="ct_upload_img" accept="img/*"
+                    (change)="onAudioFileChange($event)">
+                <div *ngIf="audioFile">
+                    <p class="mb-2 text-white ct_fs_13">Selected Image file: {{ audioFile.name }}</p>
+                </div>
+                <div *ngIf="!audioFile" style="cursor: pointer;">
+                    <p class="mb-2 text-white ct_fs_13">Click to upload Image file</p>
+                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
+                </div>
+                <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
+            </label>
+        </div>
+      </div>
+
+        <!-- Video Upload -->
+        <div class="ct_audio_upload_first" id="ct_video">
+            <label for="ct_upload_video">
+                <input type="file" class="d-none" id="ct_upload_video" accept="video/*"
+                    (change)="onVideoFileChange($event)">
+                <div *ngIf="videoFile">
+                    <p class="mb-2 text-white ct_fs_13">Selected video file: {{ videoFile.name }}</p>
+                    <video *ngIf="videoFile" [src]="videoPreviewUrl" controls width="300"></video>
+                </div>
+                <div *ngIf="!videoFile">
+                    <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
+                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
+                </div>
+                <!-- <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
+                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
+            </label>
+        </div>
+
+    </div>
+
