@@ -107,7 +107,9 @@
 <div class="mt-4">
   <h4 class="ct_ff_roboto text-white ct_fs_18 ct_fw_600">Webinar Url</h4>
   <p class="mb-0 text-white ct_fs_14 ct_ff_roboto ct_fw_400 ct_line_height_22">
-    {{eventData?.webinar_url}}</p>
+    <a *ngIf="eventData?.webinar_url" [href]="eventData?.webinar_url" target="_blank" rel="noopener noreferrer" class="text-white">
+      {{ eventData?.webinar_url }}
+    </a></p>
 </div>
 }
 } @else {
@@ -116,7 +118,10 @@
   <h4 class="ct_ff_roboto text-white ct_fs_18 ct_fw_600">Webinar Url</h4>
   <p class="mb-0 text-white ct_fs_14 ct_ff_roboto ct_fw_400 ct_line_height_22"
     [ngClass]="{'blurred': !eventData?.isShown}" [ngStyle]="{ 'user-select': !eventData?.isShown ? 'none' : 'auto' }">
-    {{eventData?.webinar_url}}</p>
+    <a *ngIf="eventData?.webinar_url" [href]="eventData?.webinar_url" target="_blank" rel="noopener noreferrer" class="text-white"
+    style="text-decoration: underline;">
+      {{ eventData?.webinar_url }}
+    </a></p>
 </div>
 }
 }

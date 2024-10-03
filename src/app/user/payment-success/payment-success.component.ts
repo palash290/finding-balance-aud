@@ -17,8 +17,8 @@ export class PaymentSuccessComponent {
     this.adHocPostId = localStorage.getItem('adHocPostId');
     this.adHocEventId = localStorage.getItem('adHocEventId');
     this.planId = localStorage.getItem('planId');
-    debugger
-    if (!this.adHocPostId || !this.adHocEventId || !this.planId) {
+    //debugger
+    if (!this.adHocPostId && !this.adHocEventId && !this.planId) {
       this.route.navigateByUrl('/user/payment-cancel');
     }
   }
@@ -65,8 +65,6 @@ export class PaymentSuccessComponent {
   }
 
   logout() {
-    //this.service.logout();
-
     if (this.adHocPostId) {
       this.route.navigateByUrl('/user/main/feeds');
     }

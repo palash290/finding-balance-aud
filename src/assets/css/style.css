@@ -191,7 +191,7 @@ header{
 .ct_orange_btn{
     background-color: var(--orange);
     padding: 8px 18px;
-    z-index: 10;
+    z-index: 1;
     position: relative;
     transition: 0.4s ease all;
     border-radius: 100px;

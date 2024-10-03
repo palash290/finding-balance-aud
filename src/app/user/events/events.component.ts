@@ -21,6 +21,7 @@ export class EventsComponent {
   constructor(private route: ActivatedRoute, private service: SharedService, private router: Router, private location: Location) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('adHocEventId');
     this.userPlan = localStorage.getItem('findPlan');
     this.role = this.service.getRole();
     if (this.role == 'USER') {

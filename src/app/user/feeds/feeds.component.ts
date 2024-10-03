@@ -49,6 +49,7 @@ export class FeedsComponent {
 
 
   ngOnInit() {
+    localStorage.removeItem('adHocPostId');
     this.categoryId = localStorage.getItem('categoryId') ? localStorage.getItem('categoryId') : '';
     this.selectedOption = localStorage.getItem('selectedOption') ? localStorage.getItem('selectedOption') : '';
     this.getPackage();
