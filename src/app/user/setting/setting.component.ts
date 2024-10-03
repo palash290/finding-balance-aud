@@ -24,6 +24,7 @@ export class SettingComponent implements OnInit {
 
   constructor(private srevice: SharedService, private toastr: ToastrService, private route: Router, private location: Location) { }
   ngOnInit(): void {
+    this.getPackage();
     this.canceled_at = localStorage.getItem('canceled_at');
     this.plan_expired_at = localStorage.getItem('plan_expired_at');
     this.userId = localStorage.getItem('fbId');
@@ -39,7 +40,7 @@ export class SettingComponent implements OnInit {
     if (this.canceled_at == 'null') {
       this.membership = true;
     }
-    this.getPackage();
+    
   }
 
   getPackage() {
@@ -132,6 +133,7 @@ export class SettingComponent implements OnInit {
               );
               this.route.navigateByUrl('/home')
               this.toastr.success(resp.message);
+              this.getPackage();
             } else {
               this.toastr.success(resp.message);
             }
@@ -142,6 +144,7 @@ export class SettingComponent implements OnInit {
               'There was an error cancelling your subscription.',
               'error'
             );
+            this.getPackage();
             this.toastr.error('Error deleting subscription!');
             console.error('Error deleting account', error);
           }

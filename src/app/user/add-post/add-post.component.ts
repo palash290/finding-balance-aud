@@ -113,19 +113,35 @@ export class AddPostComponent {
   readonly MAX_FILE_SIZE_MB = 50;
   videoPreviewUrl: string | null = null;
 
+  // onAudioFileChange(event: Event) {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files?.length > 0) {
+  //     const file = input.files[0];
+  //     if (this.isFileSizeValid(file)) {
+  //       this.audioFile = file;
+  //       this.checkAudioDuration(file);
+  //     } else {
+  //       this.toastr.warning('Audio file exceeds the maximum size of 50 MB.');
+  //       input.value = ''; // Clear the input
+  //     }
+  //   }
+  // }
+
   onAudioFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files?.length > 0) {
+    if (input.files && input.files.length > 0) {
       const file = input.files[0];
       if (this.isFileSizeValid(file)) {
         this.audioFile = file;
         this.checkAudioDuration(file);
       } else {
         this.toastr.warning('Audio file exceeds the maximum size of 50 MB.');
-        input.value = ''; // Clear the input
       }
+      input.value = ''; // Reset the input value to allow re-uploading the same file
     }
   }
+  
+
 
   onVideoFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -137,8 +153,8 @@ export class AddPostComponent {
         this.checkVideoDuration(file);
       } else {
         this.toastr.warning('Video file exceeds the maximum size of 50 MB.');
-        input.value = ''; // Clear the input
       }
+      input.value = ''; // Clear the input
     }
   }
 
@@ -204,6 +220,7 @@ export class AddPostComponent {
   }
 
   btnLoader: boolean = false;
+
   uploadFiles() {
     if (this.postType == 1 && (this.adHocPrice === null || this.adHocPrice === undefined)) {
       this.priceError = 'Price is required.';

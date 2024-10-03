@@ -70,7 +70,11 @@ export class ResetPasswordComponent {
         },
         error: (error) => {
           this.loading = false;
-          this.toster.error('Something went wrong!')
+          if (error.error.message) {
+            this.toster.error(error.error.message);
+          } else {
+            this.toster.error('Something went wrong!');
+          }
           console.error('Login error:', error);
         }
       });

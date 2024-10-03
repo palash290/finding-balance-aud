@@ -13,25 +13,26 @@ export class PaymentCancelComponent {
 
   adHocEventId: any;
 
-  constructor(private route: Router, private service: SharedService) { 
-    this.adHocPostId = localStorage.getItem('adHocPostId');
-    this.adHocEventId = localStorage.getItem('adHocEventId');
-    if(!this.adHocPostId || this.adHocEventId){
-      this.route.navigateByUrl('/user/main/feeds')
-    }
+  constructor(private route: Router, private service: SharedService) {
+    // this.adHocPostId = localStorage.getItem('adHocPostId');
+    // this.adHocEventId = localStorage.getItem('adHocEventId');
+    // if (!this.adHocPostId || !this.adHocEventId) {
+    //   this.route.navigateByUrl('/user/main/feeds');
+    // }
   }
 
   ngOnInit() {
-    // this.adHocPostId = localStorage.getItem('adHocPostId');
-    // this.adHocEventId = localStorage.getItem('adHocEventId');
+    localStorage.removeItem('adHocPostId');
+    localStorage.removeItem('adHocEventId');
+    localStorage.removeItem('planId');
 
     //console.log(`Payment Done successful for ${localStorage.getItem('package')} package!`)
-    if(this.adHocPostId){
-      this.setSub();
-    }
-    if(this.adHocEventId){
-      this.payForEvent();
-    }
+    // if (this.adHocPostId) {
+    //   this.setSub();
+    // }
+    // if (this.adHocEventId) {
+    //   this.payForEvent();
+    // }
   }
 
   setSub() {
@@ -56,20 +57,21 @@ export class PaymentCancelComponent {
     })
   }
 
-  ngOnDestroy() {
-    localStorage.removeItem('adHocPostId');
-    localStorage.removeItem('adHocEventId');
-  }
+  // ngOnDestroy() {
+  //   localStorage.removeItem('adHocPostId');
+  //   localStorage.removeItem('adHocEventId');
+  //   localStorage.removeItem('planId');
+  // }
 
   logout() {
-    //this.service.logout();
-   
-    if(this.adHocPostId){
-      this.route.navigateByUrl('/user/main/feeds');
-    }
-    if(this.adHocEventId){
-      this.route.navigateByUrl(`user/main/events/${this.adHocEventId}`);
-    }
+    this.route.navigateByUrl('/user/main/feeds');
+
+    // if (this.adHocPostId) {
+    //   this.route.navigateByUrl('/user/main/feeds');
+    // }
+    // if (this.adHocEventId) {
+    //   this.route.navigateByUrl(`user/main/events/${this.adHocEventId}`);
+    // }
   }
 
 }

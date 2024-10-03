@@ -140,7 +140,7 @@
                     </div> -->
 
 
-                    <div style="cursor: pointer;" *ngIf="feed.isPaid == 1 && !isCoach" (click)="getAdHocPost(feed.id)">
+                    <div style="cursor: pointer;" *ngIf="feed.isPaid == 1 && !isCoach && !feed.isShown" (click)="getAdHocPost(feed.id)">
                         <a class="ct_orange_btn mt-2 ct_border_radius_10 ct_blue_btn123 ct_pay_to_see_center"><i
                                 class="fa-solid fa-lock me-2"></i>
                             <div class="d-flex align-items-center">
@@ -164,7 +164,8 @@
                             <i *ngIf="isPlayingA[i]" class="bi bi-pause-fill" style="cursor: pointer;"></i>
                         </div>
 
-                        <p style="color: orange;">{{ formatTime(currentTimeA[i]) }} / {{ formatTime(totalDurationA[i]) }}
+                        <p style="color: orange;">{{ formatTime(currentTimeA[i]) }} / {{ formatTime(totalDurationA[i])
+                            }}
                         </p>
 
                         <div class="waveform" (click)="wave[i].playPause()" [id]="'waveform' + feed.id"
@@ -247,7 +248,7 @@
                                 <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                                     placeholder="Write comment..." [(ngModel)]="commentText"
                                     [ngModelOptions]="{standalone: true}" maxlength="250"
-                                    (keyup.enter)="addComment(feed)">
+                                    (keyup.enter)="addComment(feed)" [disabled]="btnLoader">
 
                                 <i (click)="addComment(feed)" *ngIf="!btnLoader"
                                     class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
@@ -526,7 +527,7 @@
                                 <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                                     placeholder="Write comment..." [(ngModel)]="commentText"
                                     [ngModelOptions]="{standalone: true}" maxlength="250"
-                                    (keyup.enter)="addComment(feed)">
+                                    (keyup.enter)="addComment(feed)" [disabled]="btnLoader">
                                 <!-- <i (click)="addComment(feed.id)" class="fa fa-paper-plane ct_send_msg_plane text-white"
                                     aria-hidden="true"></i> -->
                                 <i (click)="addComment(feed)" *ngIf="!btnLoader"
@@ -849,7 +850,7 @@
                                 <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                                     placeholder="Write comment..." [(ngModel)]="commentText"
                                     [ngModelOptions]="{standalone: true}" maxlength="250"
-                                    (keyup.enter)="addComment(feed)">
+                                    (keyup.enter)="addComment(feed)" [disabled]="btnLoader">
                                 <!-- <i (click)="addComment(feed.id)" class="fa fa-paper-plane ct_send_msg_plane text-white"
                                     aria-hidden="true"></i> -->
                                 <i (click)="addComment(feed)" *ngIf="!btnLoader"

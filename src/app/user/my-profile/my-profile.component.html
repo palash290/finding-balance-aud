@@ -160,7 +160,7 @@
 
             <div class="ct_show_uploaded_audio_box ct_show_uploaded_audio_box_bg mt-3 ct_light_grey_bg"
                 [ngStyle]="{ 'background-image': 'url(' + (feed?.thumbnailUrl ? feed.thumbnailUrl : 'assets/img/audio_bg_img_2434.jpg') + ')'}">
-         
+
                 <div class="ct_audio_play_icon" (click)="togglePlayPause(i)">
                     <i *ngIf="!isPlayingA[i]" class="bi bi-play-fill" style="cursor: pointer;"></i>
                     <i *ngIf="isPlayingA[i]" class="bi bi-pause-fill" style="cursor: pointer;"></i>
@@ -220,7 +220,7 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                             placeholder="Write comment..." [(ngModel)]="commentText"
-                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed)">
+                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed)" [disabled]="btnLoader">
 
                         <i (click)="addComment(feed)" *ngIf="!btnLoader"
                             class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
@@ -470,7 +470,7 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                             placeholder="Write comment..." [(ngModel)]="commentText"
-                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed)">
+                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed)" [disabled]="btnLoader">
                         <!-- <i (click)="addComment(feed.id)" class="fa fa-paper-plane ct_send_msg_plane text-white"
                             aria-hidden="true"></i> -->
                         <i (click)="addComment(feed)" *ngIf="!btnLoader"
@@ -743,7 +743,7 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ct_custom_input w-100" placeholder="Write comment..."
                             [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" maxlength="250"
-                            (keyup.enter)="addComment(feed)">
+                            (keyup.enter)="addComment(feed)" [disabled]="btnLoader">
                         <!-- <i (click)="addComment(feed.id)" class="fa fa-paper-plane ct_send_msg_plane text-white"
                             aria-hidden="true"></i> -->
                         <i (click)="addComment(feed)" *ngIf="!btnLoader"

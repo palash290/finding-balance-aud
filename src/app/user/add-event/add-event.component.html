@@ -172,7 +172,7 @@
         <!-- Error message if price is negative -->
         <div *ngIf="newForm.controls['price'].errors?.['min'] && newForm.controls['price'].touched"
             class="error-message">
-            Price must be greater than or equal to 0.
+            Price must be greater than 0.
         </div>
 
         <!-- Error message if price exceeds max value (5 digits) -->

@@ -10,14 +10,16 @@ import { SharedService } from '../../services/shared.service';
 export class PaymentSuccessComponent {
 
   adHocPostId: any;
-
   adHocEventId: any;
+  planId: any;
 
-  constructor(private route: Router, private service: SharedService) { 
+  constructor(private route: Router, private service: SharedService) {
     this.adHocPostId = localStorage.getItem('adHocPostId');
     this.adHocEventId = localStorage.getItem('adHocEventId');
-    if(!this.adHocPostId || this.adHocEventId){
-      this.route.navigateByUrl('/user/main/feeds')
+    this.planId = localStorage.getItem('planId');
+    debugger
+    if (!this.adHocPostId || !this.adHocEventId || !this.planId) {
+      this.route.navigateByUrl('/user/payment-cancel');
     }
   }
 
@@ -26,10 +28,10 @@ export class PaymentSuccessComponent {
     // this.adHocEventId = localStorage.getItem('adHocEventId');
 
     //console.log(`Payment Done successful for ${localStorage.getItem('package')} package!`)
-    if(this.adHocPostId){
+    if (this.adHocPostId) {
       this.setSub();
     }
-    if(this.adHocEventId){
+    if (this.adHocEventId) {
       this.payForEvent();
     }
   }
@@ -59,15 +61,16 @@ export class PaymentSuccessComponent {
   ngOnDestroy() {
     localStorage.removeItem('adHocPostId');
     localStorage.removeItem('adHocEventId');
+    localStorage.removeItem('planId');
   }
 
   logout() {
     //this.service.logout();
-   
-    if(this.adHocPostId){
+
+    if (this.adHocPostId) {
       this.route.navigateByUrl('/user/main/feeds');
     }
-    if(this.adHocEventId){
+    if (this.adHocEventId) {
       this.route.navigateByUrl(`user/main/events/${this.adHocEventId}`);
     }
   }

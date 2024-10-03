@@ -106,7 +106,7 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ct_custom_input w-100 ct_pe_34" placeholder="Write comment..."
                             [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" maxlength="250"
-                            (keyup.enter)="addComment(feed.post)">
+                            (keyup.enter)="addComment(feed.post)" [disabled]="btnLoader">
 
                         <i (click)="addComment(feed.post)" *ngIf="!btnLoader"
                             class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
@@ -329,7 +329,7 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ct_custom_input w-100 ct_pe_34" placeholder="Write comment..."
                             [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" maxlength="250"
-                            (keyup.enter)="addComment(feed.post)">
+                            (keyup.enter)="addComment(feed.post)" [disabled]="btnLoader">
 
                         <i (click)="addComment(feed.post)" *ngIf="!btnLoader"
                             class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
@@ -580,7 +580,7 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ct_custom_input w-100 ct_pe_34" placeholder="Write comment..."
                             [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" maxlength="250"
-                            (keyup.enter)="addComment(feed.post)">
+                            (keyup.enter)="addComment(feed.post)" [disabled]="btnLoader">
 
                         <i (click)="addComment(feed.post)" *ngIf="!btnLoader"
                             class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">

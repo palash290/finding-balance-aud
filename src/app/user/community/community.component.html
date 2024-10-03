@@ -257,7 +257,7 @@
                                     <input type="text" class="form-control ct_custom_input w-100"
                                         placeholder="Write comment..." [(ngModel)]="commentText"
                                         [ngModelOptions]="{standalone: true}" maxlength="250"
-                                        (keyup.enter)="addComment(feed)">
+                                        (keyup.enter)="addComment(feed)" [disabled]="btnLoaderCmt">
 
                                     <i (click)="addComment(feed)" *ngIf="!btnLoaderCmt"
                                         class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
@@ -516,7 +516,7 @@
                                     <input type="text" class="form-control ct_custom_input w-100"
                                         placeholder="Write comment..." [(ngModel)]="commentText"
                                         [ngModelOptions]="{standalone: true}" maxlength="250"
-                                        (keyup.enter)="addComment(feed)">
+                                        (keyup.enter)="addComment(feed)" [disabled]="btnLoaderCmt">
                                     <!-- <i (click)="addComment(feed.id)" class="fa fa-paper-plane ct_send_msg_plane text-white"
                                         aria-hidden="true"></i> -->
                                     <i (click)="addComment(feed)" *ngIf="!btnLoaderCmt"
@@ -798,7 +798,7 @@
                                     <input type="text" class="form-control ct_custom_input w-100"
                                         placeholder="Write comment..." [(ngModel)]="commentText"
                                         [ngModelOptions]="{standalone: true}" maxlength="250"
-                                        (keyup.enter)="addComment(feed)">
+                                        (keyup.enter)="addComment(feed)" [disabled]="btnLoaderCmt">
                                     <!-- <i (click)="addComment(feed.id)" class="fa fa-paper-plane ct_send_msg_plane text-white"
                                          aria-hidden="true"></i> -->
                                     <i (click)="addComment(feed)" *ngIf="!btnLoaderCmt"

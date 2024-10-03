@@ -437,10 +437,10 @@ export class MyProfileComponent {
     feed.alreadySaved = !feed.alreadySaved;
 
     // Show a message based on the new state
-    const message = feed.alreadySaved ? 'Post Saved' : 'Post Unsaved';
+    const message = feed.alreadySaved ? 'Post Saved Successfully' : 'Post Unsaved';
 
     // Show immediate feedback to the user using MatSnackBar
-    this.snackBar.open(message, 'Close', {
+    this.snackBar.open(message, '', {
       duration: 9000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
@@ -463,6 +463,9 @@ export class MyProfileComponent {
   btnLoader: boolean = false;
 
   addComment(feed: any) {
+    if (this.btnLoader) {
+      return; // Prevent multiple submissions
+    }
     const trimmedMessage = this.commentText?.trim();
     if (trimmedMessage === '') {
       return;

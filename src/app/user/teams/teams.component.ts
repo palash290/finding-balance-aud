@@ -480,6 +480,9 @@ export class TeamsComponent {
   btnLoaderCmt: boolean = false;
 
   addComment(feed: any) {
+    if (this.btnLoaderCmt) {
+      return; // Prevent multiple submissions
+    }
     const trimmedMessage = this.commentText?.trim();
     if (trimmedMessage === '') {
       return;

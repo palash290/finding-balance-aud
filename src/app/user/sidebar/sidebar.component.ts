@@ -90,7 +90,8 @@ export class SidebarComponent {
     formURlData.set('planId', '2');
     this.visibilityService.postAPI(`subscription/create-subscription`, formURlData.toString()).subscribe(response => {
       this.stripeLink = response.url;
-      console.log(this.stripeLink);
+      localStorage.setItem('planId', '2')
+      //console.log(this.stripeLink);
     });
   }
 
@@ -103,9 +104,10 @@ export class SidebarComponent {
     //this.btnLoaderPay = true;
     this.visibilityService.postAPI(`subscription/create-subscription`, formURlData.toString()).subscribe(response => {
       this.stripeLink = response.url;
+      localStorage.setItem('planId', '4')
       //window.location.href = this.stripeLink;
       //this.btnLoaderPay = false;
-      console.log(this.stripeLink);
+      //console.log(this.stripeLink);
     });
   }
 

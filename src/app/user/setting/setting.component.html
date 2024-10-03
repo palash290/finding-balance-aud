@@ -35,12 +35,16 @@
       </label>
     </div>
   </li>
+  @if (userPlan == 'Premium'){
   <li>
     <div class="d-flex align-items-center gap-3 justify-content-between">
       <p class="mb-0 text-white ct_fs_18 ct_fw_500 ct_ff_roboto">Membership</p>
-      <p class="mb-0 ct_fs_14 ct_fw_500 ct_ff_roboto ct_blue_text_clr">{{membership ? 'Your autopay is re-sheduled at:' : 'Your plan will expire on'}} {{plan_expired_at | date: 'dd MMM yyyy' }}</p>
+      <p class="mb-0 ct_fs_14 ct_fw_500 ct_ff_roboto ct_blue_text_clr">{{membership ? 'Your autopay has been resheduled
+        at:' : 'Your plan will expire on'}} {{plan_expired_at | date: 'dd MMM yyyy, h:mm a' }}</p>
     </div>
   </li>
+  }
+
 
   @if (userPlan == 'Premium' && membership) {
   <li>

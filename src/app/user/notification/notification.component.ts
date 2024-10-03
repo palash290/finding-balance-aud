@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SocketService } from '../../services/socket.service';
 import Swal from 'sweetalert2';
 import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class NotificationComponent {
 
   data: any;
 
-  constructor(private service: SharedService, private route: ActivatedRoute, private socketService: SocketService, private router: Router, private location: Location) { }
+  constructor(private service: SharedService, private route: ActivatedRoute, private socketService: SocketService, private router: Router, private location: Location, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.role = this.service.getRole();
@@ -57,10 +58,22 @@ export class NotificationComponent {
   }
 
   viewEvent(eventId: any, type: any){
-    if (type == 'event') {
-      localStorage.setItem('chatIdFb', eventId)
-      this.router.navigateByUrl(`user/main/events/${eventId}`)
-    }
+    this.service.getApi(this.isCoach ? `coach/event/${eventId}` : `user/event/allEvents/${eventId}`).subscribe({
+      next: (resp) => {
+        if (type == 'event') {
+          localStorage.setItem('chatIdFb', eventId)
+          this.router.navigateByUrl(`user/main/events/${eventId}`)
+        } 
+      },
+      error: error => {
+        this.toastr.warning('This event is no longer exist!')
+        //console.log(error.message)
+      }
+    });
+    // if (type == 'event') {
+    //   localStorage.setItem('chatIdFb', eventId)
+    //   this.router.navigateByUrl(`user/main/events/${eventId}`)
+    // }
   }
 
   readAllNotification() {

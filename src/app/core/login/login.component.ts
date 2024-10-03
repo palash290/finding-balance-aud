@@ -111,7 +111,12 @@ export class LoginComponent {
         },
         error: (error) => {
           this.loading = false;
-          this.toster.error(error.error.message);
+          if (error.error.message) {
+            this.toster.error(error.error.message);
+          } else {
+            this.toster.error('Something went wrong!');
+          }
+          //this.toster.error(error.error.message);
           // this.toster.error(error.error.message)
           //debugger
           console.error('Login error:', error.error.message);

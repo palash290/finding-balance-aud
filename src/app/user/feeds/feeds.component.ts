@@ -49,6 +49,8 @@ export class FeedsComponent {
 
 
   ngOnInit() {
+    this.categoryId = localStorage.getItem('categoryId') ? localStorage.getItem('categoryId') : '';
+    this.selectedOption = localStorage.getItem('selectedOption') ? localStorage.getItem('selectedOption') : '';
     this.getPackage();
     this.userId = localStorage.getItem('fbId');
     this.role = this.visibilityService.getRole();
@@ -122,6 +124,8 @@ export class FeedsComponent {
 
   ngOnDestroy() {
     localStorage.removeItem('adHocPostId');
+    localStorage.removeItem('categoryId');
+    localStorage.removeItem('selectedOption');
     this.wave.forEach(w => w.destroy());
   }
 
@@ -139,8 +143,10 @@ export class FeedsComponent {
     if (selectedCategory) {
       this.categoryId = selectedCategory.id;
       this.selectedCategoryName = selectedCategory.name;
-      console.log('Selected Category ID:', this.categoryId);
-      console.log('Selected Category Name:', this.selectedCategoryName);
+      localStorage.setItem('categoryId', this.categoryId);
+
+      // console.log('Selected Category ID:', this.categoryId);
+      // console.log('Selected Category Name:', this.selectedCategoryName);
     }
     this.getProfileData();
   }
@@ -150,11 +156,12 @@ export class FeedsComponent {
 
   shortTextLength: number = 270;
   durationOrg: any;
-  selectedOption: string = '';
+  selectedOption: any = '';
 
   isPlayingA: boolean[] = [];
 
   getProfileData() {
+    localStorage.setItem('selectedOption', this.selectedOption);
     this.visibilityService.getApi(this.isCoach ? `coach/post/allPosts?type=${this.selectedOption}&categoryId=${this.categoryId}` : `user/allPosts?type=${this.selectedOption}&categoryId=${this.categoryId}`).subscribe({
       next: resp => {
         if (this.isCoach) {
@@ -424,10 +431,10 @@ export class FeedsComponent {
     feed.alreadySaved = !feed.alreadySaved;
 
     // Show a message based on the new state
-    const message = feed.alreadySaved ? 'Post Saved' : 'Post Unsaved';
+    const message = feed.alreadySaved ? 'Post Saved Successfully' : 'Post Unsaved';
 
     // Show immediate feedback to the user using MatSnackBar
-    this.snackBar.open(message, 'Close', {
+    this.snackBar.open(message, '', {
       duration: 9000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
@@ -451,6 +458,9 @@ export class FeedsComponent {
   btnLoader: boolean = false;
 
   addComment(feed: any) {
+    if (this.btnLoader) {
+      return; // Prevent multiple submissions
+    }
     const trimmedMessage = this.commentText?.trim();
     if (trimmedMessage === '') {
       return;
@@ -458,8 +468,6 @@ export class FeedsComponent {
 
     if (feed.numberOfComments >= 0) {
       feed.numberOfComments++;
-    } else {
-      //feed.numberOfComments--;
     }
 
     const formData = new URLSearchParams();
@@ -472,10 +480,8 @@ export class FeedsComponent {
         this.commentText = '';
         this.getPostComments(feed.id);
         this.btnLoader = false;
-        //this.getProfileData();
       },
       error: (error) => {
-        //this.toastr.error('Error uploading files!');
         console.error('Upload error', error);
         this.btnLoader = false;
       }
@@ -494,14 +500,14 @@ export class FeedsComponent {
       }
     });
   }
-  
+
   btnLoaderCmt: boolean = false;
   deleteId: any;
 
   deleteComment(cmtId: any, feed: any) {
     if (feed.numberOfComments >= 0) {
       feed.numberOfComments--;
-    } 
+    }
     this.deleteId = cmtId;
     this.btnLoaderCmt = true;
     this.visibilityService.deleteAcc(this.isCoach ? `coach/comment/${cmtId}` : `user/post/comment/${cmtId}`).subscribe({
