@@ -13,38 +13,46 @@ export class AddPostComponent {
   isActive: boolean = false
 
   toggle(type: string) {
-    let audioBtn = document.getElementById('ct_audio_btn')
-    let videoBtn = document.getElementById('ct_video_btn')
-    let audio = document.getElementById('ct_audio')
-    let video = document.getElementById('ct_video')
-
-    let thumbNailImg = document.getElementById('ct_image')
-
-    if(type === 'Podcast'){
+    let audioBtn = document.getElementById('ct_audio_btn');
+    let videoBtn = document.getElementById('ct_video_btn');
+    let audio = document.getElementById('ct_audio');
+    let video = document.getElementById('ct_video');
+    let thumbNailImg = document.getElementById('ct_image');
+  
+    if (type === 'Podcast') {
       this.videoFile = null;
     }
-
+  
     if (type === 'Video') {
-      videoBtn?.classList.add('ct_uploaded_btn_active')
-      audioBtn?.classList.remove('ct_uploaded_btn_active')
-      audio?.classList.remove('d-block')
-
-      this.audioFile = null;
-      //this.UploadedFile = null;
-
-      thumbNailImg?.classList.remove('d-block')
-      video?.classList.add('d-block')
-    } else {
-      videoBtn?.classList.remove('ct_uploaded_btn_active')
-      audioBtn?.classList.add('ct_uploaded_btn_active')
-      audio?.classList.add('d-block')
-
-      
-
-      thumbNailImg?.classList.add('d-block')
-      video?.classList.remove('d-block')
+      if (video?.classList.contains('d-block')) {
+        // If video is already showing, hide it
+        video.classList.remove('d-block');
+        videoBtn?.classList.remove('ct_uploaded_btn_active');
+      } else {
+        // Show video and hide audio
+        videoBtn?.classList.add('ct_uploaded_btn_active');
+        audioBtn?.classList.remove('ct_uploaded_btn_active');
+        audio?.classList.remove('d-block');
+        video?.classList.add('d-block');
+        thumbNailImg?.classList.remove('d-block');
+      }
+    } else if (type === 'Podcast') {
+      if (audio?.classList.contains('d-block')) {
+        // If audio is already showing, hide it
+        audio.classList.remove('d-block');
+        audioBtn?.classList.remove('ct_uploaded_btn_active');
+        thumbNailImg?.classList.remove('d-block');
+      } else {
+        // Show audio and hide video
+        videoBtn?.classList.remove('ct_uploaded_btn_active');
+        audioBtn?.classList.add('ct_uploaded_btn_active');
+        audio?.classList.add('d-block');
+        thumbNailImg?.classList.add('d-block');
+        video?.classList.remove('d-block');
+      }
     }
   }
+  
 
   avatar_url_fb: any;
   categories: any[] = [];
