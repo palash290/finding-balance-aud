@@ -65,7 +65,7 @@ export class PaymentSuccessComponent {
   }
 
   logout() {
-    if (this.adHocPostId) {
+    if (this.adHocPostId || this.planId) {
       this.route.navigateByUrl('/user/main/feeds');
     }
     if (this.adHocEventId) {
