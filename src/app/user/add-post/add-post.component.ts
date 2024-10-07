@@ -115,6 +115,36 @@ export class AddPostComponent {
     }
   }
 
+
+  dropdownOpen: boolean = false;
+  searchTerm: string = '';
+
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  closeDropdown(): void {
+    this.dropdownOpen = false;
+  }
+
+  selectCategory(category: any): void {
+    this.categoryId = category.id;
+    this.selectedCategoryName = category.name;
+    this.dropdownOpen = false;
+
+    console.log('Selected Category ID:', this.categoryId);
+    console.log('Selected Category Name:', this.selectedCategoryName);
+  }
+
+  filteredCategories() {
+    if (!this.searchTerm) {
+      return this.categories;
+    }
+    return this.categories.filter(category =>
+      category.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
   postText: any;
   audioFile: File | null = null;
   videoFile: File | null = null;

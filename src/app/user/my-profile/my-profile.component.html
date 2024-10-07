@@ -38,7 +38,7 @@
         </div>
         }
 
-        @if((isCoach && routerole == 'COACH') || (!isCoach && routerole == 'COACH')){
+        @if((isCoach) || (!isCoach && routerole == 'COACH')){
         @if(experience != ''){
         <div>
             <h4 class="ct_ff_roboto ct_orange_text ct_fs_18 ct_fw_600 mt-3">Experience</h4>
@@ -220,7 +220,8 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                             placeholder="Write comment..." [(ngModel)]="commentText"
-                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed)" [disabled]="btnLoader">
+                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed)"
+                            [disabled]="btnLoader">
 
                         <i (click)="addComment(feed)" *ngIf="!btnLoader"
                             class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
@@ -470,7 +471,8 @@
                     <div class="position-relative">
                         <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                             placeholder="Write comment..." [(ngModel)]="commentText"
-                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed)" [disabled]="btnLoader">
+                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed)"
+                            [disabled]="btnLoader">
                         <!-- <i (click)="addComment(feed.id)" class="fa fa-paper-plane ct_send_msg_plane text-white"
                             aria-hidden="true"></i> -->
                         <i (click)="addComment(feed)" *ngIf="!btnLoader"
