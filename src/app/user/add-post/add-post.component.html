@@ -66,7 +66,101 @@
        </div>
 
 
-        <div>
+     
+
+
+    </div>
+
+    <!-- before upload Content S -->
+
+    <!-- <div class="ct_uploaded_cnt">
+            <div class="ct_audio_upload_first" id="ct_audio">
+                <label for="ct_upload_audio">
+                    <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*">
+                    <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 10 MB</p>
+                </label>
+
+            </div>
+            <div class="ct_audio_upload_first" id="ct_video">
+                <label for="ct_upload_audio">
+                    <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*">
+                    <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
+                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 10 MB</p>
+                </label>
+            </div>
+        </div> -->
+    <div class="ct_uploaded_cnt">
+        <!-- Audio Upload -->
+        <div class="ct_grid_2_1_audio mb-3">
+            <div class="ct_audio_upload_first w-100" style="max-width: 100%;" id="ct_audio">
+                <label for="ct_upload_audio">
+                    <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*"
+                        (change)="onAudioFileChange($event)">
+                    <div *ngIf="audioFile">
+                        <p class="mb-2 text-white ct_fs_13"  style="word-break: break-all;"> Selected audio file: {{ audioFile.name }}</p>
+                    </div>
+                    <div *ngIf="!audioFile" style="cursor: pointer;">
+                        <p class="mb-2 text-white ct_fs_13" >Click to upload audio file</p>
+                        <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
+                    </div>
+                    <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
+                </label>
+            </div>
+            <div class="ct_audio_upload_first w-100" style="max-width: 100%;" id="ct_image">
+                <label for="ct_upload_img">
+                    <input type="file" class="d-none" id="ct_upload_img" accept="image/*"
+                        (change)="handleCommittedFileInput($event)">
+                    <div *ngIf="!croppedImage" style="cursor: pointer;">
+                        <p class="mb-2 text-white ct_fs_13"  >Click to upload thumbnail</p>
+                        <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 5 MB</p>
+                    </div>
+                    <img *ngIf="croppedImage" class="ct_img_h_130"
+                        [src]="croppedImage ? croppedImage : '/assets/img/np_pro.png'" alt="Uploaded Image" />
+                    <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
+                </label>
+            </div>
+        </div>
+        <div class="ct_audio_upload_first w-100" style="max-width: 100%;" id="ct_image">
+            <label for="ct_upload_img">
+                <input type="file" class="d-none" id="ct_upload_img" accept="img/*"
+                    (change)="onAudioFileChange($event)">
+                <div *ngIf="audioFile">
+                    <p class="mb-2 text-white ct_fs_13">Selected Image file: {{ audioFile.name }}</p>
+                </div>
+                <div *ngIf="!audioFile" style="cursor: pointer;">
+                    <p class="mb-2 text-white ct_fs_13" >Click to upload Image file</p>
+                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
+                </div>
+                <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
+            </label>
+        </div>
+      </div>
+
+        <!-- Video Upload -->
+        <div class="ct_audio_upload_first mb-3" id="ct_video">
+            <label for="ct_upload_video">
+                <input type="file" class="d-none" id="ct_upload_video" accept="video/*"
+                    (change)="onVideoFileChange($event)">
+                <div *ngIf="videoFile">
+                    <p class="mb-2 text-white ct_fs_13">Selected video file: {{ videoFile.name }}</p>
+                    <video *ngIf="videoFile" [src]="videoPreviewUrl" controls width="300"></video>
+                </div>
+                <div *ngIf="!videoFile">
+                    <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
+                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
+                </div>
+                <!-- <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
+                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
+            </label>
+        </div>
+
+
+
+        <div class="ct_post_btn_end124">
             <!-- @if(!btnLoader){
             <button type="button" (click)="uploadFiles()"
                 class="ct_orange_btn ct_white_border_1 ct_grey_btn ct_border_radius_10 px-4 py-2 h-auto">Post</button>
@@ -94,99 +188,6 @@
                     <span *ngIf="!btnLoader">Post</span>
                 </div>
             </button>
-
-
-
-        </div>
-
-
-    </div>
-
-    <!-- before upload Content S -->
-
-    <!-- <div class="ct_uploaded_cnt">
-            <div class="ct_audio_upload_first" id="ct_audio">
-                <label for="ct_upload_audio">
-                    <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*">
-                    <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
-                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 10 MB</p>
-                </label>
-
-            </div>
-            <div class="ct_audio_upload_first" id="ct_video">
-                <label for="ct_upload_audio">
-                    <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*">
-                    <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
-                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 10 MB</p>
-                </label>
-            </div>
-        </div> -->
-    <div class="ct_uploaded_cnt">
-        <!-- Audio Upload -->
-        <div class="ct_grid_2_1_audio">
-            <div class="ct_audio_upload_first w-100" style="max-width: 100%;" id="ct_audio">
-                <label for="ct_upload_audio">
-                    <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*"
-                        (change)="onAudioFileChange($event)">
-                    <div *ngIf="audioFile">
-                        <p class="mb-2 text-white ct_fs_13">Selected audio file: {{ audioFile.name }}</p>
-                    </div>
-                    <div *ngIf="!audioFile" style="cursor: pointer;">
-                        <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
-                        <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
-                    </div>
-                    <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
-                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
-                </label>
-            </div>
-            <div class="ct_audio_upload_first w-100" style="max-width: 100%;" id="ct_image">
-                <label for="ct_upload_img">
-                    <input type="file" class="d-none" id="ct_upload_img" accept="image/*"
-                        (change)="handleCommittedFileInput($event)">
-                    <div *ngIf="!croppedImage" style="cursor: pointer;">
-                        <p class="mb-2 text-white ct_fs_13">Click to upload thumbnail</p>
-                        <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 5 MB</p>
-                    </div>
-                    <img *ngIf="croppedImage" class="ct_img_h_130"
-                        [src]="croppedImage ? croppedImage : '/assets/img/np_pro.png'" alt="Uploaded Image" />
-                    <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
-                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
-                </label>
-            </div>
-        </div>
-        <div class="ct_audio_upload_first w-100" style="max-width: 100%;" id="ct_image">
-            <label for="ct_upload_img">
-                <input type="file" class="d-none" id="ct_upload_img" accept="img/*"
-                    (change)="onAudioFileChange($event)">
-                <div *ngIf="audioFile">
-                    <p class="mb-2 text-white ct_fs_13">Selected Image file: {{ audioFile.name }}</p>
-                </div>
-                <div *ngIf="!audioFile" style="cursor: pointer;">
-                    <p class="mb-2 text-white ct_fs_13">Click to upload Image file</p>
-                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
-                </div>
-                <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
-                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
-            </label>
-        </div>
-      </div>
-
-        <!-- Video Upload -->
-        <div class="ct_audio_upload_first" id="ct_video">
-            <label for="ct_upload_video">
-                <input type="file" class="d-none" id="ct_upload_video" accept="video/*"
-                    (change)="onVideoFileChange($event)">
-                <div *ngIf="videoFile">
-                    <p class="mb-2 text-white ct_fs_13">Selected video file: {{ videoFile.name }}</p>
-                    <video *ngIf="videoFile" [src]="videoPreviewUrl" controls width="300"></video>
-                </div>
-                <div *ngIf="!videoFile">
-                    <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
-                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
-                </div>
-                <!-- <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
-                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
-            </label>
         </div>
 
     </div>

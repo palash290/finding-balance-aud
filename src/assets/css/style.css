@@ -58,9 +58,12 @@ a,a:hover{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.ct_object_cover_mob{
+        object-fit: cover !important;
+    }
 
 .ct_text_op_5{
-    opacity: 0.5;
+    opacity: 0.5 !important;
 }
 
 .ct_ff_Signika{
@@ -870,4 +873,15 @@ img.ct_i_am_coach_img.ct_show_img12 ,.ct_i_am_user_img.ct_show_img12 {
 
 .error-message.ct_error_position {
     position: absolute;
+}
+
+.mat-mdc-chip.mat-mdc-standard-chip {
+    --mdc-chip-container-height: auto !important;
+    padding-block: 5px !important;
+}
+
+.mat-mdc-chip.mdc-evolution-chip--with-trailing-action .mat-mdc-chip-action-label {
+    position: relative;
+    white-space: normal;
+    word-break: break-all;
 }
