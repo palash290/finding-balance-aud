@@ -41,6 +41,24 @@
                 </select>
             </div>
 
+            <!-- <div class="custom-dropdown" (clickOutside)="closeDropdown()">
+                   <span class="ct_text_op_5 text-white ct_fs_13">Post Category :</span>
+                <span class="dropdown-label text-white ct_fs_13" (click)="toggleDropdown()">
+                    {{ selectedCategoryName || 'Select Category' }}
+                </span>
+
+                <div class="dropdown-menu" *ngIf="dropdownOpen">
+
+                    <ul class="dropdown-list">
+                        <li *ngFor="let category of categories" (click)="selectCategory(category)"
+                            [class.selected]="category.id === categoryId">
+                            {{ category.name }}
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+
+
             @if(userPlan == 'Premium' && !hideField){
             <div class="ct_category_filter123 ct_575_100">
                 <select [(ngModel)]="postType" style="cursor: pointer;">
