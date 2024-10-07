@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: 
+*/
+
 .ct_panel_main_bg {
     background-color: #101011;
     height: calc(100vh - 0px);
@@ -267,7 +274,8 @@
     width: 46px;
     height: 46px;
     border-radius: 10px;
-    background: linear-gradient(180deg, #949296 0%, #686868 100%);
+    /* background: linear-gradient(180deg, #949296 0%, #686868 100%); */
+    background-color: var(--orange);
     border: 1px solid #B0A2A2;
     display: flex;
     align-items: center;
@@ -933,4 +941,10 @@ button.ct_reject_btn {
     outline: none;
     border-radius: 10px;
     padding: 5px 15px;
+}
+/* .ct_post_btn_end124{
+    margin-top: 25px;
+} */
+.ct_post_btn_end124 button {
+    margin-left: auto;
 }

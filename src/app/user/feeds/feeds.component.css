@@ -157,8 +157,8 @@
 }
 
 .ct_coach_feed_scroll {
-  max-height: calc(100vh - 485px) !important;
-  min-height: calc(100vh - 390px);
+  max-height: calc(100vh - 400px) !important;
+  min-height: calc(100vh - 400px);
 }
 
 .blurred {
