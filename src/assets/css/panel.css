@@ -199,6 +199,11 @@
     color: #fff !important;
 }
 
+.form-control:disabled {
+    background-color: #161617;
+    opacity: 1;
+}
+
 .ct_custom_input:focus {
     background-color: #161617;
     box-shadow: unset;
