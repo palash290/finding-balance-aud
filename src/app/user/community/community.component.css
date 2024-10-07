@@ -182,8 +182,12 @@ div#ct_view_community .modal-content {
       margin-left: 75px;
       margin-top: 4px;
     }
+    .ct_justify_content_between12 {
+      justify-content: space-between;
+      width: 100%;
   }
-  
+  }
+
   
   
   

@@ -313,4 +313,7 @@
         max-height: calc(100% - 230px);
         min-height: calc(100% - 230px);
     }
+    .ct_comment_bnt p,.ct_like_btn  p {
+        font-size: 12px;
+    }
 }

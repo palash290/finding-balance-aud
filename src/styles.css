@@ -103,7 +103,7 @@ div:where(.swal2-icon).swal2-warning{
 
 .ct_pay_to_see_center{
   position: absolute;
-  top: 50%;
+  bottom: 10%;
   left: 50%;
   z-index: 10;
   transform: translate(-50%, -50%);
@@ -130,4 +130,8 @@ inset: 0px;
 background-color: #000;
 opacity: 0.5;
 z-index: -1;
+}
+
+.iti--inline-dropdown .iti__dropdown-content {
+  width: 300px !important;
 }

@@ -148,7 +148,7 @@
                 (change)="onVideoFileChange($event)">
             <div *ngIf="videoFile">
                 <p class="mb-2 text-white ct_fs_13">Selected video file: {{ videoFile.name }}</p>
-                <video *ngIf="videoFile" [src]="videoPreviewUrl" controls width="300"></video>
+                <video *ngIf="videoFile" [src]="videoPreviewUrl" controls width="100%" style="object-fit: contain; height: 200px;"></video>
             </div>
             <div *ngIf="!videoFile">
                 <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>

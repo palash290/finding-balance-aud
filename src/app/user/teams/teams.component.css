@@ -169,7 +169,12 @@ div#ct_request_coach .modal-content {
     color: transparent;
   }
   
-  
+  @media screen and (max-width:767px){
+    .ct_justify_content_between12 {
+      justify-content: space-between;
+      width: 100%;
+  }
+  }
   
   
   
