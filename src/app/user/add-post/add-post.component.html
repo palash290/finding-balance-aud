@@ -32,22 +32,23 @@
             </li>
         </ul>
         <div class="d-flex align-items-center gap-2 flex-wrap ct_flex_wrap_575123">
-            <div class="ct_category_filter123 ct_575_100">
+            <!-- <div class="ct_category_filter123 ct_575_100">
                 <span class="ct_text_op_5 text-white ct_fs_13">Post Category :</span>
-                <select [(ngModel)]="categoryId" (change)="onCategoryChange($event)" style="cursor: pointer;">
+                <select [(ngModel)]="categoryId" (change)="onCategoryChange($event)" style="cursor: pointer; " >
                     <option disabled>Post Catagory</option>
                     <option *ngFor="let category of categories" [value]="category.id">{{ category.name
                         }}</option>
                 </select>
-            </div>
-
-            <!-- <div class="custom-dropdown" (clickOutside)="closeDropdown()">
-                   <span class="ct_text_op_5 text-white ct_fs_13">Post Category :</span>
+            </div> -->
+           <div class="ct_category_filter123 ct_575_100 position-relative d-flex align-items-center gap-1">
+         
+            <div class="custom-dropdown ct_custom_dropdown" (clickOutside)="closeDropdown()">
+                <span class="ct_text_op_5 text-white ct_fs_13" style="white-space: nowrap;">Post Category :</span>
                 <span class="dropdown-label text-white ct_fs_13" (click)="toggleDropdown()">
-                    {{ selectedCategoryName || 'Select Category' }}
+                    {{ selectedCategoryName || 'Select Category' }}   <i class="fa-solid fa-angle-down ct_down_select_arrow"></i>
                 </span>
 
-                <div class="dropdown-menu" *ngIf="dropdownOpen">
+                <div class="dropdown-menu " *ngIf="dropdownOpen">
 
                     <ul class="dropdown-list">
                         <li *ngFor="let category of categories" (click)="selectCategory(category)"
@@ -56,7 +57,10 @@
                         </li>
                     </ul>
                 </div>
-            </div> -->
+               
+            </div>
+          
+           </div>
 
 
             @if(userPlan == 'Premium' && !hideField){
