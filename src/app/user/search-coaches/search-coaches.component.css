@@ -20,3 +20,22 @@
     height: calc(100vh - 460px);
 }
 }
+
+
+
+
+
+
+
+
+.ct_login_input1 {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  border: 1px solid var(--Text-group-Text-White-50, #FFFFFF80);
+  height: 48px;
+  appearance: auto;
+  color-scheme: dark;
+}
+
+
+

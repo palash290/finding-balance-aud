@@ -12,14 +12,23 @@
 
         <div class=" mb-4 mt-3" *ngIf="!isCoach">
             <div class="row">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <label for="" class="text-white  ct_fw_600 mb-2">Filter by Category</label>
-                    <select class="ct_login_input form-control  ms-auto" [(ngModel)]="categoryId"
+                <div class="col-md-6 mb-3 mb-md-0 ">
+                    <label for="" class="text-white ct_fw_600 mb-2">Filter by Category</label>
+                    <!-- <select class="ct_login_input form-control  ms-auto" [(ngModel)]="categoryId"
                         (change)="onCategoryChange($event)">
                         <option value="">All</option>
                         <option *ngFor="let category of categories" [value]="category.id">{{ category.name
                             }}</option>
-                    </select>
+                    </select> -->
+                    <mat-form-field style="cursor: pointer; border-radius: 5px;" class="ct_custom_drop_dwon_890 ct_login_input ct_filtercategory_p_select_123">
+                        <mat-select [(ngModel)]="categoryId" (selectionChange)="onCategoryChange($event)">
+                          <mat-option value="">All</mat-option>
+                          <mat-option *ngFor="let category of categories" [value]="category.id">
+                            {{ category.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0">
                     <label for="" class="text-white ct_fw_600 mb-2">Select Experience (Years)</label>
@@ -61,7 +70,7 @@
                         </div>
                         <div>
                             @if(categories.isFollowed){
-                                <button class="ct_orange_btn ct_grey_btn ct_border_radius_10 px-2 py-2 h-auto ct_fs_13"
+                            <button class="ct_orange_btn ct_grey_btn ct_border_radius_10 px-2 py-2 h-auto ct_fs_13"
                                 style="min-width: 5rem;" [ngClass]="{'ct_active_follow': categories.isFollowing}"
                                 (click)="unfollowCoach(categories.id)">
 
@@ -70,11 +79,12 @@
                                         *ngIf="btnLoader1 && categories.id == followId">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
-                                    <span *ngIf="btnLoader1 && categories.id != followId || !btnLoader1">Following</span>
+                                    <span
+                                        *ngIf="btnLoader1 && categories.id != followId || !btnLoader1">Following</span>
                                 </div>
                             </button>
                             } @else {
-                                <button class="ct_orange_btn ct_border_radius_10 px-2 py-2 h-auto ct_fs_13"
+                            <button class="ct_orange_btn ct_border_radius_10 px-2 py-2 h-auto ct_fs_13"
                                 style="min-width: 5rem;" [ngClass]="{'ct_active_follow': categories.isFollowing}"
                                 (click)="followCoach(categories.id)">
 
@@ -87,7 +97,7 @@
                                 </div>
                             </button>
                             }
-                          
+
                             <p class="mb-0 ct_ff_roboto ct_fs_12 text-white text-center mt-2 ct_fw_400">
                                 {{categories.numberOfFollower}} {{categories.numberOfFollower > 1 ? 'Followers' :
                                 'Follower'}}

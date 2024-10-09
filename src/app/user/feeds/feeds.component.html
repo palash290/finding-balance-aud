@@ -10,15 +10,23 @@
         <div class=" mb-4 d-flex align-items-center gap-4 mt-3 ct_flex_wrap_575" [class.flex-wrap]="!isCoach">
             <p class="mb-0 text-white" style="white-space: nowrap;">Filter post by :</p>
 
-            <div class="d-flex align-items-center gap-3 ct_flex_575">
+            <div class="d-flex align-items-center gap-3 ct_flex_575 flex-wrap">
                 <div class="ct_filter_search_input_140">
                     <span class="text-white ct_text_op_5 ">Category:</span>
-                    <select class="" [(ngModel)]="categoryId" (change)="onCategoryChange($event)"
+                    <!-- <select class="" [(ngModel)]="categoryId" (change)="onCategoryChange($event)"
                         style="cursor: pointer;">
                         <option value="">All</option>
                         <option *ngFor="let category of categories" [value]="category.id">{{ category.name
                             }}</option>
-                    </select>
+                    </select> -->
+                    <mat-form-field style="cursor: pointer;" class="ct_custom_drop_dwon_890">
+                        <mat-select [(ngModel)]="categoryId" (selectionChange)="onCategoryChange($event)">
+                            <mat-option value="">All</mat-option>
+                            <mat-option *ngFor="let category of categories" [value]="category.id">
+                                {{ category.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
                 <div class="ct_filter_search_input_140">
                     <span class="text-white ct_text_op_5 ">Type:</span>
@@ -140,7 +148,8 @@
                     </div> -->
 
 
-                    <div style="cursor: pointer;" *ngIf="feed.isPaid == 1 && !isCoach && !feed.isShown" (click)="getAdHocPost(feed.id)">
+                    <div style="cursor: pointer;" *ngIf="feed.isPaid == 1 && !isCoach && !feed.isShown"
+                        (click)="getAdHocPost(feed.id)">
                         <a class="ct_orange_btn mt-2 ct_border_radius_10 ct_blue_btn123 ct_pay_to_see_center"><i
                                 class="fa-solid fa-lock me-2"></i>
                             <div class="d-flex align-items-center">
@@ -159,27 +168,27 @@
                         'background-image': 'url(' + (feed?.thumbnailUrl ? feed.thumbnailUrl : 'assets/img/audio_bg_img_2434.jpg') + ')' 
                     }">
 
-                       <div class="d-flex align-items-center gap-2">
-                        <div class="ct_audio_play_icon" (click)="togglePlayPause(i)">
-                            <i *ngIf="!isPlayingA[i]" class="bi bi-play-fill" style="cursor: pointer;"></i>
-                            <i *ngIf="isPlayingA[i]" class="bi bi-pause-fill" style="cursor: pointer;"></i>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="ct_audio_play_icon" (click)="togglePlayPause(i)">
+                                <i *ngIf="!isPlayingA[i]" class="bi bi-play-fill" style="cursor: pointer;"></i>
+                                <i *ngIf="isPlayingA[i]" class="bi bi-pause-fill" style="cursor: pointer;"></i>
+                            </div>
+                            <div>
+                                <h5 class="ct_orange_text mb-0">Audio</h5>
+                                <p class="mb-0 text-white ct_text_op_5">{{ formatTime(totalDurationA[i]) }}</p>
+                            </div>
                         </div>
-                        <div>
-                            <h5 class="ct_orange_text mb-0">Audio</h5>
-                            <p class="mb-0 text-white ct_text_op_5">{{ formatTime(totalDurationA[i]) }}</p>
-                        </div>
-                       </div>
 
                         <!-- <p style="color: orange;">{{ formatTime(currentTimeA[i]) }} / {{ formatTime(totalDurationA[i])
                             }}
                         </p> -->
 
-                       <div class="d-flex align-items-center gap-3 mt-3">
-                        <p class="mb-0 text-white ct_text_op_5">{{ formatTime(currentTimeA[i]) }}</p>
-                        <div class="waveform mx-0" (click)="wave[i].playPause()" [id]="'waveform' + feed.id"
-                        style=" cursor: pointer;">
-                    </div>
-                       </div>
+                        <div class="d-flex align-items-center gap-3 mt-3">
+                            <p class="mb-0 text-white ct_text_op_5">{{ formatTime(currentTimeA[i]) }}</p>
+                            <div class="waveform mx-0" (click)="wave[i].playPause()" [id]="'waveform' + feed.id"
+                                style=" cursor: pointer;">
+                            </div>
+                        </div>
 
                         <!-- <div class="controls">
                           <div class="btn-group">
@@ -793,6 +802,12 @@
                         <video [src]="feed.mediaUrl" #videoPlayer (timeupdate)="onTimeUpdate(videoPlayer)"
                             (loadedmetadata)="setVideoDuration(videoPlayer)" width="100%" height="390"
                             (click)="toggleVideo(videoPlayer, feed.isShown)">
+
+                            <!-- <source [src]="feed.mediaUrl" type="video/mp4">
+                            <source [src]="feed.mediaUrl" type="video/webm">
+                            <source [src]="feed.mediaUrl" type="video/mov">
+                            <source [src]="feed.mediaUrl" type="video/ogg"> -->
+
                         </video>
 
                         <input type="range" *ngIf="currentVideoId === videoPlayer" class="custom-seekbar"

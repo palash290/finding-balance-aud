@@ -136,9 +136,9 @@ export class EditEventComponent {
         type: 'image/png'
       })
 
-      if (this.croppedImage) {
+      if (this.cropImgBlob) {
         formURlData.append('file', file);
-      }
+      } 
       this.service.postAPIFormDataPatch('coach/event', formURlData).subscribe({
         next: (resp) => {
           if (resp.success === true) {
@@ -167,7 +167,7 @@ export class EditEventComponent {
 
 
   imageChangedEvent: Event | null = null;
-  croppedImage: SafeUrl | null  = '';
+  croppedImage: SafeUrl | any  = '';
   cropImgBlob: any
   
 

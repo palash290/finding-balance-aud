@@ -68,6 +68,10 @@ export class FeedsComponent {
     this.visibilityService.getApi('coach/categories').subscribe(response => {
       if (response.success) {
         this.categories = response.data;
+        // if (this.categories.length > 0) {
+        //   this.categoryId = this.categories[0].id;
+        //   this.selectedCategoryName = this.categories[0].name;
+        // }
       }
     });
 
@@ -138,7 +142,7 @@ export class FeedsComponent {
   selectedCategoryName: string | undefined;
 
   onCategoryChange(event: any): void {
-    const selectedId = event.target.value;
+    const selectedId = event.value;
     const selectedCategory = this.categories.find(category => category.id == selectedId);
 
     if (selectedCategory) {
@@ -173,85 +177,90 @@ export class FeedsComponent {
 
           setTimeout(() => {
             this.data?.forEach((item: any, index: any) => {
-              const waveformId = '#waveform' + item.id;
-              const waveInstance: any = this.waveService.create({
-                container: waveformId,
-                waveColor: '#fff',
-                progressColor: '#e58934',
-                // cursorColor: '#ff5722',
-                responsive: true,
-                height: 50,
-                barWidth: 3,
-                barGap: 6
-              });
-              this.wave.push(waveInstance); // Store the instance for later use
+              //debugger
+              if(item.type == 'PODCAST'){
+                const waveformId = '#waveform' + item.id;
+                const waveInstance: any = this.waveService.create({
+                  container: waveformId,
+                  waveColor: '#fff',
+                  progressColor: '#e58934',
+                  // cursorColor: '#ff5722',
+                  responsive: true,
+                  height: 50,
+                  barWidth: 3,
+                  barGap: 6
+                });
+                this.wave.push(waveInstance); // Store the instance for later use
 
+                waveInstance.load(item?.mediaUrl);
 
-              //                this.currentTimeA.push(0);
+                waveInstance.on('ready', () => {
+                  const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
+                  this.totalDurationA[index] = waveInstance.getDuration();
+                });
+  
+                waveInstance.on('audioprocess', () => {
+                  const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
+                  this.currentTimeA[index] = waveInstance.getCurrentTime();
+                });
+
+                waveInstance.on('play', () => {
+                  this.isPlayingA[index] = true;  // Update to playing state
+                  this.stopOtherAudios(index);   // Stop all other audios when one plays
+                });
+  
+                waveInstance.on('pause', () => {
+                  this.isPlayingA[index] = false; // Update to paused state
+                });
+
+              }
+              // this.currentTimeA.push(0);
               // this.totalDuration.push(0);
 
-              waveInstance.load(item?.mediaUrl);
-
-              waveInstance.on('ready', () => {
-                const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
-                this.totalDurationA[index] = waveInstance.getDuration();
-              });
-
-              waveInstance.on('audioprocess', () => {
-                const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
-                this.currentTimeA[index] = waveInstance.getCurrentTime();
-              });
-
-              waveInstance.on('play', () => {
-                this.isPlayingA[index] = true;  // Update to playing state
-                this.stopOtherAudios(index);   // Stop all other audios when one plays
-              });
-
-              waveInstance.on('pause', () => {
-                this.isPlayingA[index] = false; // Update to paused state
-              });
-
             });
-          }, 200);
+          }, 100);
 
         } else {
           this.data = resp.data?.map((item: any) => ({ ...item, isExpanded: false, isPlaying: false }));
 
           setTimeout(() => {
             this.data?.forEach((item: any, index: any) => {
-              const waveformId = '#waveform' + item.id;
-              const waveInstance: any = this.waveService.create({
-                container: waveformId,
-                waveColor: '#fff',
-                progressColor: '#e58934',
-                // cursorColor: '#ff5722',
-                responsive: true,
-                height: 50,
-                barWidth: 3,
-                barGap: 6
-              });
-              this.wave.push(waveInstance); // Store the instance for later use
-
-              waveInstance.load(item?.mediaUrl);
-
-              waveInstance.on('ready', () => {
-                const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
-                this.totalDurationA[index] = waveInstance.getDuration();
-              });
-
-              waveInstance.on('audioprocess', () => {
-                const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
-                this.currentTimeA[index] = waveInstance.getCurrentTime();
-              });
-
-              waveInstance.on('play', () => {
-                this.isPlayingA[index] = true;  // Update to playing state
-                this.stopOtherAudios(index);   // Stop all other audios when one plays
-              });
-
-              waveInstance.on('pause', () => {
-                this.isPlayingA[index] = false; // Update to paused state
-              });
+              if(item.type == 'PODCAST'){
+                const waveformId = '#waveform' + item.id;
+                const waveInstance: any = this.waveService.create({
+                  container: waveformId,
+                  waveColor: '#fff',
+                  progressColor: '#e58934',
+                  // cursorColor: '#ff5722',
+                  responsive: true,
+                  height: 50,
+                  barWidth: 3,
+                  barGap: 6
+                });
+                this.wave.push(waveInstance); // Store the instance for later use
+  
+                waveInstance.load(item?.mediaUrl);
+  
+                waveInstance.on('ready', () => {
+                  const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
+                  this.totalDurationA[index] = waveInstance.getDuration();
+                });
+  
+                waveInstance.on('audioprocess', () => {
+                  const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
+                  this.currentTimeA[index] = waveInstance.getCurrentTime();
+                });
+  
+                waveInstance.on('play', () => {
+                  this.isPlayingA[index] = true;  // Update to playing state
+                  this.stopOtherAudios(index);   // Stop all other audios when one plays
+                });
+  
+                waveInstance.on('pause', () => {
+                  this.isPlayingA[index] = false; // Update to paused state
+                });
+              }
+          
 
             });
           }, 200);

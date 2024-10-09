@@ -71,9 +71,15 @@ export class AddPostComponent {
     this.service.getApi('coach/categories').subscribe(response => {
       if (response.success) {
         this.categories = response.data;
+        if (this.categories.length > 0) {
+          this.categoryId = this.categories[0].id;
+          this.selectedCategoryName = this.categories[0].name;
+        }
       }
       this.avatar_url_fb = localStorage.getItem('avatar_url_fb');
     });
+   
+
     this.getPackage();
 
     const currentRoute = this.router.url
@@ -106,6 +112,8 @@ export class AddPostComponent {
   onCategoryChange(event: any): void {
     const selectedId = event.target.value;
     const selectedCategory = this.categories.find(category => category.id == selectedId);
+
+    //const selectedCategory = this.categories.find(category => category.id === event.value);
 
     if (selectedCategory) {
       this.categoryId = selectedCategory.id;
@@ -260,6 +268,12 @@ export class AddPostComponent {
   btnLoader: boolean = false;
 
   uploadFiles() {
+    // if(this.categoryId == undefined){
+    //   this.toastr.warning('Please select a category.');
+    //   return
+    // }
+    //console.log('========>', this.selectedCategoryName);
+    
     if (this.postType == 1 && (this.adHocPrice === null || this.adHocPrice === undefined)) {
       this.priceError = 'Price is required.';
       return
@@ -334,6 +348,7 @@ export class AddPostComponent {
         this.postText = '';
         this.adHocPrice = '';
         this.postType = 0;
+        this.selectedCategoryName = ''
         this.toastr.success(response.message);
         console.log('Upload successful', response);
         audio?.classList.remove('d-block');

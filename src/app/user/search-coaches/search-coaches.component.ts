@@ -117,17 +117,20 @@ export class SearchCoachesComponent {
   categories: any[] = [];
 
   onCategoryChange(event: any): void {
-    const selectedId = event.target.value;
+    const selectedId = event.value;  // Use event.value instead of event.target.value
     const selectedCategory = this.categories.find(category => category.id == selectedId);
-
+  
     if (selectedCategory) {
       this.categoryId = selectedCategory.id;
       this.selectedCategoryName = selectedCategory.name;
       console.log('Selected Category ID:', this.categoryId);
       console.log('Selected Category Name:', this.selectedCategoryName);
     }
-    this.getAllCoaches()
+  
+    // Call the function to update data
+    this.getAllCoaches();
   }
+  
 
   getCoachId(uderId: any, role: any) {
     this.router.navigateByUrl(`user/main/my-profile/${uderId}/${role}`)

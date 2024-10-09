@@ -27,6 +27,9 @@
     grid-template-columns: repeat(2,1fr);
     gap: 10px;
 }
+.ct_custom_drop_dwon_890 {
+    width: 100% !important;
+}
 
 @media screen and (max-width:575px){
     .ct_grid_2_1_audio{
@@ -79,7 +82,7 @@
     border-radius: 10px;
     flex: 1;
   }
-  
+/*   
   .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -91,7 +94,7 @@
     max-height: 200px;
     overflow-y: auto;
     display: block;
-  }
+  } */
   
   .dropdown-list {
     list-style: none;

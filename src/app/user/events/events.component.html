@@ -8,7 +8,8 @@
 
 
 <div class="ct_cover_img">
-  <img [src]="eventData?.mediaUrl ? eventData?.mediaUrl : '/assets/img/no_event.png'"  alt="" class="ct_img_h_200  ct_object_cover_mob">
+  <img [src]="eventData?.mediaUrl ? eventData?.mediaUrl : '/assets/img/no_event.png'" alt=""
+    class="ct_img_h_200  ct_object_cover_mob">
 </div>
 <div class="ct_my_profile_main mt-4">
   <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 ct_mt_30 pt-1">
@@ -26,7 +27,7 @@
         <span class="ct_orange_text ct_fs_18 ct_ff_roboto ct_fw_600">{{eventData?.date | date:'d MMM y'}}</span>
       </div>
 
-      @if(userPlan == 'Premium'){
+      @if(userPlan == 'Premium' && eventData.isPaid == 1){
       <div *ngIf="isCoach" (click)="getPaidGuest()" style="cursor: pointer;" data-bs-toggle="modal"
         data-bs-target="#ct_followed_coaches1">
         <a class="ct_orange_btn mt-2 ct_border_radius_10">See All Paid Guest</a>
@@ -57,7 +58,7 @@
     </div>
     } @else {
     <div>
-      <a class="ct_orange_btn ct_border_radius_10">
+      <a class="ct_orange_btn ct_grey_btn ct_border_radius_10">
         Paid
       </a>
     </div>
@@ -107,9 +108,11 @@
 <div class="mt-4">
   <h4 class="ct_ff_roboto text-white ct_fs_18 ct_fw_600">Webinar Url</h4>
   <p class="mb-0 text-white ct_fs_14 ct_ff_roboto ct_fw_400 ct_line_height_22">
-    <a *ngIf="eventData?.webinar_url" [href]="eventData?.webinar_url" target="_blank" rel="noopener noreferrer" class="text-white">
+    <a *ngIf="eventData?.webinar_url" [href]="eventData?.webinar_url" target="_blank" rel="noopener noreferrer"
+      class="text-white" style="text-decoration: underline;">
       {{ eventData?.webinar_url }}
-    </a></p>
+    </a>
+  </p>
 </div>
 }
 } @else {
@@ -118,10 +121,11 @@
   <h4 class="ct_ff_roboto text-white ct_fs_18 ct_fw_600">Webinar Url</h4>
   <p class="mb-0 text-white ct_fs_14 ct_ff_roboto ct_fw_400 ct_line_height_22"
     [ngClass]="{'blurred': !eventData?.isShown}" [ngStyle]="{ 'user-select': !eventData?.isShown ? 'none' : 'auto' }">
-    <a *ngIf="eventData?.webinar_url" [href]="eventData?.webinar_url" target="_blank" rel="noopener noreferrer" class="text-white"
-    style="text-decoration: underline;">
+    <a *ngIf="eventData?.webinar_url" [href]="eventData?.webinar_url" target="_blank" rel="noopener noreferrer"
+      class="text-white" style="text-decoration: underline;">
       {{ eventData?.webinar_url }}
-    </a></p>
+    </a>
+  </p>
 </div>
 }
 }

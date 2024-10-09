@@ -187,39 +187,42 @@ export class MyProfileComponent {
 
         setTimeout(() => {
           this.postData?.forEach((item: any, index: any) => {
-            const waveformId = '#waveform' + item.id;
-            const waveInstance: any = this.waveService.create({
-              container: waveformId,
-              waveColor: '#fff',
-              progressColor: '#e58934',
-              // cursorColor: '#ff5722',
-              responsive: true,
-              height: 50,
-              barWidth: 3,
-              barGap: 6
-            });
-            this.wave.push(waveInstance); // Store the instance for later use
-
-            waveInstance.load(item?.mediaUrl);
-
-            waveInstance.on('ready', () => {
-              const index = this.postData.findIndex((audio: { id: any; }) => audio.id === item.id);
-              this.totalDurationA[index] = waveInstance.getDuration();
-            });
-
-            waveInstance.on('audioprocess', () => {
-              const index = this.postData.findIndex((audio: { id: any; }) => audio.id === item.id);
-              this.currentTimeA[index] = waveInstance.getCurrentTime();
-            });
-
-            waveInstance.on('play', () => {
-              this.isPlayingA[index] = true;  // Update to playing state
-              this.stopOtherAudios(index);   // Stop all other audios when one plays
-            });
-
-            waveInstance.on('pause', () => {
-              this.isPlayingA[index] = false; // Update to paused state
-            });
+            if(item.type == 'PODCAST'){
+              const waveformId = '#waveform' + item.id;
+              const waveInstance: any = this.waveService.create({
+                container: waveformId,
+                waveColor: '#fff',
+                progressColor: '#e58934',
+                // cursorColor: '#ff5722',
+                responsive: true,
+                height: 50,
+                barWidth: 3,
+                barGap: 6
+              });
+              this.wave.push(waveInstance); // Store the instance for later use
+  
+              waveInstance.load(item?.mediaUrl);
+  
+              waveInstance.on('ready', () => {
+                const index = this.postData.findIndex((audio: { id: any; }) => audio.id === item.id);
+                this.totalDurationA[index] = waveInstance.getDuration();
+              });
+  
+              waveInstance.on('audioprocess', () => {
+                const index = this.postData.findIndex((audio: { id: any; }) => audio.id === item.id);
+                this.currentTimeA[index] = waveInstance.getCurrentTime();
+              });
+  
+              waveInstance.on('play', () => {
+                this.isPlayingA[index] = true;  // Update to playing state
+                this.stopOtherAudios(index);   // Stop all other audios when one plays
+              });
+  
+              waveInstance.on('pause', () => {
+                this.isPlayingA[index] = false; // Update to paused state
+              });
+            }
+        
 
           });
         }, 200);

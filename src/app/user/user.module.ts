@@ -29,6 +29,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
 import { SearchCoachesComponent } from './search-coaches/search-coaches.component';
 import { TeamsComponent } from './teams/teams.component';
 import { FollowUsersComponent } from './follow-users/follow-users.component';
@@ -88,6 +89,7 @@ import { AngularWavesurferServiceModule, WaveService } from 'angular-wavesurfer-
     MatSnackBarModule,
     MatTooltipModule,
     AngularWavesurferServiceModule,
+    MatSelectModule
   ],
   providers: [WaveService],
 })
