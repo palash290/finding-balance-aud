@@ -17,8 +17,7 @@
             </div>
             <!-- add This Class active when chat open  -->
             <li class="mt-3" *ngFor="let data of communityData | filter:searchQueryFilter"
-                [class.active]="data.id === selectedCommunityId" data-bs-toggle="modal"
-                data-bs-target="#ct_view_community">
+                [class.active]="data.id === selectedCommunityId">
 
                 <div class="d-flex align-items-center gap-2">
                     <div class="d-flex align-items-center"
@@ -50,7 +49,7 @@
                                 </div>
                             </button>
                             } @else {
-                            <button type="button" (click)="joinCommunity(data.id)"
+                            <!-- <button type="button" (click)="joinCommunity(data.id)"
                                 class="ct_orange_btn ct_grey_btn ct_border_radius_10 px-4 mx-auto py-2 h-auto ct_fs_13 ct_active_follow"
                                 [disabled]="btnLoader">
                                 <div class="d-flex align-items-center">
@@ -60,10 +59,12 @@
                                     </div>
                                     <span *ngIf="btnLoader && data.id != followId1 || !btnLoader"> Join</span>
                                 </div>
-                            </button>
+                            </button> -->
+                            <button (click)="viewCommunity(data.id)"
+                                class="ct_orange_btn ct_grey_btn ct_border_radius_10 px-4 mx-auto py-2 h-auto ct_fs_13 ct_active_follow"
+                                data-bs-toggle="modal" data-bs-target="#ct_view_community">View</button>
                             }
                             }
-
 
                             <p class="mb-0 ct_fs_12 mx-auto text-center text-white mt-2">{{data.numberOfParticipant}}
                                 {{data.numberOfParticipant > 1 ? 'Members' : 'Member'}}
@@ -77,7 +78,8 @@
         </ul>
     </div>
 
-    <div class="ct_right_message_area ct_community_scroll1234" [ngClass]="{ 'active': isChatActive }" *ngIf="communityName">
+    <div class="ct_right_message_area ct_community_scroll1234" [ngClass]="{ 'active': isChatActive }"
+        *ngIf="communityName">
         <div
             class="ct_octen_team_box ct_flex_wrap_res_123 ct_mt_30 px-3 ct_message_head_bg ct_flex_wrap_res_123 justify-content-between">
             <div class="d-flex align-items-center gap-2 ">
@@ -100,9 +102,11 @@
                 </div>
             </div>
 
-            <div class=" ct_ms_0_res_123 d-flex align-items-center gap-3 ct_justify_content_between12" style="cursor: pointer;">
+            <div class=" ct_ms_0_res_123 d-flex align-items-center gap-3 ct_justify_content_between12"
+                style="cursor: pointer;">
                 @if(toSee){
-                <p class="mb-0 ct_fs_12 ct_ff_roboto ct_fw_500 ct_orange_text ct_ms_75_767" (click)="seeGroupMembesr()">See All
+                <p class="mb-0 ct_fs_12 ct_ff_roboto ct_fw_500 ct_orange_text ct_ms_75_767" (click)="seeGroupMembesr()">
+                    See All
                     Members</p>
                 } @else {
                 <p class="mb-0 ct_fs_12 ct_ff_roboto ct_fw_500 ct_orange_text" (click)="seeGroupMembesr()">Back</p>
@@ -123,6 +127,16 @@
                     </ul>
                 </div>
 
+                <div *ngIf="!isCoach && !isAdmin" class="dropdown ms-auto ct_chat_dropdown">
+                    <button class="btn ct_dropdown_btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical ct_orange_text"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#ct_report_community">Report</a></li>
+                    </ul>
+                </div>
 
             </div>
 
@@ -152,7 +166,8 @@
                                 <div>
                                     <h5 class="ct_fs_15 text-white ct_fw_600 mb-0">{{feed.coach.full_name}}</h5>
 
-                                    <div class="d-flex align-items-center gap-2 ct_flex_wrap_575 ct_align_items_start_575 mt-2">
+                                    <div
+                                        class="d-flex align-items-center gap-2 ct_flex_wrap_575 ct_align_items_start_575 mt-2">
                                         <p class="mb-0  ct_fs_12 text-white ct_text_op_5">{{feed.createdAt |
                                             date:'d/M/yy, h:mm a'}}
                                         </p>
@@ -188,16 +203,17 @@
                         </p>
 
                         <div class="ct_show_uploaded_audio_box ct_show_uploaded_audio_box_bg mt-3 ct_light_grey_bg"
-                        [ngStyle]="{'background-image': 'url(' + (feed?.thumbnailUrl ? feed.thumbnailUrl : 'assets/img/audio_bg_img_2434.jpg') + ')' }">
+                            [ngStyle]="{'background-image': 'url(' + (feed?.thumbnailUrl ? feed.thumbnailUrl : 'assets/img/audio_bg_img_2434.jpg') + ')' }">
 
                             <div class="ct_audio_play_icon" (click)="togglePlayPause(i)">
                                 <i *ngIf="!isPlayingA[i]" class="bi bi-play-fill" style="cursor: pointer;"></i>
                                 <i *ngIf="isPlayingA[i]" class="bi bi-pause-fill" style="cursor: pointer;"></i>
                             </div>
-    
-                            <p style="color: orange;">{{ formatTime(currentTimeA[i]) }} / {{ formatTime(totalDurationA[i]) }}
+
+                            <p style="color: orange;">{{ formatTime(currentTimeA[i]) }} / {{
+                                formatTime(totalDurationA[i]) }}
                             </p>
-    
+
                             <div class="waveform" (click)="wave[i].playPause()" [id]="'waveform' + feed.id"
                                 style="margin-top: 20px; cursor: pointer;">
                             </div>
@@ -433,7 +449,8 @@
                                     alt="" class="ct_img_44 ct_bor ct_white_border_1">
                                 <div>
                                     <h5 class="ct_fs_15 text-white ct_fw_600 mb-0">{{feed.coach.full_name}}</h5>
-                                    <div class="d-flex align-items-center gap-2 ct_flex_wrap_575 ct_align_items_start_575 mt-2">
+                                    <div
+                                        class="d-flex align-items-center gap-2 ct_flex_wrap_575 ct_align_items_start_575 mt-2">
                                         <p class="mb-0  ct_fs_12 text-white ct_text_op_5">{{feed.createdAt |
                                             date:'d/M/yy, h:mm a'}}</p>
                                         <div class="d-flex align-items-center justify-content-center gap-2">
@@ -689,7 +706,8 @@
                                     alt="" class="ct_img_44 ct_bor ct_white_border_1">
                                 <div>
                                     <h5 class="ct_fs_15 text-white ct_fw_600 mb-0">{{feed.coach.full_name}}</h5>
-                                    <div class="d-flex align-items-center gap-2 ct_flex_wrap_575 ct_align_items_start_575 mt-2">
+                                    <div
+                                        class="d-flex align-items-center gap-2 ct_flex_wrap_575 ct_align_items_start_575 mt-2">
                                         <p class="mb-0  ct_fs_12 text-white ct_text_op_5">{{feed.createdAt |
                                             date:'d/M/yy, h:mm a'}}</p>
                                         <div class="d-flex align-items-center justify-content-center gap-2">
@@ -1164,53 +1182,98 @@
 
 <!-- View -->
 
-<!-- <div class="modal fade" id="ct_view_community" tabindex="-1" aria-labelledby="ct_view_community" aria-hidden="true">
+<div class="modal fade" id="ct_view_community" tabindex="-1" aria-labelledby="ct_view_community" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-0 pt-0 px-0 d-block text-center">
-                <h5 class="modal-title text-white ct_fs_15 mx-auto ct_ff_roboto" id="exampleModalLabel">Edit
-                    Community</h5>
+                <h5 class="modal-title text-white ct_fs_15 mx-auto ct_ff_roboto" id="exampleModalLabel">View
+                    Community Details</h5>
                 <button type="button" class="btn-close ct_close" data-bs-dismiss="modal" aria-label="Close"><i
                         class="fa-solid fa-x"></i></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="updateForm">
+                <form>
                     <div>
                         <input type="text" class="form-control ct_login_input" placeholder="My Community Name"
-                            formControlName="title">
-                     
+                            [value]="communityName1" disabled>
                     </div>
 
                     <div class="mt-3">
                         <input type="text" class="form-control ct_login_input" placeholder="My Community Description"
-                            formControlName="about">
+                            [value]="communityDesc1" disabled>
                     </div>
 
                     <div class="ct_uploaded_cnt">
-                        <div id="ct_video" class="ct_audio_upload_first d-block" style="max-width: 100%;"><label
-                                for="imgInp1">
-                            
-                                <div *ngIf="!eventImage">
-                                    <p class="mb-2 text-white ct_fs_13">Click to upload image</p>
-                                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 5 MB</p>
-                                </div>
-                                <img *ngIf="eventImage" class="ct_img_h_200"
+                        <div id="ct_video" class="ct_audio_upload_first d-block" style="max-width: 100%;">
+                         
+                                <img class="ct_img_h_200"
                                     [src]="eventImage ? eventImage : '/assets/img/np_pro.png'" alt="Uploaded Image" />
-                            </label>
+                         
                         </div>
                     </div>
 
-
-                    <button class="ct_orange_btn ct_grey_btn ct_border_radius_10 w-100 mt-4" data-bs-dismiss="modal">
-                        Close
+                    <button type="button" (click)="joinCommunity()"
+                        class="ct_orange_btn ct_grey_btn ct_border_radius_10 px-4 mx-auto py-2 h-auto ct_fs_13 ct_active_follow mt-4"
+                        [disabled]="btnLoader">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border me-2" role="status" *ngIf="btnLoader == followId1">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <span *ngIf="!btnLoader"> Join</span>
+                        </div>
                     </button>
+
+                    <button hidden type="button" class="btn btn-secondary" #closeModal2
+                        data-bs-dismiss="modal">Close</button>
+                    <!-- <button class="ct_orange_btn ct_grey_btn ct_border_radius_10 w-100 mt-4" data-bs-dismiss="modal">
+                        Close
+                    </button> -->
                 </form>
 
             </div>
 
         </div>
     </div>
-</div> -->
+</div>
+
+
+
+
+<!-- Report Modal -->
+<div class="modal fade" id="ct_report_community" tabindex="-1" aria-labelledby="ct_report_community" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 pt-0 px-0 d-block text-center">
+                <h5 class="modal-title text-white ct_fs_15 mx-auto ct_ff_roboto" id="exampleModalLabel">Report</h5>
+                <button type="button" class="btn-close ct_close" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="fa-solid fa-x"></i></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div>
+                        <textarea class="ct_login_input form-control ct_border_radius_10 h-auto"
+                            placeholder="Type here..." [(ngModel)]="reportDesc" [ngModelOptions]="{ standalone: true }"
+                            rows="5" required></textarea>
+                        <div *ngIf="nameError" class="error-message">This field is required.</div>
+                    </div>
+
+
+                    <button hidden type="button" class="btn btn-secondary" #closeModalR
+                        data-bs-dismiss="modal">Close</button>
+                    <button (click)="repostPost()" class="ct_orange_btn ct_grey_btn ct_border_radius_10 w-100 mt-4"
+                        [disabled]="btnLoaderReport">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border me-2" role="status" *ngIf="btnLoaderReport">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <span *ngIf="!btnLoaderReport">Submit</span>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div *ngIf="loading" class="ct_loader_main">
     <div class="loader"></div>

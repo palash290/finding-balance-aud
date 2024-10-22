@@ -13,6 +13,7 @@ export class HomeGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.service.isLogedIn()) {
       this.router.navigate(['/user/main/feeds']);
+      //return false; 
     }
     return true;
   }

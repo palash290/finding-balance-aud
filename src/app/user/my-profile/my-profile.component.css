@@ -184,3 +184,65 @@
   }
 }
 
+
+
+
+
+
+p {
+  font-family: Lato;
+}
+.audio-visualizer {
+  padding: 20px;
+  border-radius: 8px;
+  background: #f5f5f5;
+}
+
+.waveform {
+  width: 55vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.btn-group {
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  display: block;
+  margin-top: -40px;
+  z-index: 100;
+  border: 8px solid #fff;
+  border-radius: 6px;
+  padding: 0px;
+}
+
+.track-container {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.track {
+  width: 2px; /* Adjust for spacing */
+  background-color: #ddd;
+  transition: height 0.1s ease;
+}
+
+.track.highlighted {
+  background-color: #ff5722; /* Highlight color */
+}
+
+
+div#ct_add_community .modal-content {
+  background-color: #111010;
+  border: 1px solid var(--orange);
+  padding: 22px;
+}
+.blurred {
+  filter: blur(5px); /* Adjust the blur value as needed */
+  pointer-events: none;
+}
+.ct_blue_btn123 {
+  background-color: #2B8600;
+}

@@ -5,6 +5,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WaveService } from 'angular-wavesurfer-service';
 import WaveSurfer from 'wavesurfer.js';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feeds',
@@ -30,21 +32,21 @@ export class FeedsComponent {
   trackHeights: number[] = Array(50).fill(20); // Initial heights of tracks
   highlightedBars: number = 0; // Number of highlighted bars
 
-  constructor(private visibilityService: SharedService, private snackBar: MatSnackBar, public waveService: WaveService) {
+  constructor(private visibilityService: SharedService, private snackBar: MatSnackBar, public waveService: WaveService, public toster: ToastrService, private router: Router) {
     // this.data.forEach(() => {
     //   this.currentTimeA.push(0);
     //   this.totalDuration.push(0);
     // });
   }
 
-  playAudio(index: number): void {
-    this.wave.forEach((w, i) => {
-      if (i !== index) {
-        w.stop(); // Stop other tracks when one plays
-      }
-    });
-    this.wave[index]?.play();
-  }
+  // playAudio(index: number): void {
+  //   this.wave.forEach((w, i) => {
+  //     if (i !== index) {
+  //       w.stop(); // Stop other tracks when one plays
+  //     }
+  //   });
+  //   this.wave[index]?.play();
+  // }
 
 
 
@@ -177,8 +179,7 @@ export class FeedsComponent {
 
           setTimeout(() => {
             this.data?.forEach((item: any, index: any) => {
-              //debugger
-              if(item.type == 'PODCAST'){
+              if (item.type == 'PODCAST') {
                 const waveformId = '#waveform' + item.id;
                 const waveInstance: any = this.waveService.create({
                   container: waveformId,
@@ -190,42 +191,44 @@ export class FeedsComponent {
                   barWidth: 3,
                   barGap: 6
                 });
-                this.wave.push(waveInstance); // Store the instance for later use
-
+                //this.wave.push(waveInstance);
+                this.wave[index] = waveInstance; // Make sure the waveInstance is set by index
                 waveInstance.load(item?.mediaUrl);
 
+                // Initialize isPlayingA for each item
+                this.isPlayingA[index] = false;
+
                 waveInstance.on('ready', () => {
-                  const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
                   this.totalDurationA[index] = waveInstance.getDuration();
                 });
-  
+
                 waveInstance.on('audioprocess', () => {
-                  const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
                   this.currentTimeA[index] = waveInstance.getCurrentTime();
                 });
 
                 waveInstance.on('play', () => {
-                  this.isPlayingA[index] = true;  // Update to playing state
-                  this.stopOtherAudios(index);   // Stop all other audios when one plays
+                  this.isPlayingA[index] = true; // Mark as playing
+                  this.stopOtherAudios(index);   // Pause other audios
                 });
-  
+
                 waveInstance.on('pause', () => {
-                  this.isPlayingA[index] = false; // Update to paused state
+                  this.isPlayingA[index] = false; // Mark as paused
                 });
 
               }
+
               // this.currentTimeA.push(0);
               // this.totalDuration.push(0);
 
             });
-          }, 100);
+          }, 200);
 
         } else {
           this.data = resp.data?.map((item: any) => ({ ...item, isExpanded: false, isPlaying: false }));
 
           setTimeout(() => {
             this.data?.forEach((item: any, index: any) => {
-              if(item.type == 'PODCAST'){
+              if (item.type == 'PODCAST') {
                 const waveformId = '#waveform' + item.id;
                 const waveInstance: any = this.waveService.create({
                   container: waveformId,
@@ -237,30 +240,48 @@ export class FeedsComponent {
                   barWidth: 3,
                   barGap: 6
                 });
-                this.wave.push(waveInstance); // Store the instance for later use
-  
+                //this.wave.push(waveInstance); // Store the instance for later use
+                this.wave[index] = waveInstance;
                 waveInstance.load(item?.mediaUrl);
-  
+                // Initialize isPlayingA for each item
+                this.isPlayingA[index] = false;
+
+                // waveInstance.on('ready', () => {
+                //   const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
+                //   this.totalDurationA[index] = waveInstance.getDuration();
+                // });
+
+                // waveInstance.on('audioprocess', () => {
+                //   const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
+                //   this.currentTimeA[index] = waveInstance.getCurrentTime();
+                // });
+
+                // waveInstance.on('play', () => {
+                //   this.isPlayingA[index] = true;  // Update to playing state
+                //   this.stopOtherAudios(index);   // Stop all other audios when one plays
+                // });
+
+                // waveInstance.on('pause', () => {
+                //   this.isPlayingA[index] = false; // Update to paused state
+                // });
                 waveInstance.on('ready', () => {
-                  const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
                   this.totalDurationA[index] = waveInstance.getDuration();
                 });
-  
+
                 waveInstance.on('audioprocess', () => {
-                  const index = this.data.findIndex((audio: { id: any; }) => audio.id === item.id);
                   this.currentTimeA[index] = waveInstance.getCurrentTime();
                 });
-  
+
                 waveInstance.on('play', () => {
-                  this.isPlayingA[index] = true;  // Update to playing state
-                  this.stopOtherAudios(index);   // Stop all other audios when one plays
+                  this.isPlayingA[index] = true; // Mark as playing
+                  this.stopOtherAudios(index);   // Pause other audios
                 });
-  
+
                 waveInstance.on('pause', () => {
-                  this.isPlayingA[index] = false; // Update to paused state
+                  this.isPlayingA[index] = false; // Mark as paused
                 });
               }
-          
+
 
             });
           }, 200);
@@ -269,8 +290,6 @@ export class FeedsComponent {
         //   this.currentTimeA.push(0);
         //   this.totalDuration.push(0);
         // });
-
-
       },
       error: error => {
         console.log(error.message)
@@ -288,9 +307,16 @@ export class FeedsComponent {
     });
   }
 
+
   togglePlayPause(index: number): void {
-    this.wave[index].playPause();
+    const waveInstance = this.wave[index];
+    if (waveInstance) {
+      waveInstance.playPause(); // Toggle between play and pause
+    } else {
+      console.error('Waveform instance not found for index:', index);
+    }
   }
+
 
   @ViewChildren('audioPlayer') audioPlayers!: QueryList<ElementRef>;
 
@@ -729,5 +755,57 @@ export class FeedsComponent {
 
 
   //poster="../assets/img/play.png"
+  reportPostId: any;
+  reportPost(postId: any) {
+    this.reportPostId = postId;
+  }
+
+  reportDesc: any;
+  btnLoaderReport: boolean = false;
+  nameError: boolean = false;
+  @ViewChild('closeModalR') closeModalR!: ElementRef;
+
+  repostPost() {
+    // Check if name is empty
+    if (!this.reportDesc || this.reportDesc.trim() === '') {
+      this.nameError = true;
+      return;
+    } else {
+      this.nameError = false; // Reset the error state
+    }
+
+    this.btnLoaderReport = true;
+    const formData = new URLSearchParams();
+    formData.set('postId', this.reportPostId);
+    formData.set('reportEntity', 'POST');
+    formData.set('reason', this.reportDesc);
+
+    this.visibilityService.postAPI('user/report/content', formData).subscribe({
+      next: (resp) => {
+        if (resp.success === true) {
+          this.closeModalR.nativeElement.click();
+          //this.visibilityService.triggerRefresh();
+          this.toster.success(resp.message);
+        } else {
+          this.toster.warning(resp.message);
+        }
+        this.btnLoaderReport = false;
+      },
+      error: (error) => {
+        this.btnLoaderReport = false;
+        if (error.error.message) {
+          this.toster.error(error.error.message);
+        } else {
+          this.toster.error('Something went wrong!');
+        }
+        //console.log(error.statusText);
+      }
+    });
+  }
+
+  getCoachId(uderId: any, role: any) {
+    this.router.navigateByUrl(`user/main/my-profile/${uderId}/${role}`)
+  }
+  
 
 }

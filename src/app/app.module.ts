@@ -53,7 +53,6 @@ initializeApp(environment.firebaseConfig)
       preventDuplicates: true,
       progressBar: true
     }),
-
   ],
   providers: [],
   bootstrap: [AppComponent]

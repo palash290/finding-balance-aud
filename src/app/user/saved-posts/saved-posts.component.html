@@ -47,17 +47,30 @@
                         Your browser does not support the audio element.
                     </audio>
                 </div> -->
-                <div class="ct_audio_play_icon" (click)="togglePlayPause(i)">
-                    <i *ngIf="!isPlayingA[i]" class="bi bi-play-fill" style="cursor: pointer;"></i>
-                    <i *ngIf="isPlayingA[i]" class="bi bi-pause-fill" style="cursor: pointer;"></i>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="ct_audio_play_icon" (click)="togglePlayPause(i)">
+                        <i *ngIf="!isPlayingA[i]" class="bi bi-play-fill" style="cursor: pointer;"></i>
+                        <i *ngIf="isPlayingA[i]" class="bi bi-pause-fill" style="cursor: pointer;"></i>
+                    </div>
+    
+                    <div>
+                        <h5 class="ct_orange_text mb-0">Audio</h5>
+                        <p class="mb-0 text-white ct_text_op_5">{{ formatTime(totalDurationA[i]) }}</p>
+                    </div>
                 </div>
+          
 
-                <p style="color: orange;">{{ formatTime(currentTimeA[i]) }} / {{ formatTime(totalDurationA[i]) }}
-                </p>
-
-                <div class="waveform" (click)="wave[i].playPause()" [id]="'waveform' + feed.post.id"
+                <!-- <p style="color: orange;">{{ formatTime(currentTimeA[i]) }} / {{ formatTime(totalDurationA[i]) }}
+                </p> -->
+                <div class="d-flex align-items-center gap-3 mt-3">
+                    <p class="mb-0 text-white ct_text_op_5">{{ formatTime(currentTimeA[i]) }}</p>
+                    <div class="waveform mx-0" (click)="wave[i].playPause()" [id]="'waveform' + feed.post.id"
+                        style=" cursor: pointer;">
+                    </div>
+                </div>  
+                <!-- <div class="waveform" (click)="wave[i].playPause()" [id]="'waveform' + feed.post.id"
                     style="margin-top: 20px; cursor: pointer;">
-                </div>
+                </div> -->
               
             </div>
 

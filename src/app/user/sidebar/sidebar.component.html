@@ -1,6 +1,7 @@
 <div class="ct_side_bar">
     <div class="ct_ps_10_pe_20">
-        <div class="ct_logo text-center" routerLink="/user/main/feeds" (click)="onToggleMenu()" style="cursor: pointer;">
+        <div class="ct_logo text-center" routerLink="/user/main/feeds" (click)="onToggleMenu()"
+            style="cursor: pointer;">
             <a>
                 <img src="../assets/img/logo.svg" alt="">
             </a>
@@ -347,45 +348,61 @@
                     <ul>
                         <li *ngIf="!isCoach">
                             <ul>
-                                <li><i class="fa-solid fa-check me-1 text-white"></i>Have access to all content, both
-                                    “free” and “paid”</li>
-                                <li class="mt-2"><i class="fa-solid fa-check me-1 text-white"></i>Can be invited and
-                                    charged for additional “paid” events or content</li>
-                                <li class="mt-2"><i class="fa-solid fa-check me-1 text-white"></i>Repeatable/recurring
-                                    membership charges and ad hoc charging for events and webinars
+                                <li><i class="fa-solid fa-check me-1 text-white"></i>Users will have access to both free
+                                    and paid content, allowing them to explore everything that coaches offer, including
+                                    exclusive content reserved for premium members.
+                                </li>
+                                <li class="mt-2"><i class="fa-solid fa-check me-1 text-white"></i>Premium users can be
+                                    invited to special paid events and content, providing them with opportunities to
+                                    engage with high-value resources and experiences curated by coaches.</li>
+                                <li class="mt-2"><i class="fa-solid fa-check me-1 text-white"></i>The premium membership
+                                    allows users to enjoy continuous access to new content and events through recurring
+                                    charges, ensuring they never miss out on webinars, events, or updates.
+                                </li>
+                                <li class="mt-2"><i class="fa-solid fa-check me-1 text-white"></i>Premium users can
+                                    participate in ad hoc events and webinars by paying specific charges set by coaches,
+                                    giving them access to exclusive, invite-only experiences.
                                 </li>
                             </ul>
                         </li>
                         <li *ngIf="isCoach">
                             <ul>
-                                <li><i class="fa-solid fa-check me-1 text-white"></i>Can set up communities</li>
-                                <li><i class="fa-solid fa-check me-1 text-white mt-1"></i>Can set up teams</li>
-                                <li><i class="fa-solid fa-check me-1 text-white mt-1"></i>Can share long-form media
-                                    (More than 2 minutes)</li>
-                                <li><i class="fa-solid fa-check me-1 text-white mt-1"></i>Can set up free or paid
-                                    webinars/events</li>
-                                <li><i class="fa-solid fa-check me-1 text-white mt-1"></i>Can set up Ad hoc charges for
-                                    additional events/services</li>
-                                <li><i class="fa-solid fa-check me-1 text-white mt-1"></i>Can set up Ad hoc charges for
-                                    additional posts</li>
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white"></i>Premium coaches can create and
+                                    manage their own communities, fostering interaction and engagement with their
+                                    audience.</li>
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Coaches can establish teams,
+                                    allowing them to organize and collaborate with others or their followers.</li>
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Premium coaches have the
+                                    ability to share long-form content, such as videos or audio longer than 2 minutes,
+                                    offering in-depth resources to their followers.</li>
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Premium coaches can create
+                                    both free and paid webinars or events, providing more opportunities for monetization
+                                    and audience engagement.
+                                </li>
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Coaches can set up ad hoc
+                                    charges for additional events or services, giving them more flexibility to charge
+                                    for exclusive offerings.</li>
+                                <li><i class="fa-solid fa-check me-1 text-white mt-1"></i>Coaches can apply ad hoc
+                                    charges to specific posts, allowing them to monetize exclusive content directly on
+                                    the platform.</li>
                             </ul>
                         </li>
                     </ul>
 
-                    <div style="cursor: pointer;" class="mt-4" (click)="redirect()">
-                        <a class="ct_orange_btn mt-2 ct_border_radius_10">
-                            <div class="d-flex align-items-center">
-                                <div class="spinner-border me-2" role="status" *ngIf="btnLoaderPay">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <span *ngIf="!btnLoaderPay">Buy Plan</span>
+                  
+                </div>
+                <div style="cursor: pointer;" class="mt-4" (click)="redirect()">
+                    <a class="ct_orange_btn mt-2 ct_border_radius_10">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border me-2" role="status" *ngIf="btnLoaderPay">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
-                        </a>
-                    </div>
+                            <span *ngIf="!btnLoaderPay">Buy Plan</span>
+                        </div>
+                    </a>
                 </div>
                 <button hidden type="button" class="btn btn-secondary" #closeModal
                     data-bs-dismiss="modal">Close</button>
-                <!-- <button class="ct_orange_btn ct_grey_btn ct_border_radius_10 w-100 mt-4">Create new team</button> -->
             </div>
 
         </div>

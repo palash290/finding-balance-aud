@@ -1,6 +1,7 @@
 div#ct_add_community .modal-content,
 div#ct_edit_community .modal-content,
-div#ct_view_community .modal-content {
+div#ct_view_community .modal-content,
+div#ct_report_community .modal-content {
     background-color: #111010;
     border: 1px solid var(--orange);
     padding: 22px;
@@ -175,7 +176,10 @@ div#ct_view_community .modal-content {
     border-color: transparent;
     color: transparent;
   }
-  
+  .ct_message_user_lit{
+    height: 100vh !important;
+    max-height: unset !important;
+  }
 
   @media screen and  (max-width:767px){
     .ct_ms_75_767{

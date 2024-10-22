@@ -288,9 +288,12 @@ export class TeamsComponent {
                   barWidth: 3,
                   barGap: 6
                 });
-                this.wave.push(waveInstance); // Store the instance for later use
+                // this.wave.push(waveInstance); // Store the instance for later use
   
+                // waveInstance.load(item?.mediaUrl);
+                this.wave[index] = waveInstance;
                 waveInstance.load(item?.mediaUrl);
+                this.isPlayingA[index] = false;
   
                 waveInstance.on('ready', () => {
                   const index = this.teamFeeds.findIndex((audio: { id: any; }) => audio.id === item.id);
@@ -336,7 +339,12 @@ export class TeamsComponent {
   }
 
   togglePlayPause(index: number): void {
-    this.wave[index].playPause();
+    const waveInstance = this.wave[index];
+    if (waveInstance) {
+      waveInstance.playPause(); // Toggle between play and pause
+    } else {
+      console.error('Waveform instance not found for index:', index);
+    }
   }
 
   shortTextLength: number = 270;

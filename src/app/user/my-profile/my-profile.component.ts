@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { WaveService } from 'angular-wavesurfer-service';
 import WaveSurfer from 'wavesurfer.js';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class MyProfileComponent {
   isCoach: boolean = true;
   role: any;
 
-  constructor(private route: ActivatedRoute, private service: SharedService, private location: Location,  public waveService: WaveService, private snackBar: MatSnackBar) {
+  constructor(private route: ActivatedRoute, private service: SharedService, private location: Location, public waveService: WaveService, private snackBar: MatSnackBar, private toster: ToastrService) {
     this.role = this.service.getRole();
     if (this.role == "USER") {
       this.isCoach = false;
@@ -187,7 +188,7 @@ export class MyProfileComponent {
 
         setTimeout(() => {
           this.postData?.forEach((item: any, index: any) => {
-            if(item.type == 'PODCAST'){
+            if (item.type == 'PODCAST') {
               const waveformId = '#waveform' + item.id;
               const waveInstance: any = this.waveService.create({
                 container: waveformId,
@@ -199,30 +200,29 @@ export class MyProfileComponent {
                 barWidth: 3,
                 barGap: 6
               });
-              this.wave.push(waveInstance); // Store the instance for later use
-  
+              this.wave[index] = waveInstance;
               waveInstance.load(item?.mediaUrl);
-  
+              this.isPlayingA[index] = false;
+
               waveInstance.on('ready', () => {
-                const index = this.postData.findIndex((audio: { id: any; }) => audio.id === item.id);
                 this.totalDurationA[index] = waveInstance.getDuration();
               });
-  
+
               waveInstance.on('audioprocess', () => {
-                const index = this.postData.findIndex((audio: { id: any; }) => audio.id === item.id);
                 this.currentTimeA[index] = waveInstance.getCurrentTime();
               });
-  
+
               waveInstance.on('play', () => {
-                this.isPlayingA[index] = true;  // Update to playing state
-                this.stopOtherAudios(index);   // Stop all other audios when one plays
+                this.isPlayingA[index] = true; // Mark as playing
+                this.stopOtherAudios(index);   // Pause other audios
               });
-  
+
               waveInstance.on('pause', () => {
-                this.isPlayingA[index] = false; // Update to paused state
+                this.isPlayingA[index] = false; // Mark as paused
               });
+
             }
-        
+
 
           });
         }, 200);
@@ -243,14 +243,58 @@ export class MyProfileComponent {
   }
 
   togglePlayPause(index: number): void {
-    this.wave[index].playPause();
+    const waveInstance = this.wave[index];
+    if (waveInstance) {
+      waveInstance.playPause(); // Toggle between play and pause
+    } else {
+      console.error('Waveform instance not found for index:', index);
+    }
   }
 
   getProfileData() {
     this.service.getApi(this.isCoach ? 'coach/post' : 'user/allPosts').subscribe({
       next: resp => {
         if (this.isCoach) {
-          this.postData = resp.data?.map((item: any) => ({ ...item, isExpanded: false, isPlaying: false }));
+          this.postData = resp.data?.map((item: any) => ({ ...item, isExpanded: false, isPlaying: false })).reverse();
+
+          setTimeout(() => {
+            this.postData?.forEach((item: any, index: any) => {
+              if (item.type == 'PODCAST') {
+                const waveformId = '#waveform' + item.id;
+                const waveInstance: any = this.waveService.create({
+                  container: waveformId,
+                  waveColor: '#fff',
+                  progressColor: '#e58934',
+                  // cursorColor: '#ff5722',
+                  responsive: true,
+                  height: 50,
+                  barWidth: 3,
+                  barGap: 6
+                });
+                //this.wave.push(waveInstance); // Store the instance for later use
+                this.wave[index] = waveInstance;
+                waveInstance.load(item?.mediaUrl);
+                this.isPlayingA[index] = false;
+
+                waveInstance.on('ready', () => {
+                  this.totalDurationA[index] = waveInstance.getDuration();
+                });
+
+                waveInstance.on('audioprocess', () => {
+                  this.currentTimeA[index] = waveInstance.getCurrentTime();
+                });
+
+                waveInstance.on('play', () => {
+                  this.isPlayingA[index] = true; // Mark as playing
+                  this.stopOtherAudios(index);   // Pause other audios
+                });
+
+                waveInstance.on('pause', () => {
+                  this.isPlayingA[index] = false; // Mark as paused
+                });
+              }
+            });
+          }, 200);
         }
       },
       error: error => {
@@ -373,7 +417,7 @@ export class MyProfileComponent {
     this.deleteId = cmtId;
     if (feed.numberOfComments >= 0) {
       feed.numberOfComments--;
-    } 
+    }
     this.btnLoaderCmt = true;
     this.service.deleteAcc(this.isCoach ? `coach/comment/${cmtId}` : `user/post/comment/${cmtId}`).subscribe({
       next: resp => {
@@ -643,6 +687,98 @@ export class MyProfileComponent {
       return `00:00`;
     }
 
+  }
+
+
+
+
+
+
+  reportPostId: any;
+  reportPost(postId: any) {
+    this.reportPostId = postId;
+  }
+
+  reportDesc: any;
+  btnLoaderReport: boolean = false;
+  nameError: boolean = false;
+  @ViewChild('closeModalR') closeModalR!: ElementRef;
+
+  repostPost() {
+    // Check if name is empty
+    if (!this.reportDesc || this.reportDesc.trim() === '') {
+      this.nameError = true;
+      return;
+    } else {
+      this.nameError = false; // Reset the error state
+    }
+
+    this.btnLoaderReport = true;
+    const formData = new URLSearchParams();
+    formData.set('postId', this.reportPostId);
+    formData.set('reportEntity', 'POST');
+    formData.set('reason', this.reportDesc);
+
+    this.service.postAPI('user/report/content', formData).subscribe({
+      next: (resp) => {
+        if (resp.success === true) {
+          this.closeModalR.nativeElement.click();
+          //this.visibilityService.triggerRefresh();
+          this.toster.success(resp.message);
+        } else {
+          this.toster.warning(resp.message);
+        }
+        this.btnLoaderReport = false;
+      },
+      error: (error) => {
+        this.btnLoaderReport = false;
+        if (error.error.message) {
+          this.toster.error(error.error.message);
+        } else {
+          this.toster.error('Something went wrong!');
+        }
+        //console.log(error.statusText);
+      }
+    });
+  }
+
+
+  userPlan: any;
+  plan_expired_at: any;
+  canceled_at: any;
+
+  getPackage() {
+    this.service.getApi(this.isCoach ? 'coach/myActivePlan' : 'user/myActivePlan').subscribe({
+      next: (resp) => {
+        this.userPlan = resp.data.plan.name;
+        this.plan_expired_at = resp.data.expired_at;
+        this.canceled_at = resp.data.canceled_at;
+        localStorage.setItem('findPlan', this.userPlan);
+        localStorage.setItem('plan_expired_at', this.plan_expired_at);
+        localStorage.setItem('canceled_at', this.canceled_at);
+      },
+      error: (error) => {
+        console.error('Error fetching project list:', error);
+      }
+    });
+  }
+
+  stripeLink: any;
+  btnLoaderPay: boolean = false;
+  payId: any;
+
+  getAdHocPost(postId: any) {
+    this.payId = postId;
+    localStorage.setItem('adHocPostId', postId)
+    const formURlData = new URLSearchParams();
+    formURlData.set('postId', postId);
+    this.btnLoaderPay = true;
+    this.service.postAPI(`user/paymentThroughStripeForPost`, formURlData.toString()).subscribe(response => {
+      this.stripeLink = response.url;
+      window.location.href = this.stripeLink;
+      console.log(this.stripeLink);
+      this.btnLoaderPay = false;
+    });
   }
 
 

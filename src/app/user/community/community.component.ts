@@ -17,6 +17,7 @@ export class CommunityComponent {
 
   @ViewChild('closeModal') closeModal!: ElementRef;
   @ViewChild('closeModal1') closeModal1!: ElementRef;
+  @ViewChild('closeModal2') closeModal2!: ElementRef;
   newForm!: FormGroup;
   updateForm!: FormGroup
   role: any;
@@ -83,6 +84,7 @@ export class CommunityComponent {
   communityId: any;
 
   communityName: any;
+  communityDesc: any;
   communityImg: any;
   numberOfParticipant: any;
   numberOfPosts: any;
@@ -127,6 +129,7 @@ export class CommunityComponent {
 
           this.eventImage = resp.data.mediaUrl;
           this.communityName = resp.data.title;
+          //this.communityDesc = resp.data.description;
           this.numberOfParticipant = resp.data.numberOfParticipant;
           this.numberOfPosts = resp.data.numberOfPosts;
           this.isParticipant = resp.data.isParticipant;
@@ -156,18 +159,21 @@ export class CommunityComponent {
     }
   }
 
+
+
   btnLoader: boolean = false;
   followId1: any;
 
-  joinCommunity(communityId: any) {
-    this.followId1 = communityId;
+  joinCommunity() {
+    this.followId1 = this.viewId;
     const formURlData = new URLSearchParams();
-    formURlData.set('communityId', communityId);
+    formURlData.set('communityId', this.viewId);
     this.btnLoader = true;
     this.service.postAPI(this.isCoach ? 'coach/communtiy/join' : 'user/communtiy/join', formURlData.toString()).subscribe({
       next: (response) => {
         this.btnLoader = false;
-        this.getCommunityProfileData(communityId, true, false);
+        this.closeModal2.nativeElement.click();
+        this.getCommunityProfileData(this.viewId, true, false);
         this.getCommunityData();
       },
       error: (error) => {
@@ -365,7 +371,7 @@ export class CommunityComponent {
 
           setTimeout(() => {
             this.communityFeeds?.forEach((item: any, index: any) => {
-              if(item.type == 'PODCAST'){
+              if (item.type == 'PODCAST') {
                 const waveformId = '#waveform' + item.id;
                 const waveInstance: any = this.waveService.create({
                   container: waveformId,
@@ -377,30 +383,33 @@ export class CommunityComponent {
                   barWidth: 3,
                   barGap: 6
                 });
-                this.wave.push(waveInstance); // Store the instance for later use
-  
+                // this.wave.push(waveInstance); // Store the instance for later use
+
+                // waveInstance.load(item?.mediaUrl);
+                this.wave[index] = waveInstance;
                 waveInstance.load(item?.mediaUrl);
-  
+                this.isPlayingA[index] = false;
+
                 waveInstance.on('ready', () => {
                   const index = this.communityFeeds.findIndex((audio: { id: any; }) => audio.id === item.id);
                   this.totalDurationA[index] = waveInstance.getDuration();
                 });
-  
+
                 waveInstance.on('audioprocess', () => {
                   const index = this.communityFeeds.findIndex((audio: { id: any; }) => audio.id === item.id);
                   this.currentTimeA[index] = waveInstance.getCurrentTime();
                 });
-  
+
                 waveInstance.on('play', () => {
                   this.isPlayingA[index] = true;  // Update to playing state
                   this.stopOtherAudios(index);   // Stop all other audios when one plays
                 });
-  
+
                 waveInstance.on('pause', () => {
                   this.isPlayingA[index] = false; // Update to paused state
                 });
               }
-         
+
 
             });
           }, 200);
@@ -409,7 +418,7 @@ export class CommunityComponent {
 
           setTimeout(() => {
             this.communityFeeds?.forEach((item: any, index: any) => {
-              if(item.type == 'PODCAST'){
+              if (item.type == 'PODCAST') {
                 const waveformId = '#waveform' + item.id;
                 const waveInstance: any = this.waveService.create({
                   container: waveformId,
@@ -421,30 +430,33 @@ export class CommunityComponent {
                   barWidth: 3,
                   barGap: 6
                 });
-                this.wave.push(waveInstance); // Store the instance for later use
-  
+                // this.wave.push(waveInstance); // Store the instance for later use
+
+                // waveInstance.load(item?.mediaUrl);
+                this.wave[index] = waveInstance;
                 waveInstance.load(item?.mediaUrl);
-  
+                this.isPlayingA[index] = false;
+
                 waveInstance.on('ready', () => {
                   const index = this.communityFeeds.findIndex((audio: { id: any; }) => audio.id === item.id);
                   this.totalDurationA[index] = waveInstance.getDuration();
                 });
-  
+
                 waveInstance.on('audioprocess', () => {
                   const index = this.communityFeeds.findIndex((audio: { id: any; }) => audio.id === item.id);
                   this.currentTimeA[index] = waveInstance.getCurrentTime();
                 });
-  
+
                 waveInstance.on('play', () => {
                   this.isPlayingA[index] = true;  // Update to playing state
                   this.stopOtherAudios(index);   // Stop all other audios when one plays
                 });
-  
+
                 waveInstance.on('pause', () => {
                   this.isPlayingA[index] = false; // Update to paused state
                 });
               }
-             
+
 
             });
           }, 200);
@@ -467,7 +479,12 @@ export class CommunityComponent {
   }
 
   togglePlayPause(index: number): void {
-    this.wave[index].playPause();
+    const waveInstance = this.wave[index];
+    if (waveInstance) {
+      waveInstance.playPause(); // Toggle between play and pause
+    } else {
+      console.error('Waveform instance not found for index:', index);
+    }
   }
 
   shortTextLength: number = 270;
@@ -744,7 +761,7 @@ export class CommunityComponent {
     this.deleteId = cmtId;
     if (feed.numberOfComments >= 0) {
       feed.numberOfComments--;
-    } 
+    }
     this.btnLoaderCmtDel = true;
     this.service.deleteAcc(this.isCoach ? `coach/comment/${cmtId}` : `user/post/comment/${cmtId}`).subscribe({
       next: resp => {
@@ -843,6 +860,76 @@ export class CommunityComponent {
     } else {
       this.route.navigateByUrl(`user/main/my-profile/${uderId}/${role}`);
     }
+  }
+
+
+  communityName1: any;
+  communityDesc1: any;
+
+  viewId: any;
+
+  viewCommunity(id: any) {
+    this.viewId = id;
+    this.service.getApi(this.isCoach ? `coach/communtiy/${id}` : `user/communtiy/${id}`).subscribe({
+      next: resp => {
+
+        this.eventImage = resp.data.mediaUrl;
+        this.communityName1 = resp.data.title;
+        this.communityDesc1 = resp.data.description;
+
+      },
+      error: error => {
+        console.log(error.message)
+      }
+    });
+  }
+
+  reportPostId: any;
+  reportPost(postId: any) {
+    this.reportPostId = postId;
+  }
+
+  reportDesc: any;
+  btnLoaderReport: boolean = false;
+  nameError: boolean = false;
+  @ViewChild('closeModalR') closeModalR!: ElementRef;
+
+  repostPost() {
+    // Check if name is empty
+    if (!this.reportDesc || this.reportDesc.trim() === '') {
+      this.nameError = true;
+      return;
+    } else {
+      this.nameError = false; // Reset the error state
+    }
+
+    this.btnLoaderReport = true;
+    const formData = new URLSearchParams();
+    formData.set('communityId', this.communityId);
+    formData.set('reportEntity', 'COMMUNITY');
+    formData.set('reason', this.reportDesc);
+
+    this.service.postAPI('user/report/content', formData).subscribe({
+      next: (resp) => {
+        if (resp.success === true) {
+          this.closeModalR.nativeElement.click();
+          //this.visibilityService.triggerRefresh();
+          this.toastr.success(resp.message);
+        } else {
+          this.toastr.warning(resp.message);
+        }
+        this.btnLoaderReport = false;
+      },
+      error: (error) => {
+        this.btnLoaderReport = false;
+        if (error.error.message) {
+          this.toastr.error(error.error.message);
+        } else {
+          this.toastr.error('Something went wrong!');
+        }
+        //console.log(error.statusText);
+      }
+    });
   }
 
 

@@ -34,7 +34,6 @@
       </div>
       }
 
-
     </div>
     @if(isCoach){
     <div class="d-flex align-items-center gap-2 flex-wrap">
@@ -71,6 +70,11 @@
     <div (click)="userNotIntrested(eventData.id)" *ngIf="eventData?.alreadyRegistered" style="cursor: pointer;">
       <a class="ct_orange_btn ct_grey_btn ct_border_radius_10">Interested</a>
     </div>
+
+    <div style="cursor: pointer;">
+      <a class="ct_orange_btn ct_grey_btn ct_border_radius_10">Report</a>
+    </div>
+
     }
 
     }
