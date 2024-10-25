@@ -1179,7 +1179,6 @@
 </div>
 
 
-
 <!-- View -->
 
 <div class="modal fade" id="ct_view_community" tabindex="-1" aria-labelledby="ct_view_community" aria-hidden="true">
@@ -1194,21 +1193,21 @@
             <div class="modal-body">
                 <form>
                     <div>
-                        <input type="text" class="form-control ct_login_input" placeholder="My Community Name"
+                        <input type="text" class="form-control ct_login_input" placeholder="Community Name"
                             [value]="communityName1" disabled>
                     </div>
 
                     <div class="mt-3">
-                        <input type="text" class="form-control ct_login_input" placeholder="My Community Description"
+                        <input type="text" class="form-control ct_login_input" placeholder="No Community Description"
                             [value]="communityDesc1" disabled>
                     </div>
 
                     <div class="ct_uploaded_cnt">
                         <div id="ct_video" class="ct_audio_upload_first d-block" style="max-width: 100%;">
-                         
-                                <img class="ct_img_h_200"
-                                    [src]="eventImage ? eventImage : '/assets/img/np_pro.png'" alt="Uploaded Image" />
-                         
+
+                            <img class="ct_img_h_200" [src]="eventImage ? eventImage : '/assets/img/np_pro.png'"
+                                alt="Uploaded Image" />
+
                         </div>
                     </div>
 

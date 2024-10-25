@@ -138,6 +138,20 @@
                         Feed</a>
                 </li>
 
+                <li>
+                    <a routerLink="/user/main/my-profile" (click)="onToggleMenu()"
+                        [ngClass]="{ 'ct_menu_active1': isActive('user/main/my-profile')}">
+                        <svg width="17" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M1 15.5C1 14.4391 1.42143 13.4217 2.17157 12.6716C2.92172 11.9214 3.93913 11.5 5 11.5H13C14.0609 11.5 15.0783 11.9214 15.8284 12.6716C16.5786 13.4217 17 14.4391 17 15.5C17 16.0304 16.7893 16.5391 16.4142 16.9142C16.0391 17.2893 15.5304 17.5 15 17.5H3C2.46957 17.5 1.96086 17.2893 1.58579 16.9142C1.21071 16.5391 1 16.0304 1 15.5Z"
+                                stroke="#E58934" stroke-width="1.5" stroke-linejoin="round" />
+                            <path
+                                d="M9 7.5C10.6569 7.5 12 6.15685 12 4.5C12 2.84315 10.6569 1.5 9 1.5C7.34315 1.5 6 2.84315 6 4.5C6 6.15685 7.34315 7.5 9 7.5Z"
+                                stroke="#E58934" stroke-width="1.5" />
+                        </svg>
+                        My Profile</a>
+                </li>
+
                 <li *ngIf="!isCoach">
                     <a routerLink="/user/main/my-intrest" (click)="onToggleMenu()"
                         [ngClass]="{ 'ct_menu_active1': isActive('user/main/my-intrest')}">
@@ -213,28 +227,17 @@
                         </svg>
                         Saved Post</a>
                 </li>
-                <li>
-                    <a routerLink="/user/main/my-profile" (click)="onToggleMenu()"
-                        [ngClass]="{ 'ct_menu_active1': isActive('user/main/my-profile')}">
-                        <svg width="17" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M1 15.5C1 14.4391 1.42143 13.4217 2.17157 12.6716C2.92172 11.9214 3.93913 11.5 5 11.5H13C14.0609 11.5 15.0783 11.9214 15.8284 12.6716C16.5786 13.4217 17 14.4391 17 15.5C17 16.0304 16.7893 16.5391 16.4142 16.9142C16.0391 17.2893 15.5304 17.5 15 17.5H3C2.46957 17.5 1.96086 17.2893 1.58579 16.9142C1.21071 16.5391 1 16.0304 1 15.5Z"
-                                stroke="#E58934" stroke-width="1.5" stroke-linejoin="round" />
-                            <path
-                                d="M9 7.5C10.6569 7.5 12 6.15685 12 4.5C12 2.84315 10.6569 1.5 9 1.5C7.34315 1.5 6 2.84315 6 4.5C6 6.15685 7.34315 7.5 9 7.5Z"
-                                stroke="#E58934" stroke-width="1.5" />
-                        </svg>
-                        My Profile</a>
-                </li>
+
 
                 <li>
                     <a routerLink="/user/main/event-list" (click)="onToggleMenu()"
                         [ngClass]="{ 'ct_menu_active1': isActive('user/main/event-list')}">
-                        <svg width="17" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M0 18.5V2.5C0 1.95 0.196 1.47933 0.588 1.088C0.98 0.696667 1.45067 0.500667 2 0.5H12C12.55 0.5 13.021 0.696 13.413 1.088C13.805 1.48 14.0007 1.95067 14 2.5V18.5L7 15.5L0 18.5ZM2 15.45L7 13.3L12 15.45V2.5H2V15.45Z"
+                                d="M21 17.5V8.5H7V17.5H21ZM21 3.5C21.5304 3.5 22.0391 3.71071 22.4142 4.08579C22.7893 4.46086 23 4.96957 23 5.5V17.5C23 18.0304 22.7893 18.5391 22.4142 18.9142C22.0391 19.2893 21.5304 19.5 21 19.5H7C6.46957 19.5 5.96086 19.2893 5.58579 18.9142C5.21071 18.5391 5 18.0304 5 17.5V5.5C5 4.96957 5.21071 4.46086 5.58579 4.08579C5.96086 3.71071 6.46957 3.5 7 3.5H8V1.5H10V3.5H18V1.5H20V3.5H21ZM3 21.5H17V23.5H3C2.46957 23.5 1.96086 23.2893 1.58579 22.9142C1.21071 22.5391 1 22.0304 1 21.5V9.5H3V21.5ZM19 15.5H15V11.5H19V15.5Z"
                                 fill="#E58934" />
                         </svg>
+
                         All Events</a>
                 </li>
 
@@ -367,19 +370,24 @@
                         </li>
                         <li *ngIf="isCoach">
                             <ul>
-                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white"></i>Premium coaches can create and
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white"></i>Premium coaches can
+                                    create and
                                     manage their own communities, fostering interaction and engagement with their
                                     audience.</li>
-                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Coaches can establish teams,
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Coaches can
+                                    establish teams,
                                     allowing them to organize and collaborate with others or their followers.</li>
-                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Premium coaches have the
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Premium coaches
+                                    have the
                                     ability to share long-form content, such as videos or audio longer than 2 minutes,
                                     offering in-depth resources to their followers.</li>
-                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Premium coaches can create
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Premium coaches
+                                    can create
                                     both free and paid webinars or events, providing more opportunities for monetization
                                     and audience engagement.
                                 </li>
-                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Coaches can set up ad hoc
+                                <li class="mb-2"><i class="fa-solid fa-check me-1 text-white mt-1"></i>Coaches can set
+                                    up ad hoc
                                     charges for additional events or services, giving them more flexibility to charge
                                     for exclusive offerings.</li>
                                 <li><i class="fa-solid fa-check me-1 text-white mt-1"></i>Coaches can apply ad hoc
@@ -389,7 +397,7 @@
                         </li>
                     </ul>
 
-                  
+
                 </div>
                 <div style="cursor: pointer;" class="mt-4" (click)="redirect()">
                     <a class="ct_orange_btn mt-2 ct_border_radius_10">
