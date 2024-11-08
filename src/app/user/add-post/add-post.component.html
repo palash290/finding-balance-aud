@@ -141,7 +141,7 @@
                     </div>
                     <div *ngIf="!audioFile" style="cursor: pointer;">
                         <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
-                        <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
+                        <!-- <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
                     </div>
                     <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
                 <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
@@ -153,7 +153,7 @@
                         (change)="handleCommittedFileInput($event)">
                     <div *ngIf="!croppedImage" style="cursor: pointer;">
                         <p class="mb-2 text-white ct_fs_13">Click to upload thumbnail</p>
-                        <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 5 MB</p>
+                        <!-- <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 5 MB</p> -->
                     </div>
                     <img *ngIf="croppedImage" class="ct_img_h_130"
                         [src]="croppedImage ? croppedImage : '/assets/img/np_pro.png'" alt="Uploaded Image" />
@@ -171,7 +171,7 @@
                 </div>
                 <div *ngIf="!audioFile" style="cursor: pointer;">
                     <p class="mb-2 text-white ct_fs_13">Click to upload Image file</p>
-                    <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
+                    <!-- <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
                 </div>
                 <!-- <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
                 <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
@@ -191,7 +191,7 @@
             </div>
             <div *ngIf="!videoFile">
                 <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
-                <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p>
+                <!-- <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
             </div>
             <!-- <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
                 <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->

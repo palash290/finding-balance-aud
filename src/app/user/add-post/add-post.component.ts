@@ -156,7 +156,7 @@ export class AddPostComponent {
   postText: any;
   audioFile: File | null = null;
   videoFile: File | null = null;
-  readonly MAX_FILE_SIZE_MB = 50;
+  readonly MAX_FILE_SIZE_MB = 500;
   videoPreviewUrl: string | null = null;
 
   // onAudioFileChange(event: Event) {
@@ -167,7 +167,7 @@ export class AddPostComponent {
   //       this.audioFile = file;
   //       this.checkAudioDuration(file);
   //     } else {
-  //       this.toastr.warning('Audio file exceeds the maximum size of 50 MB.');
+  //       this.toastr.warning('Audio file exceeds the maximum size of 500 MB.');
   //       input.value = ''; // Clear the input
   //     }
   //   }
@@ -181,7 +181,7 @@ export class AddPostComponent {
         this.audioFile = file;
         this.checkAudioDuration(file);
       } else {
-        this.toastr.warning('Audio file exceeds the maximum size of 50 MB.');
+        this.toastr.warning('Audio file exceeds the maximum size of 500 MB.');
       }
       input.value = ''; // Reset the input value to allow re-uploading the same file
     }
@@ -198,7 +198,7 @@ export class AddPostComponent {
         this.createVideoPreview(file);
         this.checkVideoDuration(file);
       } else {
-        this.toastr.warning('Video file exceeds the maximum size of 50 MB.');
+        this.toastr.warning('Video file exceeds the maximum size of 500 MB.');
       }
       input.value = ''; // Clear the input
     }

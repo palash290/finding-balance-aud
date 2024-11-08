@@ -806,6 +806,6 @@ export class FeedsComponent {
   getCoachId(uderId: any, role: any) {
     this.router.navigateByUrl(`user/main/my-profile/${uderId}/${role}`)
   }
-  
+
 
 }
