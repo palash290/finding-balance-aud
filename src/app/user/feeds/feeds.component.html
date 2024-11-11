@@ -57,7 +57,8 @@
 
                 <div class="ct_feed_box mt-3" *ngIf="feed.type == 'PODCAST'">
                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center gap-2" (click)="getCoachId(feed.coach.id, feed.coach.role)" style="cursor: pointer;">
+                        <div class="d-flex align-items-center gap-2"
+                            (click)="getCoachId(feed.coach.id, feed.coach.role)" style="cursor: pointer;">
                             <img [src]="feed.coach.avatar_url ? feed.coach.avatar_url : '/assets/img/np_pro.png'" alt=""
                                 class="ct_img_44 ct_bor ct_white_border_1">
                             <div>
@@ -101,6 +102,18 @@
                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ct_add_community"
                                         (click)="reportPost(feed.id)">Report</a></li>
                                 <!-- <li><a class="dropdown-item">Delete</a></li> -->
+                            </ul>
+                        </div>
+                        }
+
+
+                        @if(feed.coachId != userId && isCoach){
+                        <div class="dropdown ct_chat_dropdown" style="cursor: pointer;">
+                            <i class="fa-solid fa-ellipsis-vertical text-white" style="cursor: pointer;"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ct_add_community"
+                                        (click)="reportPost(feed.id)">Report</a></li>
                             </ul>
                         </div>
                         }
@@ -447,7 +460,8 @@
                 <div class="ct_feed_box mt-3" *ngIf="feed.type == 'ARTICLE'">
                     <div class="d-flex align-items-center justify-content-between">
 
-                        <div class="d-flex align-items-center gap-2" (click)="getCoachId(feed.coach.id, feed.coach.role)" style="cursor: pointer;">
+                        <div class="d-flex align-items-center gap-2"
+                            (click)="getCoachId(feed.coach.id, feed.coach.role)" style="cursor: pointer;">
                             <img [src]="feed.coach.avatar_url ? feed.coach.avatar_url : '/assets/img/np_pro.png'" alt=""
                                 class="ct_img_44 ct_bor ct_white_border_1">
                             <div>
@@ -490,6 +504,17 @@
                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ct_add_community"
                                         (click)="reportPost(feed.id)">Report</a></li>
                                 <!-- <li><a class="dropdown-item">Delete</a></li> -->
+                            </ul>
+                        </div>
+                        }
+
+                        @if(feed.coachId != userId && isCoach){
+                        <div class="dropdown ct_chat_dropdown" style="cursor: pointer;">
+                            <i class="fa-solid fa-ellipsis-vertical text-white" style="cursor: pointer;"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ct_add_community"
+                                        (click)="reportPost(feed.id)">Report</a></li>
                             </ul>
                         </div>
                         }
@@ -737,7 +762,8 @@
 
                 <div class="ct_feed_box mt-3" *ngIf="feed.type == 'VIDEO'">
                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center gap-2" (click)="getCoachId(feed.coach.id, feed.coach.role)" style="cursor: pointer;">
+                        <div class="d-flex align-items-center gap-2"
+                            (click)="getCoachId(feed.coach.id, feed.coach.role)" style="cursor: pointer;">
                             <img [src]="feed.coach.avatar_url ? feed.coach.avatar_url : '/assets/img/np_pro.png'" alt=""
                                 class="ct_img_44 ct_bor ct_white_border_1">
                             <div>
@@ -780,6 +806,17 @@
                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ct_add_community"
                                         (click)="reportPost(feed.id)">Report</a></li>
                                 <!-- <li><a class="dropdown-item">Delete</a></li> -->
+                            </ul>
+                        </div>
+                        }
+
+                        @if(feed.coachId != userId && isCoach){
+                        <div class="dropdown ct_chat_dropdown" style="cursor: pointer;">
+                            <i class="fa-solid fa-ellipsis-vertical text-white" style="cursor: pointer;"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ct_add_community"
+                                        (click)="reportPost(feed.id)">Report</a></li>
                             </ul>
                         </div>
                         }
