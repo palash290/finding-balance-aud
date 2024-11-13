@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="mt-4 row">
+        <div class="col-md-10 mx-auto">
+            <a class="mb-4 d-block text-white" routerLink="/user/main/feeds"><i class="fa-solid fa-chevron-left"></i></a>
+            <h4 class="ct_ff_roboto ct_orange_text ct_fs_24 ct_fw_600">Unlock Exclusive Access Today!</h4>
+            <p class="mb-0 text-white ct_fs_14 ct_ff_roboto ct_fw_400 ct_line_height_22">Subscribe today and enjoy full
+                access to premium resources, member-only perks, and the latest updates.</p>
+            <div class="mt-4">
+                <h4 class="ct_fs_18">Why Subscribe?</h4>
+                <ul class="ct_unlock_access_list mt-3 ps-4">
+                    <li>Premium coaches can create and
+                        manage their own communities, fostering interaction and engagement with their audience.</li>
+                    <li>Coaches can establish teams,
+                        allowing them to organize and collaborate with others or their followers.</li>
+                    <li>Premium coaches have the
+                        ability to share long-form content, such as videos or audio longer than 2 minutes,
+                        offering in-depth resources to their followers.</li>
+                    <li>Premium coaches can create
+                        both free and paid webinars or events, providing more opportunities for monetization and
+                        audience
+                        engagement.
+                    </li>
+                    <li>Coaches can set up ad hoc
+                        charges for additional events or services, giving them more flexibility to charge
+                        for exclusive offerings. </li>
+                    <li>Coaches can apply ad hoc
+                        charges to specific posts, allowing them to monetize exclusive content directly on
+                        the platform.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div *ngIf="stripeLink" style="cursor: pointer;" class="mt-4" (click)="redirect()">
+        <a class="ct_orange_btn mt-2 ct_border_radius_10 mx-auto ct_mob_btn_full_w px-4"
+            style="width: fit-content;    line-height: 22px;">
+            <div class="d-flex align-items-center">
+                <div class="spinner-border me-2" role="status" *ngIf="btnLoaderPay">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <i class="fa-solid fa-cart-shopping text-white me-2"></i>
+                <span *ngIf="!btnLoaderPay">Buy Plan</span>
+            </div>
+        </a>
+    </div>
+
+</div>

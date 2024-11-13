@@ -38,6 +38,8 @@ import { EventListComponent } from './event-list/event-list.component';
 import { PaymentCancelComponent } from './payment-cancel/payment-cancel.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { AngularWavesurferServiceModule, WaveService } from 'angular-wavesurfer-service';
+import { SubscriptionDetailsComponent } from './subscription-details/subscription-details.component';
+import { SibscriptionCoachComponent } from './sibscription-coach/sibscription-coach.component';
 
 
 @NgModule({
@@ -69,6 +71,8 @@ import { AngularWavesurferServiceModule, WaveService } from 'angular-wavesurfer-
     PaymentSuccessComponent,
     EventListComponent,
     PaymentCancelComponent,
+    SubscriptionDetailsComponent,
+    SibscriptionCoachComponent,
   ],
   imports: [
     CommonModule,

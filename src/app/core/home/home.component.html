@@ -8,14 +8,13 @@
     <nav class="ct_nav_bar">
       <ul>
         <i class="bi bi-x-lg ct_close_menu"></i>
-        <li><a>Home</a></li>
-        <li><a>Blog</a></li>
-        <li><a>About</a></li>
-        <li><a>Contact</a></li>
+        <li><a (click)="scrollTo('home')" style="cursor: pointer;">Home</a></li>
+        <li><a (click)="scrollTo('blog')" style="cursor: pointer;">Blog</a></li>
+        <li><a (click)="scrollTo('about')" style="cursor: pointer;">About</a></li>
+        <li><a (click)="scrollTo('contact')" style="cursor: pointer;">Contact</a></li>
       </ul>
     </nav>
     <div class="ct_right_menu">
-
       <ul>
         <!-- <li class="position-relative">
           <i class="fa-solid fa-magnifying-glass text-white ct_search_icon"></i>
@@ -34,7 +33,7 @@
 
   <!-- Banner section S -->
 
-  <section class="ct_banner_section ct_px_95">
+  <section class="ct_banner_section ct_px_95" id="home">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
@@ -65,7 +64,7 @@
 </div>
 
 <!-- meet new coaches section S -->
-<section class="py-5">
+<section class="py-5" id="blog">
   <div class="container">
     <div class="row">
       <div class="col-md-7 mx-auto">
@@ -130,7 +129,7 @@
 <!-- meet new coaches section E -->
 <!-- Service section S -->
 
-<section class="ct_light_dark_bg">
+<section class="ct_light_dark_bg" id="about">
   <div class="container">
     <div class="row">
       <div class="col-md-8 mx-auto" data-aos="fade-down" data-aos-duration="1000">
@@ -152,7 +151,6 @@
             <p class="mb-0 mt-4 ct_grey_text">Build meaningful relationships <br> by category, making it easy to find
               exactly <br>
               you on your personal and professional journey.</p>
-
           </div>
         </div>
       </div>
@@ -167,7 +165,6 @@
               morbi eget <b></b>
               what you’re looking for. Whether it’s articles, videos, or courses, everything is neatly arranged to suit
               your needs.</p>
-
           </div>
         </div>
       </div>
@@ -181,7 +178,6 @@
             <p class="mb-0 mt-4 ct_grey_text">Maintain a balanced perspective with curated content that reflects diverse
               viewpoints. Our platform offers a moderated view to help you navigate through information with clarity and
               understanding.</p>
-
           </div>
         </div>
       </div>
@@ -195,7 +191,6 @@
             <p class="mb-0 mt-4 ct_grey_text">Dive into our extensive library of text-based resources, designed to
               provide valuable insights and knowledge. Whether you're looking for detailed articles, guides, or case
               studies, you'll find content tailored to your interests.</p>
-
           </div>
         </div>
       </div>
@@ -209,7 +204,6 @@
             <p class="mb-0 mt-4 ct_grey_text">Engage with a rich selection of video content that brings learning to
               life. From tutorials and expert talks to interactive webinars, our videos are designed to enhance your
               understanding and provide dynamic learning experiences.</p>
-
           </div>
         </div>
       </div>
@@ -223,13 +217,10 @@
             <p class="mb-0 mt-4 ct_grey_text">Experience a platform brimming with features designed to enhance your
               learning and engagement. From interactive tools to personalized recommendations, our platform offers a
               comprehensive suite of functionalities to support your growth.</p>
-
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </section>
 <!-- Service section E -->
@@ -424,11 +415,8 @@
             </div>
           </div> -->
         </div>
-
       </div>
-
     </div>
-
   </div>
 </section>
 <!-- Testimonial section E -->
@@ -445,7 +433,7 @@
       </div>
     </div>
     <div class="row mt-5 pt-4">
-      <div class="col-md-6 mb-4 mb-md-0"  data-aos="fade-right" data-aos-duration="1000">
+      <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right" data-aos-duration="1000">
         <div class="ct_explore_img mb-3">
           <img src="assets/img/article1.png" alt="">
         </div>
@@ -463,6 +451,91 @@
 
   </div>
 </section>
+
+<section class="ct_py_112" id="contact">
+  <div class="container">
+    <div class="row">
+      <div data-aos="fade-down" data-aos-duration="1000" class="col-md-8 mx-auto aos-init aos-animate">
+        <h3 class="ct_fs_30 ct_fw_600 ct_ff_Signika text-center text-white mb-3">Contact Us</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="ct_bottom_contact_bg_1">
+          <form [formGroup]="contactForm" class="mt-3 w-100">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group mb-4 w-100">
+                  <input type="text" class="form-control ct_login_input ct_ff_roboto" placeholder="Name"
+                    formControlName="name">
+                  <div *ngIf="contactForm.controls['name'].invalid && contactForm.controls['name'].touched"
+                    class="error-message">
+                    <div *ngIf="contactForm.controls['name'].errors?.['required']" class="ct_fs_14 mt-1">Name is
+                      required.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mb-4 w-100">
+                  <input type="email" class="form-control ct_login_input" placeholder="Email" formControlName="email">
+
+                  <div *ngIf="contactForm.controls['email'].invalid && contactForm.controls['email'].touched"
+                    class="error-message">
+                    <div *ngIf="contactForm.controls['email'].errors?.['required']" class="ct_fs_14 mt-1">
+                      Email is required.
+                    </div>
+                    <div
+                      *ngIf="contactForm.controls['email'].errors?.['email'] && !contactForm.controls['email'].errors?.['required']"
+                      class="ct_fs_14 mt-1">
+                      Invalid email format.</div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group mb-4 w-100">
+                  <!-- <input type="text" maxlength="10" class="form-control ct_login_input"
+                          formControlName="phone_no" placeholder="Phone"> -->
+                  <textarea type="text" rows="4" class="form-control ct_login_input h-auto" placeholder="Description"
+                    formControlName="description" maxlength="1000"></textarea>
+                  <div
+                    *ngIf="contactForm.controls['description'].invalid && contactForm.controls['description'].touched"
+                    class="error-message">
+                    <div *ngIf="contactForm.controls['description'].errors?.['required']" class="ct_fs_14 mt-1">
+                      Description is
+                      required.</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="mt-4 w-100">
+              <button (click)="submit()" class="ct_orange_btn ct_border_radius_10 ct_py_14_px_10 w-100 ct_fs_20 ct_ff_roboto">
+                <div class="d-flex align-items-center">
+                  <div class="spinner-border me-2" role="status" *ngIf="loading">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <span *ngIf="!loading">Submit</span>
+                </div>
+              </button>
+            </div>
+
+            <div class="mt-4 w-100">
+              <!-- <button (click)="toggleUser()"
+                    class="ct_orange_btn ct_border_radius_10 ct_py_14_px_10 w-100 ct_fs_20 ct_tansparent_btn "
+                    [ngClass]="isCoach ? 'ct_i_am_user_btn' : 'ct_i_am_coach_btn'">
+                    {{isCoach ? 'I am a User' : 'I am a Coach'}}</button> -->
+
+              <!-- <button class="ct_orange_btn ct_border_radius_10 ct_py_14_px_10 w-100 ct_fs_20 ct_tansparent_btn ct_i_am_coach_btn">I’m a Coach</button> -->
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 <!-- Explore content section E -->
 <footer data-aos="fade-down" data-aos-duration="1000">
   <div class="py-5">
@@ -475,12 +548,16 @@
                 <img src="assets/img/logo.svg" alt="">
               </a>
             </div>
+
+
+
             <nav class="ct_footer_nav_bar">
               <ul>
+                <li><a></a></li>
                 <li><a>Terms Of Service</a></li>
                 <li><a>Privacy Policy</a></li>
-                <li><a>Community Guidelines</a></li>
-                <li><a>Refund Policy</a></li>
+                <!-- <li><a>Community Guidelines</a></li>
+                <li><a>Refund Policy</a></li> -->
               </ul>
             </nav>
             <div class="ct_footer_social">
@@ -493,12 +570,9 @@
               <a>
                 <i class="fa-brands fa-twitter"></i>
               </a>
-
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
   </div>
@@ -506,11 +580,8 @@
     <div class="row">
       <div class="col-md-12">
         <p class="text-center mb-0 text-white">All rights reserved. <span class="ct_fw_700">Finding Balance</span></p>
-
       </div>
-
     </div>
-
   </div>
 </footer>
 <!-- <div class="ct_loader_main">
@@ -518,7 +589,7 @@
 </div> -->
 
 <!-- <div class="container mt-4">
-  <h3>Upload Video</h3>
+  <h3 class="text-center mb-0 text-white">Upload Video</h3>
   <form (submit)="onSubmit()">
     <div class="form-group">
       <label for="videoFile">Choose Video</label>

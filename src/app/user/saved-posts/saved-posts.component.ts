@@ -3,6 +3,7 @@ import { SharedService } from '../../services/shared.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WaveService } from 'angular-wavesurfer-service';
 import WaveSurfer from 'wavesurfer.js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-saved-posts',
@@ -16,7 +17,7 @@ export class SavedPostsComponent {
   userId: any;
 
 
-  constructor(private visibilityService: SharedService, private snackBar: MatSnackBar, public waveService: WaveService) { }
+  constructor(private visibilityService: SharedService, private snackBar: MatSnackBar, public waveService: WaveService, private router: Router) { }
 
   ngOnInit() {
     this.userId = localStorage.getItem('fbId');
@@ -43,7 +44,6 @@ export class SavedPostsComponent {
 
         setTimeout(() => {
           this.data?.forEach((item: any, index: any) => {
-            debugger
             if(item.post.type == 'PODCAST'){
               const waveformId = '#waveform' + item.post.id;
               const waveInstance: any = this.waveService.create({
@@ -386,6 +386,10 @@ export class SavedPostsComponent {
       return `00:00`;
     }
 
+  }
+
+  getCoachId(uderId: any, role: any) {
+    this.router.navigateByUrl(`user/main/my-profile/${uderId}/${role}`)
   }
 
 

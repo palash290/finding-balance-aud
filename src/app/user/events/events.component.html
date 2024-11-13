@@ -3,16 +3,18 @@
   style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
 } -->
 
-<a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 d-block ct_fw_600"
-  style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-3  mb-4">
+  <a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back d-block ct_fw_600"
+    style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
 
 
-<div class="dropdown ct_chat_dropdown" style="cursor: pointer;">
-  <i class="fa-solid fa-ellipsis-vertical text-white" style="cursor: pointer;" id="dropdownMenuButton1"
-    data-bs-toggle="dropdown" aria-expanded="false"></i>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ct_add_community">Report</a></li>
-  </ul>
+  <div class="dropdown ct_chat_dropdown" style="cursor: pointer;" *ngIf="coachId != userId">
+    <i class="fa-solid fa-ellipsis-vertical text-white" style="cursor: pointer;" id="dropdownMenuButton1"
+      data-bs-toggle="dropdown" aria-expanded="false"></i>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#ct_report_community">Report</a></li>
+    </ul>
+  </div>
 </div>
 
 <div class="ct_cover_img">
@@ -244,6 +246,44 @@
         <!-- <button class="ct_orange_btn ct_grey_btn ct_border_radius_10 w-100 mt-4">Create new team</button> -->
       </div>
 
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Report Modal -->
+<div class="modal fade" id="ct_report_community" tabindex="-1" aria-labelledby="ct_report_community" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0 pt-0 px-0 d-block text-center">
+        <h5 class="modal-title text-white ct_fs_15 mx-auto ct_ff_roboto" id="exampleModalLabel">Report</h5>
+        <button type="button" class="btn-close ct_close" data-bs-dismiss="modal" aria-label="Close"><i
+            class="fa-solid fa-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div>
+            <textarea class="ct_login_input form-control ct_border_radius_10 h-auto" placeholder="Type here..."
+              [(ngModel)]="reportDesc" [ngModelOptions]="{ standalone: true }" rows="5" required></textarea>
+            <div *ngIf="nameError" class="error-message">This field is required.</div>
+          </div>
+
+
+          <button hidden type="button" class="btn btn-secondary" #closeModalR data-bs-dismiss="modal">Close</button>
+          <button (click)="repostPost()" class="ct_orange_btn ct_grey_btn ct_border_radius_10 w-100 mt-4"
+            [disabled]="btnLoaderReport">
+            <div class="d-flex align-items-center">
+              <div class="spinner-border me-2" role="status" *ngIf="btnLoaderReport">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <span *ngIf="!btnLoaderReport">Submit</span>
+            </div>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="mt-4 row">
+        <div class="col-md-10 mx-auto">
+            <a class="mb-4 d-block text-white" routerLink="/user/main/feeds"><i
+                    class="fa-solid fa-chevron-left"></i></a>
+            <h4 class="ct_ff_roboto ct_orange_text ct_fs_24 ct_fw_600">Upgrade to Pro</h4>
+            <p class="mb-0 text-white ct_fs_14 ct_ff_roboto ct_fw_400 ct_line_height_22">Subscribe today and enjoy full
+                access to premium resources, member-only perks, and the latest updates.</p>
+            <div class="mt-4">
+                <h4 class="ct_fs_18">Why Subscribe?</h4>
+                <ul class="ct_unlock_access_list mt-3 ps-4">
+                    <li>Users will have access to both free
+                        and paid content, allowing them to explore everything that coaches offer, including exclusive
+                        content reserved for premium members.
+                    </li>
+                    <li>Premium users can be
+                        invited to special paid events and content, providing them with opportunities to
+                        engage with high-value resources and experiences curated by coaches.</li>
+                    <li>The premium membership
+                        allows users to enjoy continuous access to new content and events through recurring
+                        charges, ensuring they never miss out on webinars, events, or updates.
+
+                    </li>
+                    <li>Premium users can
+                        participate in ad hoc events and webinars by paying specific charges set by coaches,
+                        giving them access to exclusive, invite-only experiences.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div *ngIf="stripeLink" style="cursor: pointer;" class="mt-4" (click)="redirect()">
+        <a class="ct_orange_btn mt-2 ct_border_radius_10 mx-auto ct_mob_btn_full_w px-4"
+            style="width: fit-content;    line-height: 22px;">
+            <div class="d-flex align-items-center">
+                <div class="spinner-border me-2" role="status" *ngIf="btnLoaderPay">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <i class="fa-solid fa-cart-shopping text-white me-2"></i>
+                <span *ngIf="!btnLoaderPay">Buy Plan</span>
+            </div>
+        </a>
+    </div>
+
+</div>

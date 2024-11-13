@@ -91,6 +91,8 @@ export class SidebarComponent {
     this.visibilityService.postAPI(`subscription/create-subscription`, formURlData.toString()).subscribe(response => {
       this.stripeLink = response.url;
       localStorage.setItem('planId', '2')
+      localStorage.setItem('planUrl', this.stripeLink)
+      this.router.navigateByUrl('/user/subscription-details')
       //console.log(this.stripeLink);
     });
   }
@@ -104,7 +106,9 @@ export class SidebarComponent {
     //this.btnLoaderPay = true;
     this.visibilityService.postAPI(`subscription/create-subscription`, formURlData.toString()).subscribe(response => {
       this.stripeLink = response.url;
-      localStorage.setItem('planId', '4')
+      localStorage.setItem('planId', '4');
+      localStorage.setItem('planUrl', this.stripeLink)
+      this.router.navigateByUrl('/user/subscription-coach')
       //window.location.href = this.stripeLink;
       //this.btnLoaderPay = false;
       //console.log(this.stripeLink);

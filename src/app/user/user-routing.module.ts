@@ -23,6 +23,8 @@ import { FollowUsersComponent } from './follow-users/follow-users.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { PaymentCancelComponent } from './payment-cancel/payment-cancel.component';
+import { SubscriptionDetailsComponent } from './subscription-details/subscription-details.component';
+import { SibscriptionCoachComponent } from './sibscription-coach/sibscription-coach.component';
 
 const routes: Routes = [
   {
@@ -108,7 +110,16 @@ const routes: Routes = [
         path: "event-list",
         component: EventListComponent,
       },
+
     ],
+  },
+  {
+    path: "subscription-details",
+    component: SubscriptionDetailsComponent,
+  },
+  {
+    path: "subscription-coach",
+    component: SibscriptionCoachComponent,
   },
   {
     path: "payment-success",

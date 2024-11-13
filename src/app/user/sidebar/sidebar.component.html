@@ -84,7 +84,7 @@
                     {{plan_expired_at | date: 'dd MMM yyyy' }}
                 </div> -->
                 }@else {
-                @if(isCoach){
+                <!-- @if(isCoach){
                 <div (click)="onToggleMenu()" (click)="getSubscriptonCoach()" style="cursor: pointer;"
                     data-bs-toggle="modal" data-bs-target="#ct_followed_coaches">
                     <a class="ct_orange_btn mt-2 ct_border_radius_10 ct_blue_btn123"><i
@@ -95,6 +95,21 @@
                     data-bs-toggle="modal" data-bs-target="#ct_followed_coaches">
                     <a class="ct_orange_btn mt-2 ct_border_radius_10 ct_blue_btn123"><i
                             class="fa-solid fa-crown me-2"></i>Buy Pro Plan</a>
+                </div>
+                } -->
+                @if(isCoach){
+                <div (click)="onToggleMenu()" style="cursor: pointer;">
+                    <!-- <a class="ct_orange_btn mt-2 ct_border_radius_10 ct_blue_btn123"><i
+                            class="fa-solid fa-crown me-2"></i>Buy Pro Plan</a> -->
+                    <a (click)="getSubscriptonCoach()" class="ct_orange_btn mt-2 ct_border_radius_10 ct_blue_btn123"
+                    ><i class="fa-solid fa-crown me-2"></i>Buy Pro Plan</a>
+                </div>
+                }@else {
+                <div (click)="onToggleMenu()" style="cursor: pointer;">
+                    <!-- <a class="ct_orange_btn mt-2 ct_border_radius_10 ct_blue_btn123"><i
+                            class="fa-solid fa-crown me-2"></i>Buy Pro Plan</a> -->
+                    <a (click)="getSubscriptonUser()" class="ct_orange_btn mt-2 ct_border_radius_10 ct_blue_btn123"
+                        ><i class="fa-solid fa-crown me-2"></i>Buy Pro Plan</a>
                 </div>
                 }
                 }

@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import Swal from 'sweetalert2';
 import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -17,11 +18,14 @@ export class EventsComponent {
   role: any;
   followersList: any[] = [];
   userPlan: any;
+  userId: any;
+  coachId: any;
 
-  constructor(private route: ActivatedRoute, private service: SharedService, private router: Router, private location: Location) { }
+  constructor(private route: ActivatedRoute, private service: SharedService, private router: Router, private location: Location, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     localStorage.removeItem('adHocEventId');
+    this.userId = localStorage.getItem('fbId');
     this.userPlan = localStorage.getItem('findPlan');
     this.role = this.service.getRole();
     if (this.role == 'USER') {
@@ -77,6 +81,7 @@ export class EventsComponent {
     this.service.getApi(this.isCoach ? `coach/event/${id}` : `user/event/allEvents/${id}`).subscribe({
       next: (resp) => {
         this.eventData = resp.data;
+        this.coachId = resp.data.coach.id;
         this.getEventListData();
         //this.data = resp.data?.map((item: any) => ({ ...item, isExpanded: false })).reverse();
       },
@@ -174,6 +179,49 @@ export class EventsComponent {
 
   backClicked() {
     this.location.back();
+  }
+
+  reportDesc: any;
+  btnLoaderReport: boolean = false;
+  nameError: boolean = false;
+  @ViewChild('closeModalR') closeModalR!: ElementRef;
+
+  repostPost() {
+    // Check if name is empty
+    if (!this.reportDesc || this.reportDesc.trim() === '') {
+      this.nameError = true;
+      return;
+    } else {
+      this.nameError = false; // Reset the error state
+    }
+
+    this.btnLoaderReport = true;
+    const formData = new URLSearchParams();
+    formData.set('eventId', this.eventId);
+    formData.set('reportEntity', 'EVENT');
+    formData.set('reason', this.reportDesc);
+
+    this.service.postAPI('user/report/content', formData).subscribe({
+      next: (resp) => {
+        if (resp.success === true) {
+          this.closeModalR.nativeElement.click();
+          //this.visibilityService.triggerRefresh();
+          this.toastr.success(resp.message);
+        } else {
+          this.toastr.warning(resp.message);
+        }
+        this.btnLoaderReport = false;
+      },
+      error: (error) => {
+        this.btnLoaderReport = false;
+        if (error.error.message) {
+          this.toastr.error(error.error.message);
+        } else {
+          this.toastr.error('Something went wrong!');
+        }
+        //console.log(error.statusText);
+      }
+    });
   }
 
 

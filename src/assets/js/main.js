@@ -111,3 +111,19 @@ $(document).ready(function(){
 })
 
 
+
+window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('ul li a');
+  
+    sections.forEach((section, index) => {
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY - 100; // Adjust offset as needed
+      const sectionHeight = section.clientHeight;
+  
+      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        navLinks[index].classList.add('active');
+      }
+    });
+  });
+  

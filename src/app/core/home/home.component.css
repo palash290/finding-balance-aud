@@ -21,3 +21,11 @@
     cursor: pointer;
   }
   
+  html {
+    scroll-behavior: smooth;
+  }
+  .active {
+    color: #ffffff; /* Highlight color */
+    font-weight: bold;
+  }
+  

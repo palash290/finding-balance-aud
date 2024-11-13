@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +13,63 @@ export class HomeComponent {
 
   videos: any[] = [];
   thumbnails: string[] = [];
-
+  contactForm!: FormGroup;
   selectedFile: File | null = null;
+  loading: boolean = false;
 
-  constructor(private http: HttpClient, private service: SharedService) {}
+  constructor(private http: HttpClient, private service: SharedService, private toster: ToastrService) { }
 
   ngOnInit(): void {
     //this.getVideoData();
+    this.initForm();
+  }
+
+  initForm() {
+    this.contactForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+    })
+  }
+
+  submit() {
+    this.contactForm.markAllAsTouched();
+
+    // Trim values and check if any are empty
+    // const name = this.contactForm.value.name?.trim();
+    // const description = this.contactForm.value.descripton?.trim();
+
+    // if (name == '' && description=='') {
+    //   this.toster.warning('Please fill out all fields without empty spaces.');
+    //   return;
+    // }
+    if (this.contactForm.valid) {
+      this.loading = true;
+      const formURlData = new URLSearchParams();
+      formURlData.set('email', this.contactForm.value.email);
+      formURlData.set('name', this.contactForm.value.name);
+      formURlData.set('descripton', this.contactForm.value.descripton);
+      this.service.loginUser('coach/signup', formURlData.toString()).subscribe({
+        next: (resp) => {
+          if (resp.success == true) {
+            this.loading = false;
+            this.toster.success(resp.message);
+          } else {
+            this.toster.warning(resp.message);
+            this.loading = false;
+          }
+        },
+        error: (error) => {
+          this.loading = false;
+          if (error.error.message) {
+            this.toster.error(error.error.message);
+          } else {
+            this.toster.error('Something went wrong!');
+          }
+          console.error('Login error:', error);
+        }
+      });
+    }
   }
 
   // getVideoData(): void {
@@ -71,7 +123,7 @@ export class HomeComponent {
       this.selectedFile = event.target.files[0];
     }
   }
-  
+
 
   onSubmit() {
     if (!this.selectedFile) {
@@ -99,6 +151,38 @@ export class HomeComponent {
           console.error(error);
         }
       );
+  }
+
+  // Store the active section
+  activeSection: string = '';
+
+  // Smooth scrolling to the section
+  scrollTo(sectionId: string): void {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Detect scroll position and update active section
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section: Element) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + window.scrollY;
+      const sectionHeight = section.clientHeight;
+
+      if (window.scrollY >= sectionTop - sectionHeight / 3 &&
+        window.scrollY < sectionTop + sectionHeight - sectionHeight / 3) {
+        this.activeSection = section.getAttribute('id') || '';
+      }
+    });
+  }
+
+  // Check if a section is active
+  isActive(sectionId: string): boolean {
+    return this.activeSection === sectionId;
   }
 
 

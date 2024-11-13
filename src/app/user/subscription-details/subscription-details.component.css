@@ -1,0 +1,14 @@
+.ct_unlock_access_list li {
+    color: #fff;
+    list-style: disc;
+}
+
+.ct_fs_18 {
+    color: #fff;
+}
+.ct_unlock_access_list li + li{
+    margin-top: 10px;
+}
+.ct_orange_btn:hover i {
+    color: var(--orange) !important;
+}

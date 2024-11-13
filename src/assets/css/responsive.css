@@ -259,7 +259,9 @@
     .ct_ms_0_575{
         margin-left: 0px !important;
     }
-
+.ct_mob_btn_full_w{
+    width: 100% !important;
+}
     ::-webkit-scrollbar {
         width: 0px !important;
       }
