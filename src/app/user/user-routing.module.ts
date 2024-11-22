@@ -25,6 +25,7 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { PaymentCancelComponent } from './payment-cancel/payment-cancel.component';
 import { SubscriptionDetailsComponent } from './subscription-details/subscription-details.component';
 import { SibscriptionCoachComponent } from './sibscription-coach/sibscription-coach.component';
+import { AddPostMobileComponent } from './add-post/add-post-mobile/add-post-mobile.component';
 
 const routes: Routes = [
   {
@@ -109,6 +110,11 @@ const routes: Routes = [
       {
         path: "event-list",
         component: EventListComponent,
+      },
+
+      {
+        path: "add-post",
+        component: AddPostMobileComponent,
       },
 
     ],

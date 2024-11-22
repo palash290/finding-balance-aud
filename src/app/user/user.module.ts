@@ -40,6 +40,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { AngularWavesurferServiceModule, WaveService } from 'angular-wavesurfer-service';
 import { SubscriptionDetailsComponent } from './subscription-details/subscription-details.component';
 import { SibscriptionCoachComponent } from './sibscription-coach/sibscription-coach.component';
+import { AddPostMobileComponent } from './add-post/add-post-mobile/add-post-mobile.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { SibscriptionCoachComponent } from './sibscription-coach/sibscription-co
     PaymentCancelComponent,
     SubscriptionDetailsComponent,
     SibscriptionCoachComponent,
+    AddPostMobileComponent,
   ],
   imports: [
     CommonModule,
