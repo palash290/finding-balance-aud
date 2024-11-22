@@ -48,8 +48,8 @@ export class HomeComponent {
       const formURlData = new URLSearchParams();
       formURlData.set('email', this.contactForm.value.email);
       formURlData.set('name', this.contactForm.value.name);
-      formURlData.set('descripton', this.contactForm.value.descripton);
-      this.service.loginUser('coach/signup', formURlData.toString()).subscribe({
+      formURlData.set('description', this.contactForm.value.descripton);
+      this.service.loginUser('admin/sendSupportEmail', formURlData.toString()).subscribe({
         next: (resp) => {
           if (resp.success == true) {
             this.loading = false;

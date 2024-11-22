@@ -138,9 +138,9 @@ export class SavedPostsComponent {
 
   toggleLike(feed: any) {
     // Immediately toggle the like state locally
-    feed.alreadyLiked = !feed.alreadyLiked;
+    feed.isLiked = !feed.isLiked;
     // Update the like count immediately
-    if (feed.alreadyLiked) {
+    if (feed.isLiked) {
       feed.numberOfLikes++;
     } else {
       feed.numberOfLikes--;

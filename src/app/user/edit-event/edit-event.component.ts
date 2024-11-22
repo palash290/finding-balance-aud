@@ -62,9 +62,9 @@ export class EditEventComponent {
           eventType: this.data.type,
           webinarUrl: this.data.webinar_url,
           isPaid: this.data.isPaid,
-          price: this.data.adhocPrice, 
+          price: this.data.adhocPrice,
         })
-  
+
         this.croppedImage = this.data.mediaUrl;
         this.isPaidValue = this.data.isPaid;
         this.eventType = this.data.type;
@@ -138,7 +138,7 @@ export class EditEventComponent {
 
       if (this.cropImgBlob) {
         formURlData.append('file', file);
-      } 
+      }
       this.service.postAPIFormDataPatch('coach/event', formURlData).subscribe({
         next: (resp) => {
           if (resp.success === true) {
@@ -167,13 +167,13 @@ export class EditEventComponent {
 
 
   imageChangedEvent: Event | null = null;
-  croppedImage: SafeUrl | any  = '';
+  croppedImage: SafeUrl | any = '';
   cropImgBlob: any
-  
+
 
 
   fileChangeEvent(event: Event): void {
-      this.imageChangedEvent = event;
+    this.imageChangedEvent = event;
   }
   imageCropped(event: any) {
     this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);

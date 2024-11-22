@@ -15,14 +15,17 @@ export class AddPostComponent {
   toggle(type: string) {
     let audioBtn = document.getElementById('ct_audio_btn');
     let videoBtn = document.getElementById('ct_video_btn');
+    let imageBtn = document.getElementById('ct_image_btn');
     let audio = document.getElementById('ct_audio');
     let video = document.getElementById('ct_video');
+    let image = document.getElementById('ct_image1');
     let thumbNailImg = document.getElementById('ct_image');
-  
+
     if (type === 'Podcast') {
       this.videoFile = null;
+      this.imageFile = null;
     }
-  
+
     if (type === 'Video') {
       if (video?.classList.contains('d-block')) {
         // If video is already showing, hide it
@@ -32,7 +35,9 @@ export class AddPostComponent {
         // Show video and hide audio
         videoBtn?.classList.add('ct_uploaded_btn_active');
         audioBtn?.classList.remove('ct_uploaded_btn_active');
+        imageBtn?.classList.remove('ct_uploaded_btn_active');
         audio?.classList.remove('d-block');
+        image?.classList.add('d-none');
         video?.classList.add('d-block');
         thumbNailImg?.classList.remove('d-block');
       }
@@ -45,14 +50,31 @@ export class AddPostComponent {
       } else {
         // Show audio and hide video
         videoBtn?.classList.remove('ct_uploaded_btn_active');
+        imageBtn?.classList.remove('ct_uploaded_btn_active');
         audioBtn?.classList.add('ct_uploaded_btn_active');
         audio?.classList.add('d-block');
         thumbNailImg?.classList.add('d-block');
         video?.classList.remove('d-block');
+        image?.classList.add('d-none');
+      }
+    } else if (type === 'Image') {
+      if (image?.classList.contains('d-block')) {
+        // If image is already showing, hide it
+        image.classList.add('d-block');
+        imageBtn?.classList.remove('ct_uploaded_btn_active');
+      } else {
+        // Show image and hide audio and video
+        image?.classList.remove('d-none');
+        imageBtn?.classList.add('ct_uploaded_btn_active');
+        audioBtn?.classList.remove('ct_uploaded_btn_active');
+        videoBtn?.classList.remove('ct_uploaded_btn_active');
+        audio?.classList.remove('d-block');
+        video?.classList.remove('d-block');
+        thumbNailImg?.classList.remove('d-block');
       }
     }
   }
-  
+
 
   avatar_url_fb: any;
   categories: any[] = [];
@@ -78,7 +100,7 @@ export class AddPostComponent {
       }
       this.avatar_url_fb = localStorage.getItem('avatar_url_fb');
     });
-   
+
 
     this.getPackage();
 
@@ -156,6 +178,7 @@ export class AddPostComponent {
   postText: any;
   audioFile: File | null = null;
   videoFile: File | null = null;
+
   readonly MAX_FILE_SIZE_MB = 500;
   videoPreviewUrl: string | null = null;
 
@@ -186,7 +209,7 @@ export class AddPostComponent {
       input.value = ''; // Reset the input value to allow re-uploading the same file
     }
   }
-  
+
 
 
   onVideoFileChange(event: Event) {
@@ -201,6 +224,23 @@ export class AddPostComponent {
         this.toastr.warning('Video file exceeds the maximum size of 500 MB.');
       }
       input.value = ''; // Clear the input
+    }
+  }
+
+
+
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files[0]) {
+      this.imageFile = input.files[0];
+
+      // Generate a preview URL for the selected image
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreviewUrl = reader.result as string;
+      };
+      reader.readAsDataURL(this.imageFile);
     }
   }
 
@@ -273,7 +313,7 @@ export class AddPostComponent {
     //   return
     // }
     //console.log('========>', this.selectedCategoryName);
-    
+// debugger
     if (this.postType == 1 && (this.adHocPrice === null || this.adHocPrice === undefined)) {
       this.priceError = 'Price is required.';
       return
@@ -287,7 +327,7 @@ export class AddPostComponent {
     this.teamId = localStorage.getItem('teamId');
     const trimmedMessage = this.postText ? this.postText?.trim() : '';
 
-    if (!this.audioFile && !this.videoFile && trimmedMessage == '') {
+    if (!this.audioFile && !this.videoFile && !this.imageFile && trimmedMessage == '') {
       return;
     }
 
@@ -305,6 +345,14 @@ export class AddPostComponent {
     if (this.videoFile) {
       formData.append('media', this.videoFile);
       formData.append('type', 'VIDEO');
+      if (this.postText) {
+        formData.append('text', trimmedMessage);
+      }
+    }
+
+    if (this.imageFile) {
+      formData.append('media', this.imageFile);
+      formData.append('type', 'IMAGE');
       if (this.postText) {
         formData.append('text', trimmedMessage);
       }
@@ -342,21 +390,26 @@ export class AddPostComponent {
     this.btnLoader = true;
     this.service.postAPIFormData('coach/post', formData).subscribe({
       next: (response) => {
-        this.audioFile = null;
-        this.videoFile = null;
-        this.videoPreviewUrl = null;
-        this.postText = '';
-        this.adHocPrice = '';
-        this.postType = 0;
-        this.selectedCategoryName = ''
-        this.toastr.success(response.message);
-        console.log('Upload successful', response);
-        audio?.classList.remove('d-block');
-        video?.classList.remove('d-block');
-        thumbNailImg?.classList.remove('d-block');
-        this.btnLoader = false;
-        this.service.triggerRefresh();
-        //window.location.reload();
+        if(response.success == true){
+          this.audioFile = null;
+          this.videoFile = null;
+          this.videoPreviewUrl = null;
+          this.postText = '';
+          this.adHocPrice = '';
+          this.postType = 0;
+          this.selectedCategoryName = ''
+          this.toastr.success(response.message);
+          console.log('Upload successful', response);
+          audio?.classList.remove('d-block');
+          video?.classList.remove('d-block');
+          thumbNailImg?.classList.remove('d-block');
+          this.btnLoader = false;
+          this.service.triggerRefresh();
+          //window.location.reload();
+        } else{
+          this.btnLoader = false;
+          this.toastr.warning(response.message);
+        }
       },
       error: (error) => {
         this.btnLoader = false;
@@ -374,6 +427,9 @@ export class AddPostComponent {
   UploadedFile!: File;
   croppedImage: any | ArrayBuffer | null = null;
 
+  imageFile!: File | any;
+  imagePreviewUrl: any | ArrayBuffer | null = null;
+
   handleCommittedFileInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
@@ -389,6 +445,22 @@ export class AddPostComponent {
     };
     reader.readAsDataURL(file);
   }
+
+  // handleCommittedFileInputImg(event: Event) {
+  //   const inputElement = event.target as HTMLInputElement;
+  //   if (inputElement.files && inputElement.files.length > 0) {
+  //     this.imageFile = inputElement.files[0];
+  //     this.previewImage(this.imageFile);
+  //   }
+  // }
+
+  // previewImageImg(file: File): void {
+  //   const reader = new FileReader();
+  //   reader.onload = (e: ProgressEvent<FileReader>) => {
+  //     this.imagePreviewUrl = e.target?.result;
+  //   };
+  //   reader.readAsDataURL(file);
+  // }
 
 
 }

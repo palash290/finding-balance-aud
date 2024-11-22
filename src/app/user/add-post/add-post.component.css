@@ -179,3 +179,10 @@
   .dropdown-menu::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+
+  .ct_image_upload_btn{
+    color: orange;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
