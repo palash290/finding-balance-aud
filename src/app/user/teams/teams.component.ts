@@ -43,7 +43,12 @@ export class TeamsComponent {
 
   constructor(private route: Router, private service: SharedService, private toastr: ToastrService, public waveService: WaveService) { }
 
-  toSee: boolean = true
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+
+  toSee: boolean = true;
+  
   seeGroupMembesr() {
     this.toSee = !this.toSee
   }

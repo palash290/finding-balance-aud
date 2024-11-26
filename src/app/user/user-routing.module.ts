@@ -27,6 +27,7 @@ import { SubscriptionDetailsComponent } from './subscription-details/subscriptio
 import { SibscriptionCoachComponent } from './sibscription-coach/sibscription-coach.component';
 import { AddPostMobileComponent } from './add-post/add-post-mobile/add-post-mobile.component';
 import { PostCatFilterComponent } from './add-post/post-cat-filter/post-cat-filter.component';
+import { FeedFilterComponent } from './feeds/feed-filter/feed-filter.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,12 @@ const routes: Routes = [
         path: "feeds",
         component: FeedsComponent,
       },
+
+      {
+        path: "feeds/:name/:id",
+        component: FeedsComponent,
+      },
+
       {
         path: "my-intrest",
         component: MyIntrestComponent,
@@ -118,8 +125,17 @@ const routes: Routes = [
         component: AddPostMobileComponent,
       },
       {
+        path: "add-post/:id",
+        component: AddPostMobileComponent,
+      },
+      {
         path: "post-filter",
         component: PostCatFilterComponent,
+      },
+
+      {
+        path: "feed-filter",
+        component: FeedFilterComponent,
       },
 
     ],

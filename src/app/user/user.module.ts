@@ -42,6 +42,7 @@ import { SubscriptionDetailsComponent } from './subscription-details/subscriptio
 import { SibscriptionCoachComponent } from './sibscription-coach/sibscription-coach.component';
 import { AddPostMobileComponent } from './add-post/add-post-mobile/add-post-mobile.component';
 import { PostCatFilterComponent } from './add-post/post-cat-filter/post-cat-filter.component';
+import { FeedFilterComponent } from './feeds/feed-filter/feed-filter.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { PostCatFilterComponent } from './add-post/post-cat-filter/post-cat-filt
     SibscriptionCoachComponent,
     AddPostMobileComponent,
     PostCatFilterComponent,
+    FeedFilterComponent,
   ],
   imports: [
     CommonModule,

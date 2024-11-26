@@ -23,6 +23,11 @@ export class SettingComponent implements OnInit {
   membership: boolean = false;
 
   constructor(private srevice: SharedService, private toastr: ToastrService, private route: Router, private location: Location) { }
+
+  onToggleMenu() {
+    this.srevice.toggleMenuVisibility();
+  }
+
   ngOnInit(): void {
     this.getPackage();
     this.canceled_at = localStorage.getItem('canceled_at');

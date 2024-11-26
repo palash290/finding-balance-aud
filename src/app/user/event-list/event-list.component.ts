@@ -16,6 +16,10 @@ export class EventListComponent {
 
   constructor(private router: Router, private visibilityService: SharedService) { }
 
+  onToggleMenu() {
+    this.visibilityService.toggleMenuVisibility();
+  }
+
   ngOnInit() {
     this.role = this.visibilityService.getRole();
     if (this.role == "USER") {

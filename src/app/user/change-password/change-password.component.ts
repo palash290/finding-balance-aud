@@ -20,6 +20,10 @@ export class ChangePasswordComponent {
 
   constructor(private route: Router, private service: SharedService, private toastr: ToastrService) { }
 
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+  
   ngOnInit() {
     this.role = this.service.getRole();
     if (this.role == 'USER') {

@@ -1,6 +1,6 @@
 <!-- <a (click)="backClicked()" *ngIf="isCoach" class="ct_orange_text ct_back_to_list ct_chat_back" style="cursor: pointer;">Back</a> -->
 <div class="ct_res_575_d_none">
-    <a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 d-block ct_fw_600"
+    <a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 d-block ct_fw_600 "
         style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
     <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap">
         <h4 class="ct_ff_roboto ct_fw_500 text-white ct_fs_20 mb-0">All Notifications </h4>
@@ -8,11 +8,20 @@
             (click)="deleteAllNotification()">Delete All</button>
     </div>
 </div>
+
+<div class="ct_mobile_header ct_d_none_for_desk">
+    <div (click)="onToggleMenu()" class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+    </div>
+</div>
+
 <div class="ct_res_flex_2 ct_res_mb_20 ct_d_none_for_desk">
-    <a class="ct_orange_text ct_back_to_list ct_chat_back mb-4 ct_res_mb_0  d-block ct_fw_600"
+    <a class="ct_orange_text ct_back_to_list ct_chat_back mb-4 ct_res_mb_0 d-block ct_fw_600 ct_res_575_d_none_imp"
         style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i></a>
     <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text mb-0 ct_res_mx_auto12 ct_res_fs_24">All Notifications</h4>
 </div>
+
+
+
 <div>
 
     <!-- <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap" *ngIf="!isCoach">

@@ -41,6 +41,10 @@ export class CommunityComponent {
 
   constructor(private route: Router, private service: SharedService, private toastr: ToastrService, private snackBar: MatSnackBar, public waveService: WaveService) { }
 
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+
   toSee: boolean = true
   seeGroupMembesr() {
     this.toSee = !this.toSee

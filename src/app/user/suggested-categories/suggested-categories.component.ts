@@ -19,6 +19,10 @@ export class SuggestedCategoriesComponent {
     this.gatSuggestedCoaches();
   }
 
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+
   btnLoader1: boolean = false;
   btnLoader: boolean = false;
 

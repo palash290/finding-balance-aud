@@ -20,6 +20,10 @@ export class FollowingComponent {
 
   constructor(private router: Router, private service: SharedService, private location: Location) { }
 
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+
   backClicked() {
     this.location.back();
   }

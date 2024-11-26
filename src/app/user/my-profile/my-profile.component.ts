@@ -63,6 +63,10 @@ export class MyProfileComponent {
     this.service.triggerRefresh();
   }
 
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+
   //if coach see coach profile
   isCoachPosts: boolean = false;
   getCoachProfile(userId: any) {

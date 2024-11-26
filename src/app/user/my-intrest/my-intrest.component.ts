@@ -26,9 +26,13 @@ export class MyIntrestComponent {
     //   this.location.back();
     //   return
     // }
-   }
+  }
 
-   backClicked() {
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+
+  backClicked() {
     this.location.back();
   }
 
@@ -71,14 +75,14 @@ export class MyIntrestComponent {
 
 
   btnLoader: boolean = false;
-  
+
   followId: any;
 
   unfollowCatg(postId: any) {
     //this.isLike = !this.isLike;
     this.followId = postId;
     this.btnLoader = true
-    
+
     this.service.postAPI(`user/unfollow/${postId}`, null).subscribe({
       next: resp => {
         console.log(resp);

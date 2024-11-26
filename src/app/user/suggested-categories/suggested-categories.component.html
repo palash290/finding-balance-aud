@@ -1,6 +1,15 @@
-<div class="ct_notification_search_input mb-4">
+<div class="ct_notification_search_input mb-4 ct_res_575_d_none">
     <input type="text" class="form-control ct_login_input" placeholder="Search..." [(ngModel)]="searchQuery">
     <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+<div class="ct_mobile_header ct_d_none_for_desk">
+    <div (click)="onToggleMenu()" class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+    </div>
+    <div class="form-group w-100"><input type="text" placeholder="Search" [(ngModel)]="searchQuery"
+            class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched"></div>
+
+
 </div>
 
 

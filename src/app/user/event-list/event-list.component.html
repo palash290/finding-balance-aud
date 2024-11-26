@@ -11,11 +11,10 @@
         </div>
     </div>
     <div class="ct_mobile_header ct_d_none_for_desk">
-        <div class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+        <div (click)="onToggleMenu()" class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
         </div>
         <h4 class="mb-0 ct_fw_600 ct_fs_20 text-white ct_ff_roboto">My All Events</h4>
-        <div class="d-flex align-items-center gap-3">
-
+        <div class="d-flex align-items-center gap-3" routerLink="/user/main/add-event">
             <div>
                 <img src="assets/img/edit_event_icon_svg.svg" alt="">
             </div>

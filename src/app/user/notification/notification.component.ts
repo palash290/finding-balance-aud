@@ -21,6 +21,10 @@ export class NotificationComponent {
 
   constructor(private service: SharedService, private route: ActivatedRoute, private socketService: SocketService, private router: Router, private location: Location, private toastr: ToastrService) { }
 
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+  
   ngOnInit() {
     this.role = this.service.getRole();
     if (this.role == 'USER') {

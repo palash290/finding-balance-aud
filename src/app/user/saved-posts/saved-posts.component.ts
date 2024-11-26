@@ -19,6 +19,10 @@ export class SavedPostsComponent {
 
   constructor(private visibilityService: SharedService, private snackBar: MatSnackBar, public waveService: WaveService, private router: Router) { }
 
+  onToggleMenu() {
+    this.visibilityService.toggleMenuVisibility();
+  }
+
   ngOnInit() {
     this.userId = localStorage.getItem('fbId');
     this.getProfileData();

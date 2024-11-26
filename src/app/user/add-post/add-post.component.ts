@@ -365,7 +365,7 @@ export class AddPostComponent {
       formData.append('teamId', this.teamId);
     }
 
-    if (this.postText && !this.audioFile && !this.videoFile) {
+    if (this.postText && !this.audioFile && !this.videoFile && !this.imageFile) {
       formData.append('text', trimmedMessage);
       formData.append('type', 'ARTICLE');
       // if (trimmedMessage === '') {
@@ -386,13 +386,16 @@ export class AddPostComponent {
     formData.append('categoryId', this.categoryId);
     let audio = document.getElementById('ct_audio')
     let video = document.getElementById('ct_video')
+    let image = document.getElementById('ct_image1');
     let thumbNailImg = document.getElementById('ct_image')
+   
     this.btnLoader = true;
     this.service.postAPIFormData('coach/post', formData).subscribe({
       next: (response) => {
         if(response.success == true){
           this.audioFile = null;
           this.videoFile = null;
+          this.imageFile = null;
           this.videoPreviewUrl = null;
           this.postText = '';
           this.adHocPrice = '';
@@ -402,6 +405,7 @@ export class AddPostComponent {
           console.log('Upload successful', response);
           audio?.classList.remove('d-block');
           video?.classList.remove('d-block');
+          image?.classList.add('d-none');
           thumbNailImg?.classList.remove('d-block');
           this.btnLoader = false;
           this.service.triggerRefresh();

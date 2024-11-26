@@ -400,7 +400,9 @@
   }
   .ct_menu_toggle2 {
     color: #fff;
-  }
+    z-index: 9999;
+    /* position: relative; */
+}
   .ct_right_side_panel {
     padding: 24px;
   }
@@ -527,5 +529,19 @@
   }
   .fb_res_px_12 {
     padding-inline: 12px;
+  }
+  .fb_res_transparent_select{
+    border: 0px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+  }
+  .fb_res_transparent_select option{
+    color: #fff;
+    background-color: #000;
+  }
+  section.ct_panel_main_bg.ct_show_menu .ct_side_bar{
+    padding-block: 15px;
   }
 }

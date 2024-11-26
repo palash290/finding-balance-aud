@@ -3,31 +3,26 @@
         <div class="row">
             <div class="col-md-12 px-0">
                 <div class="d-flex align-items-center justify-content-between">
-                    <a href="#" class="fb_add_post_back"><i class="fa-solid fa-chevron-left"></i></a>
+                    <a routerLink="/user/main/add-post" class="fb_add_post_back"><i
+                            class="fa-solid fa-chevron-left"></i></a>
                     <h5 class="mb-0 ct_fs_18 text-white">Filter</h5>
-                    <h6 class="mb-0 ct_fs_14 text-white">Reset</h6>
+                    <h6 class="mb-0 ct_fs_14 text-white"></h6>
                 </div>
 
                 <div class="pt-4">
                     <h5 class="ct_fs_18 mb-3 text-white">Category</h5>
                     <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <span
-                            class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">All</span>
-                        <span
-                            class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">Fitness</span>
-                        <span
-                            class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">Marketing</span>
-                        <span
-                            class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">Blogging</span>
-                        <span class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">Mental
-                            Health</span>
-                        <span
-                            class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">Entrepreneurship</span>
-                        <span
-                            class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">Nutrition</span>
+                        <span 
+                            *ngFor="let category of categories"
+                            (click)="selectCategory(category)"
+                            class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14"
+                            [class.selected]="selectedCategoryId === category.id"> 
+                            {{ category.name }}
+                        </span>
                     </div>
+                    
                 </div>
-                <div class="pt-4">
+                <!-- <div class="pt-4">
                     <h5 class="ct_fs_18 mb-3 text-white">Type</h5>
                     <div class="d-flex align-items-center gap-2 flex-wrap">
                         <span
@@ -45,13 +40,13 @@
                         <span
                             class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">Nutrition</span>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="fb_bottom_btn">
+                <!-- <div class="fb_bottom_btn">
                     <button class="ct_orange_btn  ct_border_radius_10 w-100 d-flex align-items-center gap-2">Apply
                         Filters</button>
 
-                </div>
+                </div> -->
 
             </div>
         </div>

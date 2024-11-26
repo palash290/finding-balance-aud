@@ -24,6 +24,10 @@ export class ChatComponent {
 
   constructor(private chatService: SocketService, private service: SharedService) { }
 
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+
   chatIdRoute: any;
 
   ngOnInit() {

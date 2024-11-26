@@ -7,19 +7,31 @@
                         <a href="#" class="fb_add_post_back"><i class="fa-solid fa-chevron-left"></i></a>
                         <div class="d-flex align-items-center gap-2">
                             <img src="assets/img/user_img_1.png" class="ct_img_38" alt="">
-                            <div class="dropdown ct_black_dropdown">
+                            @if(userPlan == 'Premium' && !hideField){
+                            <!-- <div class="dropdown ct_black_dropdown">
                                 <p class="dropdown-toggle mb-0 ct_fs_16 text-white" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Free
                                 </p>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">Free</a></li>
-                                    <li><a class="dropdown-item" href="#">Paid</a></li>
-                                    <li><a class="dropdown-item" href="#">Ad Hoc</a></li>
+                                    <li><a class="dropdown-item">Free</a></li>
+                                    <li><a class="dropdown-item">Paid</a></li>
+                                    <li><a class="dropdown-item">Ad Hoc</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
+                            <select class="fb_res_transparent_select" [(ngModel)]="postType" style="cursor: pointer;">
+                                <option value="0">Free</option>
+                                <option value="2">Paid</option>
+                                <option value="1">Ad Hoc</option>
+                            </select>
+                            }
+
+                       
+
+
                         </div>
                     </div>
+                  
                     <div class="d-flex align-items-center gap-3">
                         <div class="fb_filter_icon" routerLink="/user/main/post-filter">
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
@@ -30,14 +42,39 @@
                             </svg>
 
                         </div>
-                        <button class="ct_orange_btn ct_border_radius_10 ct_grey_btn">Post</button>
+                        <button (click)="uploadFiles()" class="ct_orange_btn ct_border_radius_10 ct_grey_btn"
+                            [disabled]="btnLoader">
+                            <div class="d-flex align-items-center">
+                                <div class="spinner-border me-2" role="status" *ngIf="btnLoader">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <span *ngIf="!btnLoader">Post</span>
+                            </div>
+                        </button>
                     </div>
                 </div>
-                <div class="form-group w-100"><input type="text" placeholder="Type here..."
-                        class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched">
+                <div *ngIf="categoryName">
+                    <h6 class="text-white">Post Category : {{categoryName}}</h6>
                 </div>
+
+                @if(userPlan == 'Premium' && !hideField){
+                <!-- <div class="form-group w-100"><input type="text" placeholder="Type here..."
+                        class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched">
+                </div> -->
+                <div *ngIf="postType == 1" class="form-group w-100  ">
+                    <input type="number" [(ngModel)]="adHocPrice"
+                        class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched"
+                        (ngModelChange)="validateAdHocPrice()" placeholder="Enter Price">
+
+                    <!-- Error message for required, negative, or max value -->
+                </div>
+                <div *ngIf="priceError" class="error-message ct_error_position">
+                    {{ priceError }}
+                </div>
+                }
+
                 <div class="fb_add_post_container ct_mt_30">
-                    <textarea name="" id="" rows="4" placeholder="Share your thoughts..."
+                    <textarea [(ngModel)]="postText" name="" id="" rows="4" placeholder="Share your thoughts..."
                         class="form-control border-0 bg-transparent fb_add_post_input"></textarea>
 
                 </div>
@@ -65,7 +102,7 @@
                     </div>
                     <!-- Uploaded Audio E -->
                     <!-- Uploaded Video S -->
-                    <div class="mb-5">
+                    <div class="mb-5 d-none">
                         <video width="100%" height="390" playsinline="" preload="metadata" crossorigin="anonymous"
                             src="https://findingbalance01.s3.eu-west-2.amazonaws.com/1728395675439_video.mp4">
                             <source type="video/mp4"
@@ -78,57 +115,106 @@
                                 src="https://findingbalance01.s3.eu-west-2.amazonaws.com/1728395675439_video.mp4">
                         </video>
                     </div>
+
+
                     <!-- Upload Video S -->
-                    <div class="mb-5 d-none">
+                    <div class="mb-5" [ngClass]="{ 'd-none': selectedType !== 'Video' }">
                         <div id="ct_video" class="ct_audio_upload_first mb-3 w-100 d-block" style="max-width: 100%;">
-                            <label for="ct_upload_video"><input type="file" id="ct_upload_video" accept="video/*"
-                                    class="d-none">
-                                <div class="ng-star-inserted">
-                                    <p class="mb-2 text-white ct_fs_13">Click to upload
-                                        video file</p>
-                                    <span class="d-block text-center text-white">Max upload file 50 MB</span>
+                            <label for="ct_upload_video">
+                                <input type="file" class="d-none" id="ct_upload_video" accept="video/*"
+                                    (change)="onVideoFileChange($event)">
+
+                                <div *ngIf="videoFile">
+                                    <p class="mb-2 text-white ct_fs_13">Selected video file: {{ videoFile.name }}</p>
+                                    <video *ngIf="videoFile" [src]="videoPreviewUrl" controls width="100%"
+                                        style="object-fit: contain; height: 200px;"></video>
+                                </div>
+                                <div *ngIf="!videoFile">
+                                    <p class="mb-2 text-white ct_fs_13">Click to upload video file</p>
+                                    <!-- <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
                                 </div>
                             </label>
                         </div>
                     </div>
                     <!-- Upload Video E -->
+
                     <!-- Upload Audio S -->
-                    <div class="mb-5 d-none">
+                    <div class="mb-5" [ngClass]="{ 'd-none': selectedType !== 'Audio' }">
                         <div id="ct_audio" class="ct_audio_upload_first w-100 d-block mb-3" style="max-width: 100%;">
-                            <label for="ct_upload_audio"><input type="file" id="ct_upload_audio" accept="audio/*"
-                                    class="d-none">
-                                <div style="cursor: pointer;" class="ng-star-inserted">
+                            <label for="ct_upload_audio">
+                                <input type="file" class="d-none" id="ct_upload_audio" accept="audio/*"
+                                    (change)="onAudioFileChange($event)">
+                                <!-- <div style="cursor: pointer;" class="ng-star-inserted">
                                     <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
                                     <span class="d-block text-center text-white">Max upload file 50 MB</span>
+                                </div> -->
+                                <div *ngIf="audioFile">
+                                    <p class="mb-2 text-white ct_fs_13" style="word-break: break-all;"> Selected audio
+                                        file: {{
+                                        audioFile.name }}</p>
+                                </div>
+                                <div *ngIf="!audioFile" style="cursor: pointer;">
+                                    <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                                    <!-- <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 50 MB</p> -->
                                 </div>
                             </label>
                         </div>
                         <div id="ct_image" class="ct_audio_upload_first w-100 d-block" style="max-width: 100%;"><label
-                                for="ct_upload_img"><input type="file" id="ct_upload_img" accept="image/*"
-                                    class="d-none">
-                                <div style="cursor: pointer;" class="ng-star-inserted">
+                                for="ct_upload_img">
+                                <input type="file" class="d-none" id="ct_upload_img" accept="image/*"
+                                    (change)="handleCommittedFileInput($event)">
+                                <!-- <div style="cursor: pointer;" class="ng-star-inserted">
                                     <p class="mb-2 text-white ct_fs_13">Click to upload thumbnail</p>
                                     <span class="d-block text-center text-white">Max upload file 5 MB</span>
+                                </div> -->
+                                <div *ngIf="!croppedImage" style="cursor: pointer;">
+                                    <p class="mb-2 text-white ct_fs_13">Click to upload thumbnail</p>
+                                    <!-- <p class="mb-0 text-white ct_text_op_5 ct_fs_13">Max upload file 5 MB</p> -->
                                 </div>
+                                <img *ngIf="croppedImage" class="ct_img_h_130"
+                                    [src]="croppedImage ? croppedImage : '/assets/img/np_pro.png'"
+                                    alt="Uploaded Image" />
                             </label></div>
                     </div>
                     <!-- Upload Audio E -->
-                    <div class="d-flex align-items-center justify-content-between gap-3">
-                        <button
-                            class="ct_orange_btn  ct_border_radius_10 w-100 d-flex align-items-center gap-2 fb_transparent_white_border"><i
-                                class="fa-solid fa-microphone"></i>Audio</button>
-                        <button
-                            class="ct_orange_btn  ct_border_radius_10 w-100  d-flex align-items-center gap-2 fb_transparent_white_border"><i
-                                class="fa-solid fa-video"></i>Video</button>
 
+                    <!-- Upload Image1 S -->
+                    <div class="mb-5" [ngClass]="{ 'd-none': selectedType !== 'Image' }">
+                        <div id="ct_image1" class="ct_audio_upload_first mb-3 w-100 d-block" style="max-width: 100%;">
+                            <label for="ct_upload_image">
+                                <input type="file" class="d-none" id="ct_upload_image" accept="image/*"
+                                    (change)="onImageSelected($event)">
+                                <!-- <div class="ng-star-inserted">
+                                    <p class="mb-2 text-white ct_fs_13">Click to upload
+                                        Image</p>
+                                    <span class="d-block text-center text-white">Max upload file 50 MB</span>
+                                </div> -->
+                                <div *ngIf="!imagePreviewUrl" style="cursor: pointer;">
+                                    <p class="mb-2 text-white ct_fs_13">Click to upload image</p>
+                                </div>
+
+                                <img *ngIf="imagePreviewUrl"
+                                    [src]="imagePreviewUrl  ? imagePreviewUrl : '/assets/img/np_pro.png'" alt=""
+                                    class="ct_img_h_130">
+                            </label>
+                        </div>
                     </div>
+                    <!-- Upload Image1 E -->
 
+
+                    <div class="d-flex align-items-center justify-content-between gap-3">
+                        <button id="ct_audio_btn" (click)="toggle('Audio')"
+                            class="ct_orange_btn ct_border_radius_10 w-100 d-flex align-items-center gap-2 fb_transparent_white_border"><i
+                                class="fa-solid fa-microphone"></i>Audio</button>
+                        <button id="ct_video_btn" (click)="toggle('Video')"
+                            class="ct_orange_btn ct_border_radius_10 w-100  d-flex align-items-center gap-2 fb_transparent_white_border"><i
+                                class="fa-solid fa-video"></i>Video</button>
+                        <button id="ct_image_btn" (click)="toggle('Image')"
+                            class="ct_orange_btn ct_border_radius_10 w-100  d-flex align-items-center gap-2 fb_transparent_white_border"><i
+                                class="fa-solid fa-video"></i>Image</button>
+                    </div>
                 </div>
-
-
             </div>
-
         </div>
-
     </div>
 </section>

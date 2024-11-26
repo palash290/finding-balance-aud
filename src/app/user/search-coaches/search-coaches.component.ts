@@ -18,6 +18,10 @@ export class SearchCoachesComponent {
 
   constructor(private router: Router, private service: SharedService) { }
 
+  onToggleMenu() {
+    this.service.toggleMenuVisibility();
+  }
+
   ngOnInit() {
 
     this.role = this.service.getRole();

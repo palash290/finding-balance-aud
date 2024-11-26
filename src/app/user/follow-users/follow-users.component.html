@@ -1,14 +1,23 @@
-<a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 d-block ct_fw_600"
+<a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 d-block ct_fw_600 ct_res_575_d_none_imp"
     style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
 <div class='ct_box_2_column ct_box_2_full_active'>
     <div>
-        <div class="ct_upload_text">
+        <div class="ct_upload_text ct_res_575_d_none">
             <!-- <img [src]="avatar_url_fb ? avatar_url_fb : '/assets/img/np_pro.png'" alt=""
                 class="ct_img_44 ct_orange_border_1"> -->
             <div class="form-group w-100">
                 <input type="text" class="form-control ct_custom_input w-100" placeholder="Search..."
                     [(ngModel)]="searchQuery" (ngModelChange)="searchFollowUsersList()">
             </div>
+        </div>
+
+        <div class="ct_mobile_header ct_d_none_for_desk">
+            <div (click)="onToggleMenu()" class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="form-group w-100"><input type="text" placeholder="Search" [(ngModel)]="searchQuery" (ngModelChange)="searchFollowUsersList()"
+                    class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched"></div>
+
+
         </div>
 
         <div *ngIf="data?.length === 0" class="text-center">

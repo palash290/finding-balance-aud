@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { WaveService } from 'angular-wavesurfer-service';
 import WaveSurfer from 'wavesurfer.js';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feeds',
@@ -32,11 +32,15 @@ export class FeedsComponent {
   trackHeights: number[] = Array(50).fill(20); // Initial heights of tracks
   highlightedBars: number = 0; // Number of highlighted bars
 
-  constructor(private visibilityService: SharedService, private snackBar: MatSnackBar, public waveService: WaveService, public toster: ToastrService, private router: Router) {
+  constructor(private route: ActivatedRoute, private visibilityService: SharedService, private snackBar: MatSnackBar, public waveService: WaveService, public toster: ToastrService, private router: Router) {
     // this.data.forEach(() => {
     //   this.currentTimeA.push(0);
     //   this.totalDuration.push(0);
     // });
+  }
+
+  onToggleMenu() {
+    this.visibilityService.toggleMenuVisibility();
   }
 
   // playAudio(index: number): void {
@@ -51,6 +55,14 @@ export class FeedsComponent {
 
 
   ngOnInit() {
+
+    this.route.paramMap.subscribe(params => {
+      this.selectedOption = params.get('name') ? params.get('name') : '';
+      this.categoryId = params.get('id') ? params.get('id') : '';
+      //console.log('========>', this.selectedOption, this.categoryId);
+      this.getProfileData()
+    });
+
     localStorage.removeItem('adHocPostId');
     this.categoryId = localStorage.getItem('categoryId') ? localStorage.getItem('categoryId') : '';
     this.selectedOption = localStorage.getItem('selectedOption') ? localStorage.getItem('selectedOption') : '';
@@ -133,6 +145,9 @@ export class FeedsComponent {
     localStorage.removeItem('adHocPostId');
     localStorage.removeItem('categoryId');
     localStorage.removeItem('selectedOption');
+
+    // localStorage.removeItem('selectedTypeId');
+    // localStorage.removeItem('selectedCategoryId');
     this.wave.forEach(w => w.destroy());
   }
 
