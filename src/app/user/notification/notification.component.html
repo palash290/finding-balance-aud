@@ -1,12 +1,20 @@
 <!-- <a (click)="backClicked()" *ngIf="isCoach" class="ct_orange_text ct_back_to_list ct_chat_back" style="cursor: pointer;">Back</a> -->
-<a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 d-block ct_fw_600"
-    style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
-<div>
+<div class="ct_res_575_d_none">
+    <a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 d-block ct_fw_600"
+        style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
     <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap">
-        <h4 class="ct_ff_roboto ct_fw_500 text-white ct_fs_20">All Notifications </h4>
+        <h4 class="ct_ff_roboto ct_fw_500 text-white ct_fs_20 mb-0">All Notifications </h4>
         <button *ngIf="data?.length > 0" class="ct_orange_btn ct_border_radius_10"
             (click)="deleteAllNotification()">Delete All</button>
     </div>
+</div>
+<div class="ct_res_flex_2 ct_res_mb_20 ct_d_none_for_desk">
+    <a class="ct_orange_text ct_back_to_list ct_chat_back mb-4 ct_res_mb_0  d-block ct_fw_600"
+        style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i></a>
+    <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text mb-0 ct_res_mx_auto12 ct_res_fs_24">All Notifications</h4>
+</div>
+<div>
+
     <!-- <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap" *ngIf="!isCoach">
         <h4 class="ct_ff_roboto ct_fw_500 text-white ct_fs_20">All Notifications </h4>
         <button *ngIf="data?.length > 0" class="ct_orange_btn ct_border_radius_10" (click)="deleteAllNotification()"><i
@@ -15,8 +23,8 @@
 
 
     <!-- <i class="fa-solid fa-trash"></i> -->
-    <ul class="ct_mt_30 ct_all_notification" *ngFor="let notify of data">
-        <li>
+    <ul class="ct_mt_30 ct_all_notification">
+        <li *ngFor="let notify of data">
             @if(isCoach){
             <div *ngIf="notify.type == 'team'">
                 <div class="d-flex  gap-3" style="cursor: pointer;">
@@ -72,8 +80,7 @@
             </div>
 
             <div *ngIf="notify.type == 'chat'">
-                <div class="d-flex  gap-3" style="cursor: pointer;"
-                    (click)="getChat(notify.data.chatId, notify.type)">
+                <div class="d-flex  gap-3" style="cursor: pointer;" (click)="getChat(notify.data.chatId, notify.type)">
                     <img [src]="notify.byUser.avatar_url ? notify.byUser.avatar_url : '/assets/img/np_pro.png'" alt=""
                         class="ct_img_40 ct_bor ct_white_border_1">
                     <div>
@@ -140,7 +147,8 @@
 
 
             <div *ngIf="notify.type == 'event'">
-                <div class="d-flex  gap-3" (click)="viewEvent(notify.data.eventId, notify.type)" style="cursor: pointer;">
+                <div class="d-flex  gap-3" (click)="viewEvent(notify.data.eventId, notify.type)"
+                    style="cursor: pointer;">
                     <img [src]="notify.byCoach.avatar_url ? notify.byCoach.avatar_url : '/assets/img/np_pro.png'" alt=""
                         class="ct_img_40 ct_bor ct_white_border_1">
                     <div>
@@ -157,6 +165,9 @@
 
         </li>
     </ul>
+    <button *ngIf="data?.length > 0" class="ct_orange_btn ct_border_radius_10 fb_bottom_btn"
+        (click)="deleteAllNotification()">Delete
+        All</button>
 </div>
 
 <!-- *ngIf="coaches?.length > 0" -->

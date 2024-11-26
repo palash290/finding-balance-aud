@@ -1,13 +1,35 @@
 <div class="ct_chat_box_main">
     <div class="ct_left_message_list ct_community_left_width">
-        <div class="ct_notification_search_input">
-            <input type="text" class="form-control ct_login_input" placeholder="Search" [(ngModel)]="searchQueryFilter">
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="ct_res_575_d_none">
+            <div class="ct_notification_search_input">
+                <input type="text" class="form-control ct_login_input" placeholder="Search"
+                    [(ngModel)]="searchQueryFilter">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="d-flex align-items-center justify-content-between ct_pt_20">
+                <h4 class="mb-0 ct_fw_600 ct_fs_20 text-white ct_ff_roboto">All Communities</h4>
+                <a *ngIf="isCoach" href="javascript:void(0)" class="ct_orange_text" data-bs-toggle="modal"
+                    data-bs-target="#ct_add_community">+ Create</a>
+            </div>
         </div>
-        <div class="d-flex align-items-center justify-content-between ct_pt_20">
+
+        <div class="ct_d_none_for_desk fb_mobile_res_block">
+            <div class="ct_mobile_header ct_res_mb_20">
+                <div class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="form-group w-100"><input type="text" placeholder="Type here..."
+                        class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched">
+                </div>
+                <div class="d-flex align-items-center gap-3">
+
+                    <div>
+                        <i class="fa-solid fa-user-plus text-white" style="cursor: pointer;" data-bs-toggle="modal"
+                            data-bs-target="#ct_add_community"></i>
+                    </div>
+                </div>
+
+            </div>
             <h4 class="mb-0 ct_fw_600 ct_fs_20 text-white ct_ff_roboto">All Communities</h4>
-            <a *ngIf="isCoach" href="javascript:void(0)" class="ct_orange_text" data-bs-toggle="modal"
-                data-bs-target="#ct_add_community">+ Create</a>
         </div>
 
         <ul class="ct_message_user_lit ct_message_community_scroll ct_community_sidebar mt-3" (click)="openChat()">

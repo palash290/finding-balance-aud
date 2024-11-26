@@ -14,7 +14,7 @@
 }
 
 .custom-list li::before {
-  content: '•';
+  content: "•";
   /* Unicode character for the bullet dot */
   position: absolute;
   left: 0;
@@ -23,7 +23,6 @@
   color: white;
   /* Adjust color of the dot */
 }
-
 
 .ct_send_msg_plane {
   position: absolute;
@@ -37,9 +36,6 @@
   height: 15px;
   width: 15px;
 }
-
-
-
 
 .custom-audio-player {
   width: 100%;
@@ -56,7 +52,7 @@
   grid-template-columns: 100% !important;
 }
 
-.play-button{
+.play-button {
   width: 96px;
   height: 96px;
   border-radius: 100px;
@@ -67,15 +63,14 @@
   cursor: pointer;
   z-index: 2;
   background-color: rgb(0 0 0 / 73%);
-  box-shadow: -0.73px 0.73px 0.73px -1.46px #FFFFFF59 inset;
+  box-shadow: -0.73px 0.73px 0.73px -1.46px #ffffff59 inset;
   display: flex;
   align-items: center;
   justify-content: center;
-  border:1px solid #fff;
+  border: 1px solid #fff;
 }
 
 .play-button img {
-
   width: 32px;
   height: 32px;
   filter: invert(1);
@@ -101,7 +96,7 @@
   /* Ensure it appears on top */
   background: transparent;
   height: 4px;
-  -webkit-appearance: none;
+  appearance: none;
 }
 
 .custom-seekbar::-webkit-slider-thumb {
@@ -152,10 +147,10 @@
   border-color: transparent;
   color: transparent;
 }
-.ct_list_style_unset li{
+.ct_list_style_unset li {
   padding-left: 0px;
 }
-.ct_list_style_unset li:before{
+.ct_list_style_unset li:before {
   display: none;
 }
 .ct_grid_4 {
@@ -163,31 +158,26 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
 }
-.ct_grid_4 p{
+.ct_grid_4 p {
   word-break: break-all;
 }
 
-@media screen and (max-width:1199px){
+@media screen and (max-width: 1199px) {
   .ct_grid_4 {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media screen and (max-width:767px){
+@media screen and (max-width: 767px) {
   .ct_grid_4 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media screen and (max-width:575px){
+@media screen and (max-width: 575px) {
   .ct_grid_4 {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-
-
-
-
-
 
 p {
   font-family: Lato;
@@ -233,7 +223,6 @@ p {
   background-color: #ff5722; /* Highlight color */
 }
 
-
 div#ct_add_community .modal-content {
   background-color: #111010;
   border: 1px solid var(--orange);
@@ -244,5 +233,5 @@ div#ct_add_community .modal-content {
   pointer-events: none;
 }
 .ct_blue_btn123 {
-  background-color: #2B8600;
+  background-color: #2b8600;
 }

@@ -17,6 +17,7 @@
   </div>
 </div>
 
+
 <div class="ct_cover_img">
   <img [src]="eventData?.mediaUrl ? eventData?.mediaUrl : '/assets/img/no_event.png'" alt=""
     class="ct_img_h_200  ct_object_cover_mob">
@@ -24,7 +25,7 @@
 <div class="ct_my_profile_main mt-4">
   <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 ct_mt_30 pt-1">
     <div>
-      <h4 class="ct_ff_roboto ct_fw_600 text-white ct_fs_24 mb-0">{{eventData?.name}}</h4>
+      <h4 class="ct_ff_roboto ct_fw_600 text-white ct_fs_24 mb-0 fb_res_fs_20">{{eventData?.name}}</h4>
       <!-- @if(eventData?.address){
       <div class="d-flex align-items-center  gap-2 mt-2">
         <img src="../assets/img/location_icon.svg" alt="star">
@@ -46,11 +47,22 @@
 
     </div>
     @if(isCoach){
-    <div class="d-flex align-items-center gap-2 flex-wrap">
-      <a (click)="getEventEditId(eventData?.id)" class="ct_orange_btn ct_grey_btn ct_border_radius_10"
-        style="cursor: pointer;">Edit Event</a>
-      <a (click)="deleteEvent(eventData?.id)" class="ct_orange_btn ct_grey_btn ct_border_radius_10"
-        style="cursor: pointer;">Delete Event</a>
+    <div class="ct_res_575_d_none">
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+        <a (click)="getEventEditId(eventData?.id)" class="ct_orange_btn ct_grey_btn ct_border_radius_10"
+          style="cursor: pointer;">Edit Event</a>
+        <a (click)="deleteEvent(eventData?.id)" class="ct_orange_btn ct_grey_btn ct_border_radius_10"
+          style="cursor: pointer;">Delete Event</a>
+      </div>
+    </div>
+    <div class="ct_d_none_for_desk fb_mobile_res_block">
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+        <a (click)="getEventEditId(eventData?.id)" class="fb_edit_profile_icon" style="cursor: pointer;">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+        <a (click)="deleteEvent(eventData?.id)" class="fb_edit_profile_icon fb_delete_profile_icon"
+          style="cursor: pointer;"><i class="fa-solid fa-trash-can"></i></a>
+      </div>
     </div>
     } @else {
     @if (eventData?.isPaid == 1) {
@@ -92,7 +104,7 @@
 </div>
 <hr class="ct_hr_line_op_5 mt-4">
 <div class="mt-4">
-  <h4 class="ct_ff_roboto text-white ct_fs_18 ct_fw_600">Event Owner</h4>
+  <h4 class="ct_ff_roboto text-white ct_fs_18 ct_fw_600 mb-3">Event Owner</h4>
   <div class="d-flex align-items-center justify-content-between">
     <div class="d-flex gap-2" style="cursor: pointer;">
       <div class="ct_star_circle">

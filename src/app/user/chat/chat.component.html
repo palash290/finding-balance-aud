@@ -1,15 +1,32 @@
 <div class="ct_chat_box_main">
     <div class="ct_left_message_list">
         @if(isCoach){
-        <div class="d-flex align-items-center gap-3">
-            <div class="ct_notification_search_input" style="flex: 1;">
-                <input type="text" class="form-control ct_login_input" placeholder="Search"
-                    [(ngModel)]="searchQueryFilter">
-                <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="ct_res_575_d_none">
+            <div class="d-flex align-items-center gap-3">
+                <div class="ct_notification_search_input" style="flex: 1;">
+                    <input type="text" class="form-control ct_login_input" placeholder="Search"
+                        [(ngModel)]="searchQueryFilter">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <i class="fa-solid fa-user-plus text-white" (click)="searchFollowUsersList()" style="cursor: pointer;"
+                    data-bs-toggle="modal" data-bs-target="#ct_followed_coaches2"></i>
+            </div>
+        </div>
+
+        <div class="ct_mobile_header ct_d_none_for_desk">
+            <div class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="form-group w-100"><input type="text" placeholder="Type here..."
+                    class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched"></div>
+            <div class="d-flex align-items-center gap-3">
+
+                <div>
+                    <i class="fa-solid fa-user-plus text-white" (click)="searchFollowUsersList()"
+                        style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#ct_followed_coaches2"></i>
+                </div>
             </div>
 
-            <i class="fa-solid fa-user-plus text-white" (click)="searchFollowUsersList()" style="cursor: pointer;"
-                data-bs-toggle="modal" data-bs-target="#ct_followed_coaches2"></i>
         </div>
         } @else {
         <div class="d-flex align-items-center gap-3">
@@ -143,8 +160,8 @@
     <div class="ct_right_message_area ct_chat_coach_main_scroll" [ngClass]="{ 'active': isChatActive }"
         *ngIf="participantFullName">
         <div class="ct_octen_team_box ct_mt_30 px-3 ct_message_head_bg">
-            <a href="javascript:void(0)" class="ct_orange_text ct_back_to_list ct_chat_back"
-                (click)="closeChat()">Back</a>
+            <a href="javascript:void(0)" class=" text-white ct_back_to_list ct_chat_back" (click)="closeChat()"><i
+                    class="fa-solid fa-chevron-left"></i></a>
             <!-- @if(isCoach){
             <div class="d-flex align-items-center" >
                 <img [src]="participantAvatarUrl ? participantAvatarUrl : '/assets/img/np_pro.png'" alt="" class="ct_w_36">

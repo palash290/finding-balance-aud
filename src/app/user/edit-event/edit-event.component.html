@@ -1,6 +1,15 @@
-<div class="d-flex align-items-center gap-2 justify-content-between mb-4 flex-wrap">
-    <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text">Edit Event Details</h4>
-    <button class="ct_orange_btn ct_grey_btn ct_border_radius_10" (click)="editEvevt()"> Update Event</button>
+<div class="ct_res_575_d_none">
+    <div class="d-flex align-items-center gap-2 justify-content-between mb-4 flex-wrap">
+        <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text">Edit Event Details</h4>
+        <button class="ct_orange_btn ct_grey_btn ct_border_radius_10" (click)="editEvevt()"> Update Event</button>
+    </div>
+</div>
+
+<div class="ct_res_flex_2 ct_res_mb_20 ct_d_none_for_desk">
+    <a class="ct_orange_text ct_back_to_list ct_chat_back mb-4 ct_res_mb_0  d-block ct_fw_600"
+        style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
+    <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text mb-0 ct_res_mx_auto12 ct_res_fs_24">Edit Event Details
+    </h4>
 </div>
 
 <form [formGroup]="newForm">
@@ -29,12 +38,15 @@
 
     <div class="form-group mb-3" data-bs-toggle="modal" data-bs-target="#ct_create_team">
         <label for="" class="mb-2 ct_ff_roboto ct_fw_600 text-white">Image</label>
-        <div class="ct_cover_img">
+        <div class="ct_cover_img position-relative">
             <label for="imgInp" class="w-100">
                 <input accept="image/*" type="file" id="imgInp" class="d-none" (change)="fileChangeEvent($event)"
                     formControlName="cover" />
-                <img id="blah1" class="ct_img_h_200" [class.ct_object_fit_cover]="!croppedImage" src="#" alt="Uploaded Image"
-                    [src]="croppedImage ? croppedImage : '/assets/img/no_bg.png'">
+                <img id="blah1" class="ct_img_h_200" [class.ct_object_fit_cover]="!croppedImage" src="#"
+                    alt="Uploaded Image" [src]="croppedImage ? croppedImage : '/assets/img/no_bg.png'">
+                <div class="ct_fb_add_image_center">
+                    <img src="assets/img/add_image_icon.png" alt="">
+                </div>
             </label>
 
         </div>
@@ -119,8 +131,8 @@
     </div>
 
 
-      <!-- Webinar Fields -->
-      <div *ngIf="eventType === 'WEBINAR'">
+    <!-- Webinar Fields -->
+    <div *ngIf="eventType === 'WEBINAR'">
         <div class="form-group mb-3">
             <label for="webinarUrl" class="mb-2 text-white">Webinar URL</label>
             <input type="text" class="ct_login_input form-control ct_border_radius_10" formControlName="webinarUrl"
@@ -144,8 +156,11 @@
         <input type="number" class="ct_login_input form-control ct_border_radius_10" formControlName="price"
             placeholder="Enter Price">
     </div>
-
+    <div class="ct_d_none_for_desk fb_mobile_res_block">
+        <button class="ct_orange_btn ct_grey_btn ct_border_radius_10 w-100" (click)="editEvevt()"> Update Event</button>
+    </div>
 </form>
+
 
 <div *ngIf="loading" class="ct_loader_main">
     <div class="loader"></div>

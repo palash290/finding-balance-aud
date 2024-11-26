@@ -4,10 +4,11 @@
     <div>
 
         @if (isCoach) {
-        <app-add-post></app-add-post>
+        <app-add-post class="ct_mob_575_none"></app-add-post>
         }
 
-        <div class=" mb-4 d-flex align-items-center gap-4 mt-3 ct_flex_wrap_575" [class.flex-wrap]="!isCoach">
+        <div class=" mb-4 d-flex align-items-center gap-4 mt-3 ct_flex_wrap_575 ct_mob_575_none"
+            [class.flex-wrap]="!isCoach">
             <p class="mb-0 text-white" style="white-space: nowrap;">Filter post by :</p>
 
             <div class="d-flex align-items-center gap-3 ct_flex_575 flex-wrap">
@@ -44,6 +45,22 @@
 
         </div>
 
+        <div class="ct_mobile_header ct_d_none_for_desk">
+            <div class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="form-group w-100"><input type="text" placeholder="Type here..."
+                    class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched"></div>
+            <div class="d-flex align-items-center gap-3">
+                <div class="fb_ad_post_icon">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div>
+                    <i class="fa-solid fa-sliders ct_fs_18 text-white"></i>
+                </div>
+            </div>
+
+        </div>
+
 
 
         <hr class="ct_hr_line_op_5 ct_mob_hr_none">
@@ -52,7 +69,7 @@
             <p class="ct_fs_15 text-white">No posts found</p>
         </div>
         <!-- this ct_coach_feed_scroll class will be use when coach login -->
-        <div class="ct_all_feed_boxex" [class.ct_coach_feed_scroll]="isCoach">
+        <div class="ct_all_feed_boxex ct_res_px_15" [class.ct_coach_feed_scroll]="isCoach">
             <div *ngFor="let feed of data; let i = index">
 
                 <div class="ct_feed_box mt-3" *ngIf="feed.type == 'PODCAST'">

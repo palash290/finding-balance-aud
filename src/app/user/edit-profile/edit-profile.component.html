@@ -1,19 +1,29 @@
-<div class="d-flex align-items-center gap-2 justify-content-between mb-4">
-    <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text">Edit Profile</h4>
-    <button (click)="onUpdate()" class="ct_orange_btn ct_grey_btn ct_border_radius_10"> Save</button>
+<div class="ct_res_575_d_none">
+    <div class="d-flex align-items-center gap-2 justify-content-between mb-4 ">
+        <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text">Edit Profile</h4>
+        <button (click)="onUpdate()" class="ct_orange_btn ct_grey_btn ct_border_radius_10"> Save</button>
+    </div>
+</div>
+<div class="ct_res_flex_2 ct_d_none_for_desk ct_res_mb_20">
+    <a class="ct_orange_text ct_back_to_list ct_chat_back mb-4 ct_res_mb_0  d-block ct_fw_600"
+        style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> </a>
+    <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text mb-0 ct_res_mx_auto12 ct_res_fs_24">Edit Profile</h4>
 </div>
 
 <form [formGroup]="newForm">
 
     <div class="form-group mb-3" data-bs-toggle="modal" data-bs-target="#ct_create_team">
         <label for="" class="mb-2 ct_ff_roboto ct_fw_600 text-white">Image</label>
-        <div class="ct_cover_img">
+        <div class="ct_cover_img position-relative">
             <label for="imgInp" class="w-100">
                 <input accept="image/*" type="file" id="imgInp" class="d-none" (change)="fileChangeEvent($event)"
                     formControlName="cover" />
-                <img id="blah1" class="ct_img_h_200" [class.ct_object_fit_cover]="!croppedImage" src="#" alt="Uploaded Image"
-                    [src]="croppedImage ? croppedImage : '/assets/img/no_bg.png'">
+                <img id="blah1" class="ct_img_h_200" [class.ct_object_fit_cover]="!croppedImage" src="#"
+                    alt="Uploaded Image" [src]="croppedImage ? croppedImage : '/assets/img/no_bg.png'">
             </label>
+            <a class="fb_edit_profile_icon ct_res_575_d_none fb_res_position_top_icon_edit fb_cover_edit_icon_bg_white">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </a>
         </div>
     </div>
 
@@ -246,8 +256,9 @@
 
 
 
-
-
+    <div class="ct_d_none_for_desk fb_mobile_res_block">
+        <button (click)="onUpdate()" class="ct_orange_btn ct_grey_btn ct_border_radius_10 w-100"> Save</button>
+    </div>
 
 
     <div *ngIf="loading" class="ct_loader_main">

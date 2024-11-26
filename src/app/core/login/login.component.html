@@ -36,7 +36,9 @@
                     <img src="assets/img/Ellipse_big.png" alt="" class="ct_elipse_big_img">
                     <div class="ct_right_login">
 
-                        <h2 class="ct_fs_36 text-white mb-0 ct_ff_noto ct_fw_600 text-start">{{isCoach ? 'Coach Login' :
+                        <h2 class="ct_fs_36 text-white mb-0 ct_ff_noto ct_fw_600 text-start ct_res_fs_24 mb-2">{{isCoach
+                            ?
+                            'Coach Login' :
                             'User Login'}}</h2>
                         <p class="mb-0 text-white ct_ff_noto mb-0">Glad you’re back.!</p>
                         <form [formGroup]="loginForm" class="mt-3 w-100">
@@ -62,7 +64,7 @@
                                 <!-- <input type="text" maxlength="10" class="form-control ct_login_input"
                                         placeholder="Phone" formControlName="phone_no"> -->
                                 <input id="phone_no" type="text" formControlName="phone_no" maxlength="10"
-                                    class="form-control ct_login_input" placeholder="Phone"/>
+                                    class="form-control ct_login_input" placeholder="Phone" />
                                 <div *ngIf="loginForm.controls['phone_no'].invalid && loginForm.controls['phone_no'].touched"
                                     class="error-message">
                                     <div *ngIf="loginForm.controls['phone_no'].errors?.['required']"

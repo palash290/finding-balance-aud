@@ -1,12 +1,26 @@
-<div class="ct_event_all_main">
+<div class="ct_event_all_main ct_res_pt_0">
     @if(!isCoach){
     <div class="d-flex align-items-center justify-content-between">
         <h4 class="mb-0 ct_fw_600 ct_fs_20 text-white ct_ff_roboto">Upcoming Events</h4>
     </div>
     }@else {
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="ct_res_575_d_none">
+        <div class="d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 ct_fw_600 ct_fs_20 ct_res_fs_24 text-white ct_ff_roboto">My All Events</h4>
+            <a class="ct_orange_text" routerLink="/user/main/add-event">+ Add New Event</a>
+        </div>
+    </div>
+    <div class="ct_mobile_header ct_d_none_for_desk">
+        <div class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+        </div>
         <h4 class="mb-0 ct_fw_600 ct_fs_20 text-white ct_ff_roboto">My All Events</h4>
-        <a class="ct_orange_text" routerLink="/user/main/add-event">+ Add New Event</a>
+        <div class="d-flex align-items-center gap-3">
+
+            <div>
+                <img src="assets/img/edit_event_icon_svg.svg" alt="">
+            </div>
+        </div>
+
     </div>
     }
     <div class="ct_mt_30 ct_event_scroll" style="cursor: pointer;">
@@ -14,7 +28,7 @@
         <div *ngIf="eventData?.length == 0" class="text-center mt-4">
             <p class="ct_fs_15 text-white">No events found</p>
         </div>
-        
+
         <div *ngFor="let event of eventData">
             <a class="ct_event_list mt-3 me-2" (click)="getEventId(event.id)">
                 <div class="d-flex align-items-center gap-2">
@@ -34,8 +48,8 @@
                     </div>
                 </div>
                 <div>
-                    <p *ngIf="event.registeredUsers > 0"
-                        class=" ct_fs_12 text-white ct_fw_400 ct_ff_roboto ct_mb_10">{{event.registeredUsers}}
+                    <p *ngIf="event.registeredUsers > 0" class=" ct_fs_12 text-white ct_fw_400 ct_ff_roboto ct_mb_10">
+                        {{event.registeredUsers}}
                         Interested
                     </p>
                     <p class="mb-0 ct_fs_12 ct_fw_500 ct_ff_roboto ct_orange_text">{{event.date |

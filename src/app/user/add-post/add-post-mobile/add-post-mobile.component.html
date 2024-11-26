@@ -1,1 +1,134 @@
-<p>add-post-mobile works!</p>
+<section class="ct_mobile_width_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 px-0">
+                <div class="fb_add_post_header ct_res_mb_20">
+                    <div class="d-flex align-items-center gap-4">
+                        <a href="#" class="fb_add_post_back"><i class="fa-solid fa-chevron-left"></i></a>
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="assets/img/user_img_1.png" class="ct_img_38" alt="">
+                            <div class="dropdown ct_black_dropdown">
+                                <p class="dropdown-toggle mb-0 ct_fs_16 text-white" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Free
+                                </p>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Free</a></li>
+                                    <li><a class="dropdown-item" href="#">Paid</a></li>
+                                    <li><a class="dropdown-item" href="#">Ad Hoc</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="fb_filter_icon" routerLink="/user/main/post-filter">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 9.5V0.5H0V9.5M2 7.5V2.5H7V7.5M18 5C18 6.4 16.9 7.5 15.5 7.5C14.1 7.5 13 6.4 13 5C13 3.6 14.11 2.5 15.5 2.5C16.89 2.5 18 3.61 18 5ZM4.5 12.5L0 20.5H9M5.58 18.5H3.42L4.5 16.58M20 5C20 2.5 18 0.5 15.5 0.5C13 0.5 11 2.5 11 5C11 7.5 13 9.5 15.5 9.5C18 9.5 20 7.5 20 5ZM17 15.5V12.5H15V15.5H12V17.5H15V20.5H17V17.5H20V15.5H17Z"
+                                    fill="white" />
+                            </svg>
+
+                        </div>
+                        <button class="ct_orange_btn ct_border_radius_10 ct_grey_btn">Post</button>
+                    </div>
+                </div>
+                <div class="form-group w-100"><input type="text" placeholder="Type here..."
+                        class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched">
+                </div>
+                <div class="fb_add_post_container ct_mt_30">
+                    <textarea name="" id="" rows="4" placeholder="Share your thoughts..."
+                        class="form-control border-0 bg-transparent fb_add_post_input"></textarea>
+
+                </div>
+                <div class="fb_uploaded_cnt">
+                    <!-- Uploaded Audio S -->
+                    <div class="mb-5 d-none">
+                        <div class="ct_show_uploaded_audio_box ct_show_uploaded_audio_box_bg mt-3 ct_light_grey_bg"
+                            style="user-select: auto; background-image: url(&quot;assets/img/audio_bg_img_2434.jpg&quot;);">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="ct_audio_play_icon"><i class="bi bi-play-fill ng-star-inserted"
+                                        style="cursor: pointer;"></i></div>
+                                <div>
+                                    <h5 class="ct_orange_text mb-0">Audio</h5>
+                                    <p class="mb-0 text-white ct_text_op_5">00:00</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mt-3">
+                                <p class="mb-0 text-white ct_text_op_5">00:00</p>
+                                <div class="waveform mx-0" style="cursor: pointer;" id="waveform176">
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Uploaded Audio E -->
+                    <!-- Uploaded Video S -->
+                    <div class="mb-5">
+                        <video width="100%" height="390" playsinline="" preload="metadata" crossorigin="anonymous"
+                            src="https://findingbalance01.s3.eu-west-2.amazonaws.com/1728395675439_video.mp4">
+                            <source type="video/mp4"
+                                src="https://findingbalance01.s3.eu-west-2.amazonaws.com/1728395675439_video.mp4">
+                            <source type="video/webm"
+                                src="https://findingbalance01.s3.eu-west-2.amazonaws.com/1728395675439_video.mp4">
+                            <source type="video/mov"
+                                src="https://findingbalance01.s3.eu-west-2.amazonaws.com/1728395675439_video.mp4">
+                            <source type="video/ogg"
+                                src="https://findingbalance01.s3.eu-west-2.amazonaws.com/1728395675439_video.mp4">
+                        </video>
+                    </div>
+                    <!-- Upload Video S -->
+                    <div class="mb-5 d-none">
+                        <div id="ct_video" class="ct_audio_upload_first mb-3 w-100 d-block" style="max-width: 100%;">
+                            <label for="ct_upload_video"><input type="file" id="ct_upload_video" accept="video/*"
+                                    class="d-none">
+                                <div class="ng-star-inserted">
+                                    <p class="mb-2 text-white ct_fs_13">Click to upload
+                                        video file</p>
+                                    <span class="d-block text-center text-white">Max upload file 50 MB</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Upload Video E -->
+                    <!-- Upload Audio S -->
+                    <div class="mb-5 d-none">
+                        <div id="ct_audio" class="ct_audio_upload_first w-100 d-block mb-3" style="max-width: 100%;">
+                            <label for="ct_upload_audio"><input type="file" id="ct_upload_audio" accept="audio/*"
+                                    class="d-none">
+                                <div style="cursor: pointer;" class="ng-star-inserted">
+                                    <p class="mb-2 text-white ct_fs_13">Click to upload audio file</p>
+                                    <span class="d-block text-center text-white">Max upload file 50 MB</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div id="ct_image" class="ct_audio_upload_first w-100 d-block" style="max-width: 100%;"><label
+                                for="ct_upload_img"><input type="file" id="ct_upload_img" accept="image/*"
+                                    class="d-none">
+                                <div style="cursor: pointer;" class="ng-star-inserted">
+                                    <p class="mb-2 text-white ct_fs_13">Click to upload thumbnail</p>
+                                    <span class="d-block text-center text-white">Max upload file 5 MB</span>
+                                </div>
+                            </label></div>
+                    </div>
+                    <!-- Upload Audio E -->
+                    <div class="d-flex align-items-center justify-content-between gap-3">
+                        <button
+                            class="ct_orange_btn  ct_border_radius_10 w-100 d-flex align-items-center gap-2 fb_transparent_white_border"><i
+                                class="fa-solid fa-microphone"></i>Audio</button>
+                        <button
+                            class="ct_orange_btn  ct_border_radius_10 w-100  d-flex align-items-center gap-2 fb_transparent_white_border"><i
+                                class="fa-solid fa-video"></i>Video</button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

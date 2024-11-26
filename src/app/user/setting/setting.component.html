@@ -1,8 +1,9 @@
 <!-- <a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back" style="cursor: pointer;">Back</a> -->
-<a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 d-block ct_fw_600"
-  style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
-
-<h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text">Settings</h4>
+<div class="ct_res_flex_2">
+  <a (click)="backClicked()" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 ct_res_mb_0  d-block ct_fw_600"
+    style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
+  <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text mb-0 ct_res_mx_auto12 ct_res_fs_24">Settings</h4>
+</div>
 <ul class="mt-4 ct_setting_list">
   <li>
     <a style="cursor: pointer;" class="mb-0 text-white ct_fs_18 ct_fw_500 ct_ff_roboto"
@@ -46,7 +47,8 @@
   <li>
     <div class="d-flex align-items-center gap-3 justify-content-between">
       <p class="mb-0 text-white ct_fs_18 ct_fw_500 ct_ff_roboto">Membership</p>
-      <p class="mb-0 ct_fs_14 ct_fw_500 ct_ff_roboto ct_blue_text_clr">{{membership ? 'Your autopay has been rescheduled
+      <p class="mb-0 ct_fs_14 ct_fw_500 ct_ff_roboto ct_blue_text_clr ct_res_575_200_w">{{membership ? 'Your autopay has
+        been rescheduled
         at:' : 'Your plan will expire on'}} {{plan_expired_at | date: 'dd MMM yyyy, h:mm a' }}</p>
     </div>
   </li>

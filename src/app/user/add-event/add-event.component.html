@@ -1,6 +1,14 @@
-<div class="d-flex align-items-center gap-2 justify-content-between mb-4 flex-wrap">
-    <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text">Add New Event</h4>
-    <button class="ct_orange_btn ct_grey_btn ct_border_radius_10" (click)="addEvent()"> Create Event</button>
+<div class="ct_res_575_d_none">
+    <div class="d-flex align-items-center gap-2 justify-content-between mb-4 flex-wrap">
+        <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text">Add New Event</h4>
+        <button class="ct_orange_btn ct_grey_btn ct_border_radius_10" (click)="addEvent()"> Create Event</button>
+    </div>
+</div>
+<div class="ct_res_flex_2 ct_res_mb_20 ct_d_none_for_desk">
+    <a class="ct_orange_text ct_back_to_list ct_chat_back mb-4 ct_res_mb_0  d-block ct_fw_600"
+        style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> Back</a>
+    <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text mb-0 ct_res_mx_auto12 ct_res_fs_24">Add New Event
+    </h4>
 </div>
 
 <form [formGroup]="newForm">
@@ -204,7 +212,9 @@
                 required.</div>
         </div>
     </div>
-
+    <div class="ct_d_none_for_desk fb_mobile_res_block">
+        <button class="ct_orange_btn ct_grey_btn ct_border_radius_10 w-100" (click)="addEvent()"> Create Event</button>
+    </div>
 </form>
 
 

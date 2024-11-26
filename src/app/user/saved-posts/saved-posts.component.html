@@ -1,5 +1,14 @@
-<div class="d-flex align-items-center gap-2 justify-content-between mb-4 flex-wrap">
-    <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text">Saved Post</h4>
+<div class="ct_res_575_d_none">
+    <div class="d-flex align-items-center gap-2 justify-content-between mb-4 flex-wrap">
+        <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text">Saved Post</h4>
+    </div>
+</div>
+<div class="ct_mobile_header ct_d_none_for_desk justify-content-start">
+    <div class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+    </div>
+    <h4 class="ct_fs_28 ct_ff_roboto fb_res_fs_20 ct_fw_500 ct_orange_text mx-auto mb-0">Saved Post</h4>
+
+
 </div>
 <div class="ct_all_feed_boxex_by_saved">
 
@@ -10,7 +19,8 @@
     <div *ngFor="let feed of data; let i = index">
 
         <div class="ct_feed_box mt-3" *ngIf="feed.post.type == 'PODCAST'">
-            <div class="d-flex align-items-center gap-2" (click)="getCoachId(feed.post.coach.id, feed.post.coach.role)" style="cursor: pointer;">
+            <div class="d-flex align-items-center gap-2" (click)="getCoachId(feed.post.coach.id, feed.post.coach.role)"
+                style="cursor: pointer;">
                 <img [src]="feed.post.coach.avatar_url ? feed.post.coach.avatar_url : '/assets/img/np_pro.png'" alt=""
                     class="ct_img_44 ct_bor ct_white_border_1">
                 <div>
@@ -21,9 +31,9 @@
                             date:'d/M/yy, h:mm a'}}
                         </p>
                         <div class="d-flex align-items-center justify-content-center gap-2">
-                <img src="../assets/img/star.png" alt="star">
-                <span class="ct_orange_text">Fitness</span>
-            </div>
+                            <img src="../assets/img/star.png" alt="star">
+                            <span class="ct_orange_text">Fitness</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,7 +50,7 @@
             </p>
 
             <div class="ct_show_uploaded_audio_box ct_show_uploaded_audio_box_bg mt-3 ct_light_grey_bg"
-            [ngStyle]="{ 'background-image': 'url(' + (feed?.post?.thumbnailUrl ? feed.post.thumbnailUrl : 'assets/img/audio_bg_img_2434.jpg') + ')'}">
+                [ngStyle]="{ 'background-image': 'url(' + (feed?.post?.thumbnailUrl ? feed.post.thumbnailUrl : 'assets/img/audio_bg_img_2434.jpg') + ')'}">
                 <!-- <div class="d-flex align-items-center gap-3">
                     <audio *ngIf="feed.post.mediaUrl" controls class="custom-audio-player">
                         <source [src]="feed.post.mediaUrl" type="audio/mpeg">
@@ -52,13 +62,13 @@
                         <i *ngIf="!isPlayingA[i]" class="bi bi-play-fill" style="cursor: pointer;"></i>
                         <i *ngIf="isPlayingA[i]" class="bi bi-pause-fill" style="cursor: pointer;"></i>
                     </div>
-    
+
                     <div>
                         <h5 class="ct_orange_text mb-0">Audio</h5>
                         <p class="mb-0 text-white ct_text_op_5">{{ formatTime(totalDurationA[i]) }}</p>
                     </div>
                 </div>
-          
+
 
                 <!-- <p style="color: orange;">{{ formatTime(currentTimeA[i]) }} / {{ formatTime(totalDurationA[i]) }}
                 </p> -->
@@ -67,11 +77,11 @@
                     <div class="waveform mx-0" (click)="wave[i].playPause()" [id]="'waveform' + feed.post.id"
                         style=" cursor: pointer;">
                     </div>
-                </div>  
+                </div>
                 <!-- <div class="waveform" (click)="wave[i].playPause()" [id]="'waveform' + feed.post.id"
                     style="margin-top: 20px; cursor: pointer;">
                 </div> -->
-              
+
             </div>
 
             <div class="ct_like_comment_div">
@@ -117,9 +127,10 @@
                 <!-- show this div when user click on comment -->
                 <div class="ct_comment_area_main mt-4 " [class.d-none]="!showCmt[feed.post.id]">
                     <div class="position-relative">
-                        <input type="text" class="form-control ct_custom_input w-100 ct_pe_34" placeholder="Write comment..."
-                            [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" maxlength="250"
-                            (keyup.enter)="addComment(feed.post)" [disabled]="btnLoader">
+                        <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
+                            placeholder="Write comment..." [(ngModel)]="commentText"
+                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed.post)"
+                            [disabled]="btnLoader">
 
                         <i (click)="addComment(feed.post)" *ngIf="!btnLoader"
                             class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
@@ -267,7 +278,8 @@
 
 
         <div class="ct_feed_box mt-3" *ngIf="feed.post.type == 'ARTICLE'">
-            <div class="d-flex align-items-center gap-2" (click)="getCoachId(feed.post.coach.id, feed.post.coach.role)" style="cursor: pointer;">
+            <div class="d-flex align-items-center gap-2" (click)="getCoachId(feed.post.coach.id, feed.post.coach.role)"
+                style="cursor: pointer;">
                 <img [src]="feed.post.coach.avatar_url ? feed.post.coach.avatar_url : '/assets/img/np_pro.png'" alt=""
                     class="ct_img_44 ct_bor ct_white_border_1">
                 <div>
@@ -328,7 +340,7 @@
                         (click)="bookmarkPost(feed.post)" style="cursor: pointer;">
                         <!-- add this class ct_book_mark_icon_active when user will book marked  -->
                         <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="ct_transparent_bokkmark">
+                            class="ct_transparent_bokkmark">
                             <path
                                 d="M0 18V2C0 1.45 0.196 0.979333 0.588 0.588C0.98 0.196667 1.45067 0.000666667 2 0H12C12.55 0 13.021 0.196 13.413 0.588C13.805 0.98 14.0007 1.45067 14 2V18L7 15L0 18Z"
                                 fill="#fff" />
@@ -340,9 +352,10 @@
                 <div class="ct_comment_area_main mt-4" [class.d-none]="!showCmt[feed.post.id]">
 
                     <div class="position-relative">
-                        <input type="text" class="form-control ct_custom_input w-100 ct_pe_34" placeholder="Write comment..."
-                            [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" maxlength="250"
-                            (keyup.enter)="addComment(feed.post)" [disabled]="btnLoader">
+                        <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
+                            placeholder="Write comment..." [(ngModel)]="commentText"
+                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed.post)"
+                            [disabled]="btnLoader">
 
                         <i (click)="addComment(feed.post)" *ngIf="!btnLoader"
                             class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
@@ -486,7 +499,8 @@
 
 
         <div class="ct_feed_box mt-3" *ngIf="feed.post.type == 'VIDEO'">
-            <div class="d-flex align-items-center gap-2" (click)="getCoachId(feed.post.coach.id, feed.post.coach.role)" style="cursor: pointer;">
+            <div class="d-flex align-items-center gap-2" (click)="getCoachId(feed.post.coach.id, feed.post.coach.role)"
+                style="cursor: pointer;">
                 <img [src]="feed.post.coach.avatar_url ? feed.post.coach.avatar_url : '/assets/img/np_pro.png'" alt=""
                     class="ct_img_44 ct_bor ct_white_border_1">
                 <div>
@@ -591,9 +605,10 @@
                     </div> -->
 
                     <div class="position-relative">
-                        <input type="text" class="form-control ct_custom_input w-100 ct_pe_34" placeholder="Write comment..."
-                            [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" maxlength="250"
-                            (keyup.enter)="addComment(feed.post)" [disabled]="btnLoader">
+                        <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
+                            placeholder="Write comment..." [(ngModel)]="commentText"
+                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed.post)"
+                            [disabled]="btnLoader">
 
                         <i (click)="addComment(feed.post)" *ngIf="!btnLoader"
                             class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
