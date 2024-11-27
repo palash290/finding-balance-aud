@@ -17,7 +17,8 @@
             <div class="ct_mobile_header ct_res_mb_20">
                 <div (click)="onToggleMenu()" class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
                 </div>
-                <div class="form-group w-100"><input type="text" placeholder="Type here..." [(ngModel)]="searchQueryFilter"
+                <div class="form-group w-100"><input type="text" placeholder="Type here..."
+                        [(ngModel)]="searchQueryFilter"
                         class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched">
                 </div>
                 <div class="d-flex align-items-center gap-3">
@@ -102,8 +103,10 @@
 
     <div class="ct_right_message_area ct_community_scroll1234" [ngClass]="{ 'active': isChatActive }"
         *ngIf="communityName">
+
+
         <div
-            class="ct_octen_team_box ct_flex_wrap_res_123 ct_mt_30 px-3 ct_message_head_bg ct_flex_wrap_res_123 justify-content-between">
+            class="ct_octen_team_box ct_flex_wrap_res_123 ct_mt_30 px-3 ct_message_head_bg ct_flex_wrap_res_123 justify-content-between ct_res_575_d_none">
             <div class="d-flex align-items-center gap-2 ">
                 <a href="javascript:void(0)" class="ct_orange_text ct_back_to_list ct_chat_back"
                     (click)="closeChat()"><i class="fa-solid fa-arrow-left-long"></i></a>
@@ -159,15 +162,76 @@
                                 data-bs-target="#ct_report_community">Report</a></li>
                     </ul>
                 </div>
+            </div>
+        </div>
 
+        <!-- Mobile Header Section S -->
+        <div class="fb_add_post_header ct_res_mb_20 ct_d_none_for_desk">
+            <div class="d-flex align-items-center gap-4  w-100">
+                <!-- <a class="fb_add_post_back"><i class="fa-solid fa-chevron-left"></i></a> -->
+                <a href="javascript:void(0)" class="fb_add_post_back"
+                (click)="closeChat()"><i class="fa-solid fa-chevron-left"></i></a>
+
+
+
+                <div class="d-flex align-items-center gap-2 ">
+                    <div class="d-flex align-items-center">
+                        <img [src]="communityImg ? communityImg : '/assets/img/np_pro.png'" alt=""
+                            class="ct_img_44 ct_border_radius_100">
+                    </div>
+
+                    <div>
+                        <h5 class="mb-0 ct_fs_15 ct_ff_roboto ct_fw_500 mb-1 ct_orange_text">{{communityName}}</h5>
+                        <p class="mb-0 ct_fs_12 ct_ff_roboto ct_fw_500 text-white"> {{numberOfPosts}} {{numberOfPosts >
+                            1 ? 'Posts' : 'Post'}} <span> -
+                                {{numberOfParticipant+1}} {{numberOfParticipant > 1 ? 'Members' : 'Member'}}</span>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="d-flex align-items-center gap-3 ms-auto">
+                    <div class="fb_ad_post_icon" routerLink="/user/main/add-post">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+
+                    <div *ngIf="isAdmin" class="dropdown  ct_chat_dropdown ">
+                        <button class="btn ct_dropdown_btn" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical ct_orange_text"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                    data-bs-target="#ct_edit_community">Edit</a>
+                            </li>
+                            <li><a class="dropdown-item" (click)="deleteCommunity()">Delete</a></li>
+                        </ul>
+                    </div>
+
+                    <div *ngIf="!isCoach && !isAdmin" class="dropdown ct_chat_dropdown">
+                        <button class="btn ct_dropdown_btn" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical ct_orange_text"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                    data-bs-target="#ct_report_community">Report</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
+
         </div>
+
+        <!-- Mobile Header Section E -->
+
 
         <div class="position-relative mt-3">
             @if(toSee){
             @if(isCoach){
-            <app-add-post></app-add-post>
+            <div class="ct_res_575_d_none">
+                <app-add-post></app-add-post>
+            </div>
             }
 
             <div class="ct_all_feed_boxex">
