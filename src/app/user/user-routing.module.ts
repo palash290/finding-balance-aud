@@ -125,7 +125,7 @@ const routes: Routes = [
         component: AddPostMobileComponent,
       },
       {
-        path: "add-post/:id",
+        path: "add-post/:name/:id",
         component: AddPostMobileComponent,
       },
       {

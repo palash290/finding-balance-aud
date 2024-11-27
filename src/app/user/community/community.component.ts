@@ -45,14 +45,19 @@ export class CommunityComponent {
     this.service.toggleMenuVisibility();
   }
 
-  toSee: boolean = true
+  toSee: boolean = true;
+
   seeGroupMembesr() {
-    this.toSee = !this.toSee
+    this.toSee = !this.toSee;
   }
 
   userId: any;
 
   ngOnInit(): void {
+    localStorage.removeItem('teamId');
+    //debugger
+    this.communityId = Number(localStorage.getItem('communityId'));
+   
     this.role = this.service.getRole();
     if (this.role == 'USER') {
       this.isCoach = false;
@@ -63,8 +68,13 @@ export class CommunityComponent {
     this.service.refreshSidebar$.subscribe(() => {
       this.getCommunityPosts();
       this.getCommunityData();
+    
     });
     this.service.triggerRefresh();
+    if(this.communityId){
+      this.getCommunityProfileData(this.communityId, true, true);
+      this.openChat();
+    }
   }
 
   initForm() {
@@ -114,7 +124,7 @@ export class CommunityComponent {
   }
 
   getCommunityProfileData(cId: any, participantCheck: boolean, isAdmin: boolean) {
-
+    //debugger
     if (participantCheck || isAdmin) {
       this.isAdmin = isAdmin
 
@@ -804,7 +814,7 @@ export class CommunityComponent {
 
   ngOnDestroy() {
     this.communityId = ''
-    localStorage.setItem('communityId', this.communityId)
+    // localStorage.setItem('communityId', this.communityId);
   }
   //ngOnDestroy(){}
 

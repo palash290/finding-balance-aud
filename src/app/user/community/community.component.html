@@ -101,7 +101,7 @@
         </ul>
     </div>
 
-    <div class="ct_right_message_area ct_community_scroll1234" [ngClass]="{ 'active': isChatActive }"
+    <div class="ct_right_message_area ct_community_scroll1234 ct_res_no_item_v_h" [ngClass]="{ 'active': isChatActive }"
         *ngIf="communityName">
 
 
@@ -169,30 +169,39 @@
         <div class="fb_add_post_header ct_res_mb_20 ct_d_none_for_desk">
             <div class="d-flex align-items-center gap-4  w-100">
                 <!-- <a class="fb_add_post_back"><i class="fa-solid fa-chevron-left"></i></a> -->
-                <a href="javascript:void(0)" class="fb_add_post_back"
-                (click)="closeChat()"><i class="fa-solid fa-chevron-left"></i></a>
+                @if(toSee){
+                <a href="javascript:void(0)" class="fb_add_post_back" (click)="closeChat()"><i
+                        class="fa-solid fa-chevron-left"></i></a>
+                }
 
 
-
-                <div class="d-flex align-items-center gap-2 ">
-                    <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                    @if(toSee){
+                    <div class="d-flex align-items-center" (click)="seeGroupMembesr()">
                         <img [src]="communityImg ? communityImg : '/assets/img/np_pro.png'" alt=""
                             class="ct_img_44 ct_border_radius_100">
                     </div>
 
-                    <div>
+                    <div (click)="seeGroupMembesr()">
                         <h5 class="mb-0 ct_fs_15 ct_ff_roboto ct_fw_500 mb-1 ct_orange_text">{{communityName}}</h5>
                         <p class="mb-0 ct_fs_12 ct_ff_roboto ct_fw_500 text-white"> {{numberOfPosts}} {{numberOfPosts >
                             1 ? 'Posts' : 'Post'}} <span> -
                                 {{numberOfParticipant+1}} {{numberOfParticipant > 1 ? 'Members' : 'Member'}}</span>
                         </p>
                     </div>
+                    } @else {
+                    <p class="mb-0 ct_fs_12 ct_ff_roboto ct_fw_500 ct_orange_text" (click)="seeGroupMembesr()">Back</p>
+                    }
+
 
                 </div>
                 <div class="d-flex align-items-center gap-3 ms-auto">
+                    @if(isCoach){
                     <div class="fb_ad_post_icon" routerLink="/user/main/add-post">
                         <i class="fa-solid fa-plus"></i>
                     </div>
+                    }
+
 
                     <div *ngIf="isAdmin" class="dropdown  ct_chat_dropdown ">
                         <button class="btn ct_dropdown_btn" type="button" id="dropdownMenuButton1"
@@ -1102,7 +1111,7 @@
 
                         <div class="ct_show_uploaded_video mt-2" style="position: relative;">
 
-                            <img [src]="feed.mediaUrl" width="100%" height="100%" />
+                            <img [src]="feed.mediaUrl" width="100%" height="100%" class="ct_img_h_200_w_radius_10" />
                         </div>
 
 
@@ -1463,7 +1472,8 @@
 </div>
 <!-- Create Team Modal E -->
 
-<div class="modal fade" id="ct_edit_community" tabindex="-1" aria-labelledby="ct_edit_community" aria-hidden="true">
+<div class="modal fade ct_z_res_999" id="ct_edit_community" tabindex="-1" aria-labelledby="ct_edit_community"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-0 pt-0 px-0 d-block text-center">
@@ -1584,7 +1594,8 @@
 
 
 <!-- Report Modal -->
-<div class="modal fade" id="ct_report_community" tabindex="-1" aria-labelledby="ct_report_community" aria-hidden="true">
+<div class="modal fade ct_z_res_999" id="ct_report_community" tabindex="-1" aria-labelledby="ct_report_community"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-0 pt-0 px-0 d-block text-center">

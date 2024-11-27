@@ -4,7 +4,7 @@
             <div class="col-md-12 px-0">
                 <div class="fb_add_post_header ct_res_mb_20">
                     <div class="d-flex align-items-center gap-4">
-                        <a href="#" class="fb_add_post_back"><i class="fa-solid fa-chevron-left"></i></a>
+                        <a (click)="backClicked()" class="fb_add_post_back"><i class="fa-solid fa-chevron-left"></i></a>
                         <div class="d-flex align-items-center gap-2">
                             <img src="assets/img/user_img_1.png" class="ct_img_38" alt="">
                             @if(userPlan == 'Premium' && !hideField){

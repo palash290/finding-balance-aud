@@ -55,7 +55,8 @@ export class FeedsComponent {
 
 
   ngOnInit() {
-
+    localStorage.removeItem('teamId');
+    localStorage.removeItem('communityId');
     this.route.paramMap.subscribe(params => {
       this.selectedOption = params.get('name') ? params.get('name') : '';
       this.categoryId = params.get('id') ? params.get('id') : '';

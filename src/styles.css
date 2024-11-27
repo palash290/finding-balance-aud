@@ -314,10 +314,15 @@ div.mat-mdc-select-panel {
 .ct_img_h_200_w_radius_10 {
   height: 280px;
   border-radius: 10px;
+  object-fit: contain;
 }
 @media screen and (max-width: 575px) {
   .ct_custom_drop_dwon_890
     .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled.mdc-text-field--no-label {
     padding-left: 0px !important;
   }
+
+  .swal2-container.swal2-center.swal2-backdrop-show {
+    z-index: 999999999;
+}
 }

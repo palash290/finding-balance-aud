@@ -49,12 +49,17 @@
         <div class="ct_mobile_header ct_d_none_for_desk">
             <div (click)="onToggleMenu()" class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
             </div>
-            <div class="form-group w-100"><input type="text" placeholder="Type here..."
-                    class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched"></div>
+            <div class="form-group w-100">
+                <!-- <input type="text" placeholder="Type here..."
+                    class="form-control ct_custom_input ct_res_input_36_h w-100 ng-pristine ng-valid ng-touched"> -->
+            </div>
             <div class="d-flex align-items-center gap-3">
+                @if (isCoach) {
                 <div class="fb_ad_post_icon" routerLink="/user/main/add-post">
                     <i class="fa-solid fa-plus"></i>
                 </div>
+                }
+
                 <div routerLink="/user/main/feed-filter">
                     <i class="fa-solid fa-sliders ct_fs_18 text-white"></i>
                 </div>

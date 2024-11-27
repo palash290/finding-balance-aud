@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../../services/shared.service';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-post-mobile',
@@ -14,7 +15,24 @@ export class AddPostMobileComponent {
 
   categoryName: any;
 
-  constructor(private router: Router, private service: SharedService, private toastr: ToastrService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private service: SharedService, private toastr: ToastrService, private route: ActivatedRoute, private location: Location) { }
+
+  backClicked() {
+
+    // this.location.back();
+    if (this.communityId) {
+      this.router.navigateByUrl('user/main/community')
+      return
+    }
+    if (this.teamId) {
+      this.router.navigateByUrl('user/main/teams')
+      return
+    }
+    if (!this.communityId && !this.teamId) {
+      this.router.navigateByUrl('user/main/feeds')
+      return
+    }
+  }
 
   avatar_url_fb: any;
   categories: any[] = [];
@@ -22,21 +40,25 @@ export class AddPostMobileComponent {
   hideField: boolean = false;
 
   ngOnInit() {
+
     this.route.paramMap.subscribe(params => {
-      
+
       const id = params.get('id');
-      this.categoryName = id ? id : null; // Convert to number if id exists
+      const name = params.get('name');
+      this.categoryName = name ? name : null; // Convert to number if id exists
+      this.categoryId = id ? id : '1';
       console.log('categoryName:', this.categoryName);
     });
-
+    this.communityId = localStorage.getItem('communityId');
+    this.teamId = localStorage.getItem('teamId');
     this.userPlan = localStorage.getItem('findPlan');
     this.service.getApi('coach/categories').subscribe(response => {
       if (response.success) {
         this.categories = response.data;
-        if (this.categories.length > 0) {
-          this.categoryId = this.categories[0].id;
-          this.selectedCategoryName = this.categories[0].name;
-        }
+        // if (this.categories.length > 0) {
+        //   this.categoryId = this.categories[0].id;
+        //   this.selectedCategoryName = this.categories[0].name;
+        // }
       }
       this.avatar_url_fb = localStorage.getItem('avatar_url_fb');
     });
@@ -284,8 +306,7 @@ export class AddPostMobileComponent {
       return; // Stop submission
     }
 
-    this.communityId = localStorage.getItem('communityId');
-    this.teamId = localStorage.getItem('teamId');
+ 
     const trimmedMessage = this.postText ? this.postText?.trim() : '';
 
     if (!this.audioFile && !this.videoFile && !this.imageFile && trimmedMessage == '') {
@@ -366,7 +387,16 @@ export class AddPostMobileComponent {
           thumbNailImg?.classList.remove('d-block');
           this.btnLoader = false;
           this.service.triggerRefresh();
-          this.router.navigateByUrl('user/main/feeds')
+          if (this.communityId) {
+            this.router.navigateByUrl('user/main/community')
+          }
+          if (this.teamId) {
+            this.router.navigateByUrl('user/main/teams')
+          }
+          if (!this.communityId && !this.teamId) {
+            this.router.navigateByUrl('user/main/feeds')
+          }
+          //this.router.navigateByUrl('user/main/feeds')
           //window.location.reload();
         } else {
           this.btnLoader = false;

@@ -45,7 +45,7 @@ export class PostCatFilterComponent {
 
   selectCategory(cat?: any): void {
     this.selectedCategoryId = cat.id || null; // Set `selectedCategoryId` or null if `id` is undefined
-    const url = cat.id ? `/user/main/add-post/${cat.name}` : '/user/main/add-post';
+    const url = cat.id ? `/user/main/add-post/${cat.name}/${cat.id}` : '/user/main/add-post';
     console.log('Navigating to:', url);
     this.router.navigateByUrl(url);
   }

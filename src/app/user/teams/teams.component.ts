@@ -54,6 +54,10 @@ export class TeamsComponent {
   }
 
   ngOnInit(): void {
+    localStorage.removeItem('communityId');
+
+    this.teamId = Number(localStorage.getItem('teamId'));
+
     this.role = this.service.getRole();
     if (this.role == 'USER') {
       this.isCoach = false;
@@ -66,6 +70,10 @@ export class TeamsComponent {
       this.getTeamData();
     });
     this.service.triggerRefresh();
+    if(this.teamId){
+      this.getCommunityProfileData(this.teamId, true);
+      this.openChat();
+    }
   }
 
   initForm() {
@@ -650,7 +658,7 @@ export class TeamsComponent {
 
   ngOnDestroy() {
     this.teamId = ''
-    localStorage.setItem('teamId', this.teamId)
+    //localStorage.setItem('teamId', this.teamId)
   }
 
   followedCoaches: any[] = [];
