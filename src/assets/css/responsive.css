@@ -544,4 +544,8 @@
   section.ct_panel_main_bg.ct_show_menu .ct_side_bar{
     padding-block: 15px;
   }
+
+  .ct_all_feed_boxex {
+    max-height: unset !important;
+  }
 }
