@@ -3,12 +3,12 @@ $(document).ready(function(){
         $('.ct_search_input').toggleClass('ct_show_search')
     })
 
-    $('.ct_menu_bar').click(function(){
-        $('.ct_nav_bar ul').addClass('ct_show_menu')
-    })
-    $('.ct_close_menu').click(function(){
-        $('.ct_nav_bar ul').removeClass('ct_show_menu')
-    })
+    // $('.ct_menu_bar').click(function(){
+    //     $('.ct_nav_bar ul').addClass('ct_show_menu')
+    // })
+    // $('.ct_close_menu').click(function(){
+    //     $('.ct_nav_bar ul').removeClass('ct_show_menu')
+    // })
 
     // Testimonial js S
     $('.ct_testimonial_slider').owlCarousel({

@@ -6,13 +6,15 @@
       </a>
     </div>
     <nav class="ct_nav_bar">
-      <ul>
+      <!-- add Class on Click ct_show_menu -->
+      <ul class="">
         <i class="bi bi-x-lg ct_close_menu"></i>
         <li><a (click)="scrollTo('home')" style="cursor: pointer;">Home</a></li>
         <li><a (click)="scrollTo('blog')" style="cursor: pointer;">Blog</a></li>
         <li><a (click)="scrollTo('about')" style="cursor: pointer;">About</a></li>
         <li><a (click)="scrollTo('contact')" style="cursor: pointer;">Contact</a></li>
       </ul>
+
     </nav>
     <div class="ct_right_menu">
       <ul>
@@ -27,7 +29,7 @@
           <a routerLink="/login" class="ct_orange_btn ct_white_border_1">Login</a>
         </li>
       </ul>
-      <!-- <i class="bi bi-list text-white ct_menu_bar"></i> -->
+      <i class="bi bi-list text-white ct_menu_bar"></i>
     </div>
   </header>
 
@@ -510,7 +512,8 @@
 
             </div>
             <div class="mt-4 w-100">
-              <button (click)="submit()" class="ct_orange_btn ct_border_radius_10 ct_py_14_px_10 w-100 ct_fs_20 ct_ff_roboto">
+              <button (click)="submit()"
+                class="ct_orange_btn ct_border_radius_10 ct_py_14_px_10 w-100 ct_fs_20 ct_ff_roboto">
                 <div class="d-flex align-items-center">
                   <div class="spinner-border me-2" role="status" *ngIf="loading">
                     <span class="visually-hidden">Loading...</span>

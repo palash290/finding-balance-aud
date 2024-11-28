@@ -70,7 +70,7 @@
     position: fixed;
     z-index: 9999;
     background-color: #101011;
-    transition: 0.4s ease all;
+    transition: 0.4s linear all;
   }
 
   .ct_right_side_panel {
@@ -375,9 +375,10 @@
   }
 
   section.ct_mobile_width_section {
-    min-height: 100vh;
+    min-height: calc(100vh - 50px);
     height: 100%;
     display: block;
+    overflow-y: auto;
   }
 
   .fb_add_post_input {
@@ -564,10 +565,10 @@
     z-index: 999999999;
   }
 
-  .ct_all_notification {
+  /* .ct_all_notification {
     height: calc(100vh - 160px);
     overflow-y: auto;
-  }
+  } */
 
   .fb_edit_profile_icon {
     display: flex;
@@ -665,19 +666,36 @@
   .ct_right_message_area.active {
     z-index: 999999999;
   }
-  .ct_res_no_item_v_h{
+  .ct_res_no_item_v_h {
     height: calc(100vh - 20px) !important;
   }
-  .toast-container{
+  .toast-container {
     z-index: 999999999 !important;
   }
   .ct_message_user_lit {
     height: auto;
     height: calc(100vh - 100px);
-}
-.ct_chat_area_scroll {
-  height: calc(100vh - 216px) !important;
-  max-height: calc(100vh - 216px) !important;
-
-}
+  }
+  .ct_chat_area_scroll {
+    height: calc(100vh - 216px) !important;
+    max-height: calc(100vh - 216px) !important;
+  }
+  .ct_chat_dropdown {
+    padding: 0px 10px;
+  }
+  .ct_fs_20_res {
+    font-size: 20px;
+  }
+  .ct_all_notification {
+    height: auto;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+  }
+  .ct_panel_menu {
+    border-bottom: 0px solid rgb(255 255 255 / 50%);
+    padding-bottom: 50px;
+  }
+  .ct_chat_back {
+    padding: 0px 6px;
+  }
 }

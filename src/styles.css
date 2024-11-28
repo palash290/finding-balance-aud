@@ -142,7 +142,9 @@ div:where(.swal2-icon).swal2-warning {
 .iti--inline-dropdown .iti__dropdown-content {
   width: 300px !important;
 }
-
+.iti__search-input {
+  padding: 4px;
+}
 .ct_custom_dropdown ul.dropdown-list {
   display: flex;
   flex-direction: column;
@@ -316,6 +318,9 @@ div.mat-mdc-select-panel {
   border-radius: 10px;
   object-fit: contain;
 }
+.form-control:focus {
+  border-color: var(--orange);
+}
 @media screen and (max-width: 575px) {
   .ct_custom_drop_dwon_890
     .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled.mdc-text-field--no-label {
@@ -324,5 +329,5 @@ div.mat-mdc-select-panel {
 
   .swal2-container.swal2-center.swal2-backdrop-show {
     z-index: 999999999;
-}
+  }
 }

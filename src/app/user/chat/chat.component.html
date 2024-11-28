@@ -29,19 +29,19 @@
         </div>
 
         } @else {
-            <div class="ct_res_575_d_none">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="ct_notification_search_input" style="flex: 1;">
-                        <input type="text" class="form-control ct_login_input" placeholder="Search"
-                            [(ngModel)]="searchQueryFilter">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-        
-                    <i class="fa-solid fa-user-plus text-white" (click)="searchCoachesList()" style="cursor: pointer;"
-                        data-bs-toggle="modal" data-bs-target="#ct_followed_coaches2"></i>
+        <div class="ct_res_575_d_none">
+            <div class="d-flex align-items-center gap-3">
+                <div class="ct_notification_search_input" style="flex: 1;">
+                    <input type="text" class="form-control ct_login_input" placeholder="Search"
+                        [(ngModel)]="searchQueryFilter">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
+
+                <i class="fa-solid fa-user-plus text-white" (click)="searchCoachesList()" style="cursor: pointer;"
+                    data-bs-toggle="modal" data-bs-target="#ct_followed_coaches2"></i>
             </div>
-      
+        </div>
+
 
         <div class="ct_mobile_header ct_d_none_for_desk">
             <div (click)="onToggleMenu()" class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
@@ -51,8 +51,8 @@
             <div class="d-flex align-items-center gap-3">
 
                 <div>
-                    <i class="fa-solid fa-user-plus text-white" (click)="searchCoachesList()"
-                        style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#ct_followed_coaches2"></i>
+                    <i class="fa-solid fa-user-plus text-white" (click)="searchCoachesList()" style="cursor: pointer;"
+                        data-bs-toggle="modal" data-bs-target="#ct_followed_coaches2"></i>
                 </div>
             </div>
 
@@ -297,9 +297,10 @@
                             placeholder="Type here..." maxlength="250" rows="1" [ngModelOptions]="{standalone: true}"
                             (keydown)="handleKeyDown($event)" (input)="handleInput()"></textarea>
 
-                        <div class="d-flex align-items-center" style="cursor: pointer;">
-                            <button type="button" [disabled]="isDisabled" (click)="sendMessage()">
-                                <i class="fa fa-paper-plane ct_send_msg_plane text-white" aria-hidden="true">
+                        <div style="cursor: pointer;">
+                            <button type="button" class=" ct_send_msg_plane" [disabled]="isDisabled"
+                                (click)="sendMessage()">
+                                <i class="fa fa-paper-plane  text-white" aria-hidden="true">
                                 </i>
                             </button>
                         </div>
@@ -415,11 +416,13 @@
 
 <!-- Follow Friend Modal S -->
 
-<div class="modal fade" id="ct_followed_coaches2" tabindex="-1" aria-labelledby="ct_create_teamLabel" aria-hidden="true">
+<div class="modal fade" id="ct_followed_coaches2" tabindex="-1" aria-labelledby="ct_create_teamLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-0 pt-0 px-0 d-block text-center">
-                <h5 class="modal-title text-white ct_fs_15 mx-auto ct_ff_roboto" id="exampleModalLabel">{{isCoach ?
+                <h5 class="modal-title text-white ct_fs_15 ct_fs_20_res mx-auto ct_ff_roboto" id="exampleModalLabel">
+                    {{isCoach ?
                     'Followed Users' : 'Followed Coaches'}}
                 </h5>
                 <button type="button" class="btn-close ct_close" data-bs-dismiss="modal" aria-label="Close"><i

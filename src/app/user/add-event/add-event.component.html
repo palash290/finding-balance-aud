@@ -5,7 +5,8 @@
     </div>
 </div>
 <div class="ct_res_flex_2 ct_res_mb_20 ct_d_none_for_desk">
-    <a routerLink="/user/main/event-list" class="ct_orange_text ct_back_to_list ct_chat_back mb-4 ct_res_mb_0  d-block ct_fw_600"
+    <a routerLink="/user/main/event-list"
+        class="ct_orange_text ct_back_to_list ct_chat_back mb-4 ct_res_mb_0  d-block ct_fw_600"
         style="cursor: pointer;"><i class="fa-solid fa-arrow-left me-2"></i> </a>
     <h4 class="ct_fs_28 ct_ff_roboto ct_fw_500 ct_orange_text mb-0 ct_res_mx_auto12 ct_res_fs_24">Add New Event
     </h4>
@@ -14,7 +15,8 @@
 <form [formGroup]="newForm">
 
     <div class="form-group mb-3" data-bs-toggle="modal" data-bs-target="#ct_create_team">
-        <label for="" class="mb-2 ct_ff_roboto ct_fw_600 text-white">Image</label>
+        <label for="" class="mb-2 ct_ff_roboto ct_fw_600 text-white">Image <span style="opacity: 0.5;"> (1288 *
+                250)</span></label>
         <div class="ct_cover_img">
             <label for="imgInp" class="w-100">
                 <input accept="image/*" type="file" id="imgInp" class="d-none" (change)="fileChangeEvent($event)"
