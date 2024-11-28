@@ -671,4 +671,13 @@
   .toast-container{
     z-index: 999999999 !important;
   }
+  .ct_message_user_lit {
+    height: auto;
+    height: calc(100vh - 100px);
+}
+.ct_chat_area_scroll {
+  height: calc(100vh - 216px) !important;
+  max-height: calc(100vh - 216px) !important;
+
+}
 }

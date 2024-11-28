@@ -1,7 +1,9 @@
 <div class="ct_event_all_main ct_res_pt_0">
     @if(!isCoach){
-    <div class="d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 ct_fw_600 ct_fs_20 text-white ct_ff_roboto">Upcoming Events</h4>
+    <div class="d-flex align-items-center ">
+        <div (click)="onToggleMenu()" class="ct_menu_toggle2"><i class="fa-solid fa-bars"></i>
+        </div>
+        <h4 class="mb-0 ct_fw_600 ct_fs_20 text-white ct_ff_roboto mx-auto">Upcoming Events</h4>
     </div>
     }@else {
     <div class="ct_res_575_d_none">
@@ -19,7 +21,6 @@
                 <img src="assets/img/edit_event_icon_svg.svg" alt="">
             </div>
         </div>
-
     </div>
     }
     <div class="ct_mt_30 ct_event_scroll" style="cursor: pointer;">

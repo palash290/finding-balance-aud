@@ -240,7 +240,6 @@ export class AddEventComponent {
   // }
 
   addEvent() {
-    debugger
     this.newForm.markAllAsTouched();
     if (this.newForm.valid) {
       this.loading = true;

@@ -55,7 +55,8 @@ export class FeedFilterComponent {
     { id: '', name: 'All' },
     { id: 'VIDEO', name: 'Video' },
     { id: 'PODCAST', name: 'Audio' },
-    { id: 'ARTICLE', name: 'Article' }
+    { id: 'ARTICLE', name: 'Article' },
+    { id: 'IMAGE', name: 'Image' }
   ];
 
   selectedTypeId: any = ''; // Default selection (All)

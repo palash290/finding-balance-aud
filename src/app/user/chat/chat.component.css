@@ -1,4 +1,4 @@
-div#ct_followed_coaches2 .modal-content{
+div#ct_followed_coaches2 .modal-content {
     background-color: #111010;
     border: 1px solid var(--orange);
     padding: 22px;
@@ -108,8 +108,9 @@ div#ct_followed_coaches2 .modal-content{
     white-space: normal;
     word-break: break-word;
 }
-.ct_chat_coach_main_scroll{
-   height: 100%;
+
+.ct_chat_coach_main_scroll {
+    height: 100%;
 }
 
 @media screen and (max-width:1199px) {
@@ -125,15 +126,17 @@ div#ct_followed_coaches2 .modal-content{
 
 
 .ct_login_input {
- 
+
     height: 38px;
-    resize: none; /* Prevent resizing by user */
-    
+    resize: none;
+    /* Prevent resizing by user */
+
 }
 
 .form-control {
     width: 90%;
 }
+
 .ct_chat_footer textarea.form-control {
     width: calc(100% - 40px) !important;
 }
