@@ -613,6 +613,13 @@
   border-radius: 20px;
 }
 
+.ct_img_h_450 {
+  height: 450px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
 .ct_img_100 {
   width: 100px;
   height: 100px;

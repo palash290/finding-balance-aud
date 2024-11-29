@@ -32,6 +32,16 @@ export class HomeComponent {
     })
   }
 
+  showMenu = false;
+
+  openMenu() {
+    this.showMenu = true;
+  }
+
+  closeMenu() {
+    this.showMenu = false;
+  }
+
   submit() {
     this.contactForm.markAllAsTouched();
 
@@ -158,6 +168,7 @@ export class HomeComponent {
 
   // Smooth scrolling to the section
   scrollTo(sectionId: string): void {
+    this.showMenu = false;
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });

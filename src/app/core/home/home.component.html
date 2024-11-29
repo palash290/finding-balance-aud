@@ -7,8 +7,8 @@
     </div>
     <nav class="ct_nav_bar">
       <!-- add Class on Click ct_show_menu -->
-      <ul class="">
-        <i class="bi bi-x-lg ct_close_menu"></i>
+      <ul [ngClass]="{ 'ct_show_menu': showMenu }">
+        <i (click)="closeMenu()" class="bi bi-x-lg ct_close_menu"></i>
         <li><a (click)="scrollTo('home')" style="cursor: pointer;">Home</a></li>
         <li><a (click)="scrollTo('blog')" style="cursor: pointer;">Blog</a></li>
         <li><a (click)="scrollTo('about')" style="cursor: pointer;">About</a></li>
@@ -29,7 +29,7 @@
           <a routerLink="/login" class="ct_orange_btn ct_white_border_1">Login</a>
         </li>
       </ul>
-      <i class="bi bi-list text-white ct_menu_bar"></i>
+      <i (click)="openMenu()" class="bi bi-list text-white ct_menu_bar"></i>
     </div>
   </header>
 

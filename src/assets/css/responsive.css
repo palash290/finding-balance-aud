@@ -65,12 +65,15 @@
     } */
 
   .ct_side_bar {
-    left: -100%;
+    /* left: -100%; */
+    left: 0px;
     top: 0px;
     position: fixed;
     z-index: 9999;
     background-color: #101011;
-    transition: 0.4s linear all;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    will-change: transform; 
   }
 
   .ct_right_side_panel {
@@ -84,7 +87,8 @@
   }
 
   section.ct_panel_main_bg.ct_show_menu .ct_side_bar {
-    left: 0px;
+    /* left: 0px; */
+    transform: translateX(0%);
   }
 }
 
@@ -271,7 +275,7 @@
   }
 
   .ct_logo img {
-    width: 220px;
+    width: 195px;
     object-fit: contain;
   }
 
@@ -681,8 +685,8 @@
     max-height: calc(100vh - 216px) !important;
   }
   .ct_chat_dropdown {
-    padding: 0px 10px;
-  }
+    padding: 0px 13px 0px 13px;
+}
   .ct_fs_20_res {
     font-size: 20px;
   }

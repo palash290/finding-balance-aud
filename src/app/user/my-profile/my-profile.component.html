@@ -8,7 +8,8 @@
 
 
 <div class="ct_cover_img">
-    <img [src]="cover_photo_url ? cover_photo_url : '/assets/img/no_event.png'" alt="" class="ct_img_h_200">
+    <img [src]="cover_photo_url ? cover_photo_url : '/assets/img/no_event.png'" alt="" class="ct_img_h_200"
+        data-bs-toggle="modal" data-bs-target="#ct_create_team">
 </div>
 <div class="ct_my_profile_main">
     <img [src]="avatar_url ? avatar_url : '/assets/img/np_pro.png'" alt="" class="ct_img_100">
@@ -1354,3 +1355,15 @@
     </div>
 </div>
 <!-- Modal End -->
+
+
+
+<div class="modal fade modal-lg" id="ct_create_team" tabindex="-1" aria-labelledby="ct_create_teamLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <label for="" >
+                <img [src]="cover_photo_url" alt="" class="ct_img_h_450" >
+            </label>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-profile',
@@ -27,7 +28,11 @@ export class EditProfileComponent {
   imageChanged: boolean = false;
   primaryCategoryId: any;
 
-  constructor(private route: Router, private service: SharedService, private toastr: ToastrService, private sanitizer: DomSanitizer) { }
+  constructor(private route: Router, private service: SharedService, private toastr: ToastrService, private sanitizer: DomSanitizer, private location: Location) { }
+
+  backClicked() {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     this.role = this.service.getRole();
