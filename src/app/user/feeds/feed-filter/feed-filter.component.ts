@@ -61,7 +61,7 @@ export class FeedFilterComponent {
 
   selectedTypeId: any = ''; // Default selection (All)
 
-  selectType(id: number): void {
+  selectType(id: any): void {
     this.selectedTypeId = id;
     console.log('Selected Type ID:', this.selectedTypeId);
   }

@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-md-12 px-0">
                 <div class="d-flex align-items-center justify-content-between">
-                    <a routerLink="/user/main/feeds" class="fb_add_post_back"><i
+                    <a routerLink="/user/main/feeds" class="fb_add_post_back ct_res_position_a_w"><i
                             class="fa-solid fa-chevron-left"></i></a>
-                    <h5 class="mb-0 ct_fs_20_res text-white">Filter</h5>
-                    <h6 class="mb-0 ct_fs_14 text-white"></h6>
+                    <h5 class="mb-0 ct_fs_20_res text-white ct_res_text_center_w">Filter</h5>
+                   
                 </div>
 
                 <div class="pt-4">
@@ -14,7 +14,7 @@
                     <div class="d-flex align-items-center gap-2 flex-wrap">
                         <span *ngFor="let category of categories" (click)="selectCategory(category)"
                             [ngClass]="{'active': selectedCategoryId === category.id}"
-                            class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">
+                            class="ct_orange_btn_badge fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">
                             {{ category.name }}
                         </span>
                     </div>
@@ -24,13 +24,16 @@
                 <div class="pt-4">
                     <h5 class="ct_fs_20_res mb-3 text-white">Type</h5>
                     <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <span *ngFor="let type of types" (click)="selectType(type.id)"
+                        <span 
+                            *ngFor="let type of types" 
+                            (click)="selectType(type.id)"
                             [ngClass]="{'active': selectedTypeId === type.id, 'ct_tags_spn': true}"
                             class="ct_orange_btn fb_transparent_white_border ct_border_radius_10 py-2 ct_fs_14">
                             {{ type.name }}
                         </span>
                     </div>
                 </div>
+                
 
                 <div class="fb_bottom_btn">
                     <button (click)="applyFilter()"

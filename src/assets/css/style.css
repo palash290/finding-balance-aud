@@ -200,6 +200,22 @@ header {
   justify-content: center;
   font-weight: 600;
 }
+.ct_orange_btn_badge{
+  background-color: var(--orange);
+  padding: 8px 18px;
+  z-index: 1;
+  position: relative;
+  transition: 0.4s ease all;
+  border-radius: 100px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: none;
+  color: #fff;
+  justify-content: center;
+  font-weight: 600;
+}
 .ct_orange_btn:before {
   content: "";
   position: absolute;

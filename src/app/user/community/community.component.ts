@@ -353,7 +353,7 @@ export class CommunityComponent {
       confirmButtonText: "Yes, delete it!",
       cancelButtonText: "No, cancel!",
       reverseButtons: true,
-      confirmButtonColor: "#b92525",
+      confirmButtonColor: "#e58934",
     })
       .then((result) => {
         if (result.isConfirmed) {
@@ -517,7 +517,7 @@ export class CommunityComponent {
       text: 'You will not be able to recover this post!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#e58934',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
@@ -671,7 +671,7 @@ export class CommunityComponent {
 
     // Show immediate feedback to the user using MatSnackBar
     this.snackBar.open(message, '', {
-      duration: 9000,
+      duration: 2000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
       panelClass: ['snackbar-success']  // Optional custom styling class
@@ -835,7 +835,7 @@ export class CommunityComponent {
       text: 'You will not be able to recover this community!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#e58934',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {

@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { WaveService } from 'angular-wavesurfer-service';
 import WaveSurfer from 'wavesurfer.js';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feeds',
@@ -55,6 +55,13 @@ export class FeedsComponent {
 
 
   ngOnInit() {
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0); // Scroll to the top
+      }
+    });
+    
     localStorage.removeItem('teamId');
     localStorage.removeItem('communityId');
     this.route.paramMap.subscribe(params => {
@@ -638,7 +645,7 @@ export class FeedsComponent {
       text: 'You will not be able to recover this post!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#e58934',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {

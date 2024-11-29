@@ -48,16 +48,19 @@
     top: 0px;
     z-index: 999;
     background-color: #141414;
-    right: -100%;
+    right: 0%;
     padding-inline: 20px;
     padding-bottom: 20px;
     /* height: calc(100vh - 117px); */
     border-radius: 20px;
     transition: 0.4s ease all;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    will-change: transform; 
   }
 
   .ct_right_message_area.active {
-    right: 0px;
+    transform: translateX(0%);
   }
 
   /* .ct_box_2_column{
@@ -413,10 +416,10 @@
     background-color: var(--orange);
   }
 
-  .fb_transparent_white_border:hover {
+  /* .fb_transparent_white_border:hover {
     color: #fff;
     border-color: var(--orange);
-  }
+  } */
 
   .fb_uploaded_cnt,
   .fb_bottom_btn {
@@ -684,7 +687,7 @@
     height: calc(100vh - 216px) !important;
     max-height: calc(100vh - 216px) !important;
   }
-  .ct_chat_dropdown {
+  .ct_chat_dropdown i {
     padding: 0px 13px 0px 13px;
 }
   .ct_fs_20_res {
@@ -702,4 +705,17 @@
   .ct_chat_back {
     padding: 0px 6px;
   }
+  .ct_right_side_panel {
+    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
+}
+.ct_res_position_a_w{
+  position: absolute;
+  width: 100%;
+}
+.ct_res_text_center_w{
+  width: 100%;
+  text-align: center;
+}
 }

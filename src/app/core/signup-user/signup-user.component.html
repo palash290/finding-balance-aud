@@ -54,7 +54,8 @@
 
                                 <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched"
                                     class="error-message">
-                                    <div *ngIf="loginForm.controls['email'].errors?.['required']">Email is required.
+                                    <div *ngIf="loginForm.controls['email'].errors?.['required']" class="ct_fs_14 mt-1">
+                                        Email is required.
                                     </div>
                                     <div *ngIf="loginForm.controls['email'].errors?.['email'] && !loginForm.controls['email'].errors?.['required']"
                                         class="ct_fs_14 mt-1">

@@ -866,9 +866,10 @@
                         <button type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                     </div> -->
                     <div class="position-relative">
-                        <input type="text" class="form-control ct_custom_input w-100" placeholder="Write comment..."
-                            [(ngModel)]="commentText" [ngModelOptions]="{standalone: true}" maxlength="250"
-                            (keyup.enter)="addComment(feed)" [disabled]="btnLoader">
+                        <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
+                            placeholder="Write comment..." [(ngModel)]="commentText"
+                            [ngModelOptions]="{standalone: true}" maxlength="250" (keyup.enter)="addComment(feed)"
+                            [disabled]="btnLoader">
                         <!-- <i (click)="addComment(feed.id)" class="fa fa-paper-plane ct_send_msg_plane text-white"
                             aria-hidden="true"></i> -->
                         <i (click)="addComment(feed)" *ngIf="!btnLoader"
@@ -1358,12 +1359,13 @@
 
 
 
-<div class="modal fade modal-lg" id="ct_create_team" tabindex="-1" aria-labelledby="ct_create_teamLabel" aria-hidden="true">
+<!--<div class="modal fade modal-lg" id="ct_create_team" tabindex="-1" aria-labelledby="ct_create_teamLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <label for="" >
-                <img [src]="cover_photo_url" alt="" class="ct_img_h_450" >
+            <label for="">
+                <img [src]="cover_photo_url" alt="" class="ct_img_h_450">
             </label>
         </div>
     </div>
-</div>
+</div>-->

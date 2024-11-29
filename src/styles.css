@@ -330,4 +330,19 @@ div.mat-mdc-select-panel {
   .swal2-container.swal2-center.swal2-backdrop-show {
     z-index: 999999999;
   }
+
+
+  .cdk-overlay-container {
+    z-index: 9999999999 !important;
+  }
+  
+  .cdk-overlay-pane {
+    z-index: 9999999999 !important;
+  }
+  
+  .snackbar-success {
+    z-index: 9999999999 !important;
+  }
+
+
 }

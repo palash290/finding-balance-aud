@@ -318,7 +318,7 @@
                             <!-- show this div when user click on comment -->
                             <div class="ct_comment_area_main mt-4" [class.d-none]="!showCmt[feed.id]">
                                 <div class="position-relative">
-                                    <input type="text" class="form-control ct_custom_input w-100"
+                                    <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                                         placeholder="Write comment..." [(ngModel)]="commentText"
                                         [ngModelOptions]="{standalone: true}" maxlength="250"
                                         (keyup.enter)="addComment(feed)" [disabled]="btnLoaderCmt">
@@ -576,7 +576,7 @@
                             <div class="ct_comment_area_main mt-4" [class.d-none]="!showCmt[feed.id]">
 
                                 <div class="position-relative">
-                                    <input type="text" class="form-control ct_custom_input w-100"
+                                    <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                                         placeholder="Write comment..." [(ngModel)]="commentText"
                                         [ngModelOptions]="{standalone: true}" maxlength="250"
                                         (keyup.enter)="addComment(feed)" [disabled]="btnLoaderCmt">
@@ -857,7 +857,7 @@
                                      <button type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                                  </div> -->
                                 <div class="position-relative">
-                                    <input type="text" class="form-control ct_custom_input w-100"
+                                    <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                                         placeholder="Write comment..." [(ngModel)]="commentText"
                                         [ngModelOptions]="{standalone: true}" maxlength="250"
                                         (keyup.enter)="addComment(feed)" [disabled]="btnLoaderCmt">
@@ -1100,7 +1100,7 @@
                             <div class="ct_comment_area_main mt-4" [class.d-none]="!showCmt[feed.id]">
 
                                 <div class="position-relative">
-                                    <input type="text" class="form-control ct_custom_input w-100"
+                                    <input type="text" class="form-control ct_custom_input w-100 ct_pe_34"
                                         placeholder="Write comment..." [(ngModel)]="commentText"
                                         [ngModelOptions]="{standalone: true}" maxlength="250"
                                         (keyup.enter)="addComment(feed)" [disabled]="btnLoaderCmt">
@@ -1358,8 +1358,8 @@
                     </div>
 
                     <div class="mt-3">
-                        <input type="text" class="form-control ct_login_input" placeholder="My Team Description"
-                            formControlName="about">
+                        <textarea type="text" class="form-control ct_login_input h-auto" placeholder="My Team Description"
+                            formControlName="about" rows="3"></textarea>
                     </div>
 
                     <div class="ct_uploaded_cnt">
@@ -1420,8 +1420,8 @@
                     </div>
 
                     <div class="mt-3">
-                        <input type="text" class="form-control ct_login_input" placeholder="My Team Description"
-                            formControlName="about">
+                        <textarea type="text" class="form-control ct_login_input h-auto" placeholder="My Team Description"
+                            formControlName="about" rows="3"></textarea>
                     </div>
 
                     <div class="ct_uploaded_cnt">

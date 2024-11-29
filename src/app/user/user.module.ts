@@ -99,7 +99,7 @@ import { FeedFilterComponent } from './feeds/feed-filter/feed-filter.component';
     MatSnackBarModule,
     MatTooltipModule,
     AngularWavesurferServiceModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [WaveService],
 })
